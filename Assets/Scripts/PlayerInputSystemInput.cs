@@ -1,38 +1,37 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class PlayerInputSystemInput : MonoBehaviour, IInput
+public class PlayerInputSystemInput : IInput
 {
-    public float vertical { get; private set; }
-    public float horizontal { get; private set; }
-    public bool interact { get; private set; }
+    [field: SerializeField] public float vertical { get; private set; }
+    [field: SerializeField] public float horizontal { get; private set; }
+    [field: SerializeField] public bool interact { get; private set; }
     
-
-    private InputControl inputControl;
-
-    private void Awake()
+    private readonly InputControl inputControl;
+    
+    public PlayerInputSystemInput()
     {
         inputControl = new InputControl();
         inputControl.Enable();
     }
-
-    private void OnEnable()
+    public void Create()
     {
         inputControl.Player.Move.performed += OnMovePerformed;
         inputControl.Player.Move.canceled += OnMoveCanceled;
-        inputControl.Player.Interact.performed += OnInteractPerformed;
-        inputControl.Player.Interact.canceled += OnInteractCanceled;
     }
 
-    private void OnDisable()
+    public void Destroy()
     {
         inputControl.Player.Move.performed -= OnMovePerformed;
         inputControl.Player.Move.canceled -= OnMoveCanceled;
-        inputControl.Player.Interact.performed -= OnInteractPerformed;
-        inputControl.Player.Interact.canceled -= OnInteractCanceled;
     }
+
+    public void ReadInput()
+    {
+        interact = inputControl.Player.Interact.WasPressedThisFrame();
+    }
+    
 
     #region inputAction callback function
 
@@ -48,15 +47,5 @@ public class PlayerInputSystemInput : MonoBehaviour, IInput
         vertical = 0;
     }
 
-    private void OnInteractPerformed(InputAction.CallbackContext ctx)
-    {
-        interact = true;
-    }
-
-    private void OnInteractCanceled(InputAction.CallbackContext ctx)
-    {
-        interact = false;
-    }
-    
     #endregion
 }

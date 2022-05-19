@@ -7,23 +7,25 @@ public class Player : MonoBehaviour
 {
     public IInput PlayerInput;
     [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private PlayerInteractHandler interactHandler;
 
     public float MoveSpeed;
 
     void Awake()
     {
-        PlayerInput = GetComponent<IInput>();        
+        PlayerInput = new PlayerInputSystemInput();        
         playerMove = new PlayerMove(this);
+        interactHandler = new PlayerInteractHandler(this);
     }
 
     void OnEnable()
     {
-        
+        PlayerInput.Create();
     }
 
     void OnDisable()
     {
-        
+        PlayerInput.Destroy();
     }
 
     // Start is called before the first frame update
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerInput.ReadInput();
         playerMove.Move();
+        interactHandler.Update();
     }
 }
