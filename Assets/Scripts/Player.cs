@@ -3,29 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IControllable
 {
-    public IInput PlayerInput;
-    [SerializeField] private PlayerMove playerMove;
-    [SerializeField] private PlayerInteractHandler interactHandler;
-
-    public float MoveSpeed;
+    private IInput PlayerInput;
+    private PlayerMove playerMove;
+    private PlayerInteractHandler interactHandler;
+    
+    [field: SerializeReference]public bool isEnableControl { get; private set; }
 
     void Awake()
     {
-        PlayerInput = new PlayerInputSystemInput();        
-        playerMove = new PlayerMove(this);
-        interactHandler = new PlayerInteractHandler(this);
+        PlayerInput = new PlayerInputSystemInput();
+        interactHandler = GetComponent<PlayerInteractHandler>();
+        playerMove = GetComponent<PlayerMove>();
     }
 
     void OnEnable()
     {
-        PlayerInput.Create();
+        EnableControl(true, PlayerInput);
     }
 
     void OnDisable()
     {
-        PlayerInput.Destroy();
+        EnableControl(false, PlayerInput);
     }
 
     // Start is called before the first frame update
@@ -38,7 +38,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerInput.ReadInput();
-        playerMove.Move();
-        interactHandler.Update();
     }
+    
+    public void EnableControl(bool enable, IInput input = null)
+    {
+        isEnableControl = enable;
+        if (enable) input?.Create();
+        else input?.Destroy();
+    }
+
+    public IInput GetInput() => PlayerInput;
+    
 }

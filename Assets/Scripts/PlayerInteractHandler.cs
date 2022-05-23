@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 [Serializable]
-public class PlayerInteractHandler
+public class PlayerInteractHandler : MonoBehaviour
 {
+    [SerializeField]private Transform interactPoint;
     public float InteractRange;
     
     private Player player;
@@ -13,22 +15,48 @@ public class PlayerInteractHandler
     // ray return hit object
     // interact with the object
 
-    public PlayerInteractHandler(Player player)
+    void Awake()
     {
-        this.player = player;
+        player = GetComponent<Player>();
         currentSelectObj = null;
     }
 
-    public void Update()
+    void Update()
     {
-        Debug.DrawRay(player.transform.position, player.transform.right * InteractRange );
+        currentSelectObj?.OnDeselect();
         DetectInteractableObj();
+        currentSelectObj?.OnSelect();
+
+        if (currentSelectObj != null && player.GetInput().interact)
+        {
+            player.EnableControl(false, player.GetInput());
+            currentSelectObj.Interact();
+        }
     }
-    
+
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.DrawSphere(interactPoint.position, InteractRange);
+    // }
+
     private void DetectInteractableObj()
     {
-        var playerTrans = player.transform;
-        var hits = Physics2D.RaycastAll(playerTrans.position, playerTrans.right, InteractRange);
-        
+        currentSelectObj = null;
+        var hits = Physics2D.OverlapCircleAll(interactPoint.position, InteractRange);
+        var minDistance = Mathf.Infinity;
+        foreach (var hit in hits)
+        {
+            var interact = hit.GetComponent<IInteractable>();
+            if (interact == null) continue;
+            
+            //find the closest interactable object
+            var diff = transform.position - hit.transform.position;
+            var distance = diff.sqrMagnitude;
+            
+            if (!(distance < minDistance)) continue;
+            
+            minDistance = distance;
+            currentSelectObj = interact;
+        }
     }
 }

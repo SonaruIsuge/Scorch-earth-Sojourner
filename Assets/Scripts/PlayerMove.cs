@@ -3,43 +3,45 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class PlayerMove
+public class PlayerMove : MonoBehaviour
 {
+    public float MoveSpeed;
+    
     private Player player;
     private Rigidbody2D rb;
-    private IInput input;
 
     [SerializeField]private Vector2 movement = Vector2.zero;
-    
     private float previousDir;
 
-    public PlayerMove(Player player)
+    void Awake()
     {
-        this.player = player;
-        input = player.PlayerInput;
-        rb = player.GetComponent<Rigidbody2D>();
+        player = GetComponent<Player>();
+        rb = GetComponent<Rigidbody2D>();
         
         previousDir = 1;
     }
 
-    public void Move()
+    void Update()
     {
         if (movement.x != 0) previousDir = movement.x;
         
-        movement.x = input.horizontal;
-        movement.y = input.vertical;
-        if(rb) rb.velocity = player.MoveSpeed * movement;
-
+        Move();
         Flip(checkFlip());
+    }
+    
+    private void Move()
+    {
+        movement.x = player.GetInput().horizontal;
+        movement.y = player.GetInput().vertical;
+        if(rb) rb.velocity = MoveSpeed * movement;
     }
 
     private bool checkFlip() => previousDir < 0;
 
-        private void Flip(bool isReverse)
+    private void Flip(bool isReverse)
     {
-        var playerTransform = player.transform;
-        var playerRotation = playerTransform.localRotation;
+        var playerRotation = transform.localRotation;
         playerRotation.y = isReverse ? 180 : 0;
-        playerTransform.rotation = playerRotation;
+        transform.rotation = playerRotation;
     }
 }
