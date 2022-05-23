@@ -442,8 +442,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 609205489}
+  - component: {fileID: 609205490}
   m_Layer: 0
-  m_Name: Objects
+  m_Name: Machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,6 +465,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &609205490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609205488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563b501a5fd640818eb7e4b9ac276df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XControlDisplay: {fileID: 744617387}
+  YControlDisplay: {fileID: 878592675}
+  SpeedControlDisplay: {fileID: 791529863}
+  ForwardSpeed: 2
+  RotateAngle: 60
 --- !u!1 &744617387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dc4a6cbbca56d498633ef272f1dcf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <isEnableControl>k__BackingField: 0
 --- !u!114 &2096863526
 MonoBehaviour:
   m_ObjectHideFlags: 0
