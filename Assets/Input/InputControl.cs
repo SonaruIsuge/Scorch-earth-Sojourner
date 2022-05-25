@@ -44,13 +44,40 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnablePicture"",
+                    ""type"": ""Button"",
+                    ""id"": ""1adb0630-55ce-4df6-ae0c-e7de4fb82e04"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ControlPictureArea"",
+                    ""type"": ""Value"",
+                    ""id"": ""c6501e13-e08d-4094-bec3-6ff506534ca0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TakePicture"",
+                    ""type"": ""Button"",
+                    ""id"": ""a78a527b-cc94-4e71-8ed7-99e87f4ccaaf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""0b8537ff-37c0-4a94-8817-6e45a2b0f225"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -61,7 +88,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f160cacf-80a4-4086-be40-7704589e2ebe"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -178,6 +205,72 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd8b2ae1-70bd-4bd2-bfa0-330103811e3c"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnablePicture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c382f598-2acd-40a9-9b9a-1aa678eb8533"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnablePicture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5540eef-ce4b-43f5-baf4-e5ef7657aa96"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControlPictureArea"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3388a37-8f61-46eb-9e77-8099511f9486"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControlPictureArea"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e455ee7-13e6-41ab-8b4c-afdcc8a9979a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakePicture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad7300a1-1ec6-4d8b-a5ce-3b041fd3d829"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakePicture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +281,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_EnablePicture = m_Player.FindAction("EnablePicture", throwIfNotFound: true);
+        m_Player_ControlPictureArea = m_Player.FindAction("ControlPictureArea", throwIfNotFound: true);
+        m_Player_TakePicture = m_Player.FindAction("TakePicture", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,12 +345,18 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_EnablePicture;
+    private readonly InputAction m_Player_ControlPictureArea;
+    private readonly InputAction m_Player_TakePicture;
     public struct PlayerActions
     {
         private @InputControl m_Wrapper;
         public PlayerActions(@InputControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @EnablePicture => m_Wrapper.m_Player_EnablePicture;
+        public InputAction @ControlPictureArea => m_Wrapper.m_Player_ControlPictureArea;
+        public InputAction @TakePicture => m_Wrapper.m_Player_TakePicture;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -270,6 +372,15 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @EnablePicture.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePicture;
+                @EnablePicture.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePicture;
+                @EnablePicture.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePicture;
+                @ControlPictureArea.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnControlPictureArea;
+                @ControlPictureArea.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnControlPictureArea;
+                @ControlPictureArea.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnControlPictureArea;
+                @TakePicture.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTakePicture;
+                @TakePicture.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTakePicture;
+                @TakePicture.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTakePicture;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -280,6 +391,15 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @EnablePicture.started += instance.OnEnablePicture;
+                @EnablePicture.performed += instance.OnEnablePicture;
+                @EnablePicture.canceled += instance.OnEnablePicture;
+                @ControlPictureArea.started += instance.OnControlPictureArea;
+                @ControlPictureArea.performed += instance.OnControlPictureArea;
+                @ControlPictureArea.canceled += instance.OnControlPictureArea;
+                @TakePicture.started += instance.OnTakePicture;
+                @TakePicture.performed += instance.OnTakePicture;
+                @TakePicture.canceled += instance.OnTakePicture;
             }
         }
     }
@@ -288,5 +408,8 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnEnablePicture(InputAction.CallbackContext context);
+        void OnControlPictureArea(InputAction.CallbackContext context);
+        void OnTakePicture(InputAction.CallbackContext context);
     }
 }

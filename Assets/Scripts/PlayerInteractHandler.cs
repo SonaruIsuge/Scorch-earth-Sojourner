@@ -29,7 +29,6 @@ public class PlayerInteractHandler : MonoBehaviour
 
         if (currentSelectObj != null && player.GetInput().interact)
         {
-            player.EnableControl(false, player.GetInput());
             currentSelectObj.Interact();
         }
     }
