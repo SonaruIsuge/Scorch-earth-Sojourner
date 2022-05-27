@@ -41,13 +41,11 @@ public class MachineControl : MonoBehaviour
     {
         var rotatePerFrame = RotateAngle * Time.deltaTime;
         if (leftLever.LeftEnable != rightLever.RightEnable)
-        {
-            if (leftLever.LeftEnable) currentRotateAngle += rotatePerFrame;
-            else currentRotateAngle -= rotatePerFrame;
-        }
+            currentRotateAngle += leftLever.LeftEnable ? rotatePerFrame : -rotatePerFrame;
 
         if (currentRotateAngle >= 360) currentRotateAngle -= 360;
         if (currentRotateAngle < 0) currentRotateAngle += 360;
+        
         gpsPoint.rotation = Quaternion.Euler(0, 0, currentRotateAngle);
 
         //x' = cos(θ) * x - sin(θ) * y
