@@ -7,17 +7,18 @@ public class MachineControl : MonoBehaviour
     [SerializeField]private M_Forward forwardLever;
     [SerializeField]private M_TurnLeft leftLever;
     [SerializeField]private M_TurnRight rightLever;
+    [SerializeField] private CoordinationManager coordinationManager;
     
-    [SerializeField]private TMP_Text xText;
-    [SerializeField]private TMP_Text yText;
-    [SerializeField]private TMP_Text speedText;
+    // [SerializeField]private TMP_Text xText;
+    // [SerializeField]private TMP_Text yText;
+    // [SerializeField]private TMP_Text speedText;
 
     [SerializeField] private Transform gpsPoint;
 
     public float ForwardSpeed;
     public float RotateAngle;
 
-    private Vector2 machinePosInWorld;
+    [SerializeField] private Vector2 machinePosInWorld;
     private Vector2 machineForward;
     private float currentRotateAngle;
     private readonly Vector2 ORIGIN_FORWARD = Vector2.up;
@@ -32,9 +33,10 @@ public class MachineControl : MonoBehaviour
     void Update()
     {
         UpdateMove();
-        xText.text = machinePosInWorld.x.ToString("F");
-        yText.text = machinePosInWorld.y.ToString("F");
-        speedText.text = currentRotateAngle.ToString("F") + "°";
+        coordinationManager.SetCoordination(machinePosInWorld);
+        // xText.text = machinePosInWorld.x.ToString("F");
+        // yText.text = machinePosInWorld.y.ToString("F");
+        // speedText.text = currentRotateAngle.ToString("F") + "°";
     }
 
     void UpdateMove()
