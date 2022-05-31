@@ -19,13 +19,12 @@ public class CameraFollowControl : MonoBehaviour
     void Awake()
     {
         mainCamera = GetComponent<Camera>();
+        cameraHalfHeight = mainCamera.orthographicSize;
+        cameraHalfWidth = cameraHalfHeight * ((float)Screen.width / Screen.height);
     }
 
     void Update()
     {
-        cameraHalfHeight = mainCamera.orthographicSize;
-        cameraHalfWidth = cameraHalfHeight * ((float)Screen.width / Screen.height);
-        
         if (!hasTarget) return;
         
         var cameraX = Mathf.Clamp(target.position.x, xMinPos + cameraHalfWidth, xMaxPos - cameraHalfWidth);

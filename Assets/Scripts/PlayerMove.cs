@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Tools;
 using UnityEngine;
 
 [Serializable]
@@ -9,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     
     private Player player;
     private Rigidbody2D rb;
+    private Animator playerAni;
 
     [SerializeField]private Vector2 movement = Vector2.zero;
     private float previousDir;
@@ -17,6 +19,7 @@ public class PlayerMove : MonoBehaviour
     {
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
+        playerAni = GetComponent<Animator>();
         
         previousDir = 1;
     }
@@ -34,6 +37,8 @@ public class PlayerMove : MonoBehaviour
         movement.x = player.GetInput().horizontal;
         movement.y = player.GetInput().vertical;
         if(rb) rb.velocity = MoveSpeed * movement;
+        playerAni.SetBool(AnimatorParam.Move, movement != Vector2.zero);
+        playerAni.SetFloat(AnimatorParam.Direction, movement.x);
     }
 
     private bool checkFlip() => previousDir < 0;

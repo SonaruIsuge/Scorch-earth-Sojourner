@@ -7,20 +7,27 @@ public class MachineControl : MonoBehaviour
     [SerializeField]private M_Forward forwardLever;
     [SerializeField]private M_TurnLeft leftLever;
     [SerializeField]private M_TurnRight rightLever;
-    [SerializeField] private CoordinationManager coordinationManager;
-    
-    // [SerializeField]private TMP_Text xText;
-    // [SerializeField]private TMP_Text yText;
-    // [SerializeField]private TMP_Text speedText;
+    [SerializeField]private CoordinationManager coordinationManager;
+    [SerializeField] private WindowViewControl viewControl; 
 
     [SerializeField] private Transform gpsPoint;
+    private MachineShake shake;
+    private float shakePauseTimer = 0;
+    private float shakePauseTime = 1;
 
     public float ForwardSpeed;
     public float RotateAngle;
-
+    
+    // Machine transform data
     [SerializeField] private Vector2 machinePosInWorld;
+    public Vector2 MachinePosInWorld => machinePosInWorld;
+    
     private Vector2 machineForward;
+    public Vector2 MachineForward => machineForward;
+    
     private float currentRotateAngle;
+    public float CurrentRotateAngle => currentRotateAngle;
+
     private readonly Vector2 ORIGIN_FORWARD = Vector2.up;
 
     void Awake()
@@ -28,15 +35,14 @@ public class MachineControl : MonoBehaviour
         machinePosInWorld = Vector2.zero;
         machineForward = Vector2.up;
         currentRotateAngle = 0;
+
+        if (Camera.main != null) shake = transform.GetComponentInChildren<MachineShake>();
     }
 
     void Update()
     {
         UpdateMove();
         coordinationManager.SetCoordination(machinePosInWorld);
-        // xText.text = machinePosInWorld.x.ToString("F");
-        // yText.text = machinePosInWorld.y.ToString("F");
-        // speedText.text = currentRotateAngle.ToString("F") + "°";
     }
 
     void UpdateMove()
@@ -56,7 +62,19 @@ public class MachineControl : MonoBehaviour
         var cos = Mathf.Cos(currentRotateRadius);
         var sin = Mathf.Sin(currentRotateRadius);
         machineForward = new Vector2(ORIGIN_FORWARD.x * cos - ORIGIN_FORWARD.y * sin, ORIGIN_FORWARD.x * sin + ORIGIN_FORWARD.y * cos);
-        
-        if (forwardLever.ForwardEnable) machinePosInWorld += machineForward * (ForwardSpeed * Time.deltaTime);
+
+        if (forwardLever.ForwardEnable)
+        {
+            machinePosInWorld += machineForward * (ForwardSpeed * Time.deltaTime);
+            viewControl.UpdateViews();
+
+            shakePauseTimer += Time.deltaTime;
+            if (shakePauseTimer >= shakePauseTime)
+            {
+                StartCoroutine(shake.Shake(0.1f, 0.06f));
+                shakePauseTimer -= shakePauseTime;
+            }
+        }
+        else shakePauseTimer = 0;
     }
 }
