@@ -16,8 +16,8 @@ public class WindowViewControl : MonoBehaviour
     private float imageRightSide;
 
     private Camera windowCamera;
-    [SerializeField]private float cameraHalfHeight;
-    [SerializeField] private float cameraHalfWidth;
+    private float cameraHalfHeight;
+    private float cameraHalfWidth;
 
     void Awake()
     {

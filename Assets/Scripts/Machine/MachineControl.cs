@@ -8,12 +8,13 @@ public class MachineControl : MonoBehaviour
     [SerializeField]private M_TurnLeft leftLever;
     [SerializeField]private M_TurnRight rightLever;
     [SerializeField]private CoordinationManager coordinationManager;
-    [SerializeField] private WindowViewControl viewControl; 
+    [SerializeField]private WindowViewControl viewControl;
+    [SerializeField] private WorldMapControl mapControl;
 
     [SerializeField] private Transform gpsPoint;
     private MachineShake shake;
     private float shakePauseTimer = 0;
-    private float shakePauseTime = 1;
+    private float shakePauseTime = 2;
 
     public float ForwardSpeed;
     public float RotateAngle;
@@ -67,6 +68,7 @@ public class MachineControl : MonoBehaviour
         {
             machinePosInWorld += machineForward * (ForwardSpeed * Time.deltaTime);
             viewControl.UpdateViews();
+            mapControl.MapCameraMove(machineForward);
 
             shakePauseTimer += Time.deltaTime;
             if (shakePauseTimer >= shakePauseTime)
