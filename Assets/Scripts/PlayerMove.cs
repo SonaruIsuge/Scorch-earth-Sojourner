@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField]private Vector2 movement = Vector2.zero;
     private float previousDir;
+    private bool isStopMove;
 
     void Awake()
     {
@@ -24,18 +25,32 @@ public class PlayerMove : MonoBehaviour
         previousDir = 1;
     }
 
-    void Update()
+    public void UpdateMove(float horizontal, float vertical)
     {
+        if(isStopMove) return;
         if (movement.x != 0) previousDir = movement.x;
         
-        Move();
+        Move(horizontal, vertical);
         Flip(checkFlip());
     }
-    
-    private void Move()
+
+    public void EnableMove(bool enable)
     {
-        movement.x = player.GetInput().horizontal;
-        movement.y = player.GetInput().vertical;
+        isStopMove = !enable;
+        if(!enable) ForceStopMove();
+    }
+
+    private void ForceStopMove()
+    {
+        movement = Vector2.zero;
+        if(rb) rb.velocity = Vector2.zero;
+        playerAni.SetBool(AnimatorParam.Move, false);
+    }
+    
+    private void Move(float horizontal, float vertical)
+    {
+        movement.x = horizontal;
+        movement.y = vertical;
         if(rb) rb.velocity = MoveSpeed * movement;
         playerAni.SetBool(AnimatorParam.Move, movement != Vector2.zero);
         playerAni.SetFloat(AnimatorParam.Direction, movement.x);

@@ -21,18 +21,20 @@ public class PlayerInteractHandler : MonoBehaviour
         currentSelectObj = null;
     }
 
-    void Update()
+
+    public void UpdateSelect()
     {
         currentSelectObj?.OnDeselect();
         DetectInteractableObj();
         currentSelectObj?.OnSelect();
-
-        if (currentSelectObj != null && player.GetInput().interact)
-        {
-            currentSelectObj.Interact();
-        }
     }
 
+    public void Interact()
+    {
+        currentSelectObj?.Interact();
+    }
+    
+    
     // private void OnDrawGizmos()
     // {
     //     Gizmos.DrawSphere(interactPoint.position, InteractRange);

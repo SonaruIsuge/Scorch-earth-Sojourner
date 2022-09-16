@@ -3,29 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IControllable
+public class Player : MonoBehaviour
 {
     private IInput PlayerInput;
     private PlayerMove playerMove;
     private PlayerInteractHandler interactHandler;
+    private PlayerPhotoTaker playerPhotoTaker;
     
-    [field: SerializeReference]public bool isEnableControl { get; private set; }
+    //[field: SerializeReference]public bool isEnableControl { get; private set; }
 
     void Awake()
     {
         PlayerInput = new PlayerInputSystemInput();
         interactHandler = GetComponent<PlayerInteractHandler>();
         playerMove = GetComponent<PlayerMove>();
+        playerPhotoTaker = GetComponent<PlayerPhotoTaker>();
     }
 
     void OnEnable()
     {
-        EnableControl(true, PlayerInput);
+        //EnableControl(true, PlayerInput);
+        PlayerInput?.Register();
     }
 
     void OnDisable()
     {
-        EnableControl(false, PlayerInput);
+        //EnableControl(false, PlayerInput);
+        PlayerInput?.Unregister();
     }
 
     // Start is called before the first frame update
@@ -38,15 +42,31 @@ public class Player : MonoBehaviour, IControllable
     void Update()
     {
         PlayerInput.ReadInput();
-    }
-    
-    public void EnableControl(bool enable, IInput input = null)
-    {
-        isEnableControl = enable;
-        if (enable) input?.Create();
-        else input?.Destroy();
+        EnablePhotoTake(PlayerInput.enablePhoto);
+        
+        playerMove.UpdateMove(PlayerInput.horizontal, PlayerInput.vertical);
+        interactHandler.UpdateSelect();
+        
+        
+        if (PlayerInput.interact)
+        {
+            interactHandler.Interact();
+        }
+
+        if (PlayerInput.enablePhoto)
+        {
+            playerPhotoTaker.MoveFrame(PlayerInput.controlFrameArea.x, PlayerInput.controlFrameArea.y);
+            
+            if(PlayerInput.takePhoto) playerPhotoTaker.TakePhoto();
+        }
+        
     }
 
     public IInput GetInput() => PlayerInput;
-    
+
+    private void EnablePhotoTake(bool enable)
+    {
+        playerPhotoTaker.enabled = enable;
+        playerMove.EnableMove(!enable);
+    }
 }
