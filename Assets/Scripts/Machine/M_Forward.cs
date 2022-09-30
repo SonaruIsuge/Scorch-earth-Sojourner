@@ -15,7 +15,6 @@ public class M_Forward : MonoBehaviour, IInteractable
     private float aniTimer;
     
     [SerializeField]private bool forwardEnable;
-    //private static readonly int LeverOn = Animator.StringToHash("LeverOn");
 
 
     void Awake()

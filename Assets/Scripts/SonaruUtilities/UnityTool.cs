@@ -2,7 +2,7 @@
 
 namespace SonaruUtilities
 {
-    public class UnityTool
+    public static class UnityTool
     {
         public static Rect RectTransformToScreenSpace(RectTransform transform)
         {

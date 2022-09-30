@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // Player components
     private IInput PlayerInput;
     private PlayerMove playerMove;
     private PlayerInteractHandler interactHandler;
-    private PlayerPhotoTaker playerPhotoTaker;
+    
+    // Player equipments
+    [SerializeField] private MemoryCamera memoryCamera;
+    
     
     //[field: SerializeReference]public bool isEnableControl { get; private set; }
 
@@ -17,7 +21,8 @@ public class Player : MonoBehaviour
         PlayerInput = new PlayerInputSystemInput();
         interactHandler = GetComponent<PlayerInteractHandler>();
         playerMove = GetComponent<PlayerMove>();
-        playerPhotoTaker = GetComponent<PlayerPhotoTaker>();
+
+        memoryCamera = GetComponentInChildren<MemoryCamera>();
     }
 
     void OnEnable()
@@ -35,7 +40,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        memoryCamera.Equip(this);
     }
 
     // Update is called once per frame
@@ -55,9 +60,9 @@ public class Player : MonoBehaviour
 
         if (PlayerInput.enablePhoto)
         {
-            playerPhotoTaker.MoveFrame(PlayerInput.controlFrameArea.x, PlayerInput.controlFrameArea.y);
+            memoryCamera.MoveCamera(PlayerInput.controlFrameArea.x, PlayerInput.controlFrameArea.y);
             
-            if(PlayerInput.takePhoto) playerPhotoTaker.TakePhoto();
+            if(PlayerInput.takePhoto) memoryCamera.TakePhoto();
         }
         
     }
@@ -66,7 +71,10 @@ public class Player : MonoBehaviour
 
     private void EnablePhotoTake(bool enable)
     {
-        playerPhotoTaker.enabled = enable;
-        playerMove.EnableMove(!enable);
+        memoryCamera.enabled = enable;
+        playerMove.EnableMove(!enable);                 // if enable photo taker, locked move
+        interactHandler.EnableInteract(!enable);        // if enable photo taker, locked interact
     }
+
+    
 }

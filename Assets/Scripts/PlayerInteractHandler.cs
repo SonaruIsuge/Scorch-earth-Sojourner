@@ -11,6 +11,7 @@ public class PlayerInteractHandler : MonoBehaviour
     
     private Player player;
     private IInteractable currentSelectObj;
+    private bool enableInteract;
 
     // ray return hit object
     // interact with the object
@@ -19,11 +20,20 @@ public class PlayerInteractHandler : MonoBehaviour
     {
         player = GetComponent<Player>();
         currentSelectObj = null;
+        enableInteract = true;
     }
 
 
+    public void EnableInteract(bool enable)
+    {
+        enableInteract = enable;
+    }
+    
+
     public void UpdateSelect()
     {
+        if(!enableInteract) return;
+        
         currentSelectObj?.OnDeselect();
         DetectInteractableObj();
         currentSelectObj?.OnSelect();
