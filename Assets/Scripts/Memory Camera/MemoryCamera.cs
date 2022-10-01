@@ -1,6 +1,8 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using SonaruUtilities;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
@@ -26,7 +28,7 @@ public class MemoryCamera : MonoBehaviour
 
     private PhotoTakeFeature photoTakeFeature;
     private CameraMoveFeature cameraMoveFeature;
-    private PhotoSaveLoadFeature photoSaveFeature;
+    private PhotoSaveLoadFeature photoSaveLoadFeature;
     private ItemDetectFeature itemDetectFeature;
     
 
@@ -40,19 +42,34 @@ public class MemoryCamera : MonoBehaviour
         //add feature
         photoTakeFeature = new PhotoTakeFeature(this);
         cameraMoveFeature = new CameraMoveFeature(this);
-        photoSaveFeature = new PhotoSaveLoadFeature(this);
+        photoSaveLoadFeature = new PhotoSaveLoadFeature(this);
         itemDetectFeature = new ItemDetectFeature(this);
     }
     
     
     public async void TakePhoto()
     {
-        temporaryPhoto = await photoTakeFeature.TakePhoto();  
-        photoSaveFeature.SavePhoto(temporaryPhoto);
-        itemDetectFeature.DetectItem();
+        temporaryPhoto = await photoTakeFeature.TakePhoto();
+        var item = itemDetectFeature.DetectItem();
+        // photoSaveFeature.SavePhoto(temporaryPhoto);
+        if(item != null) photoSaveLoadFeature.SaveData(temporaryPhoto, (ItemPhotoData)item);
     }
 
     public void MoveCamera(float x, float y) => cameraMoveFeature.MoveFrame(x, y);
+
+
+    private void Update()
+    {
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Debug.Log("P pressed");
+            photoSaveLoadFeature.LoadPhoto(out var data, out var photo);
+            var photoSprite = Sprite.Create(photo, new Rect(0, 0, photoWidth, photoHeight), new Vector2(0.5f, 0.5f), 100.0f);
+            PhotoDisplayArea.sprite = photoSprite;
+            
+            Debug.Log(data.TargetItemId + ", " + data.PositionInPhoto);
+        }
+    }
 
 
     public void GetWidthHeightInWorld(out float width, out float height)

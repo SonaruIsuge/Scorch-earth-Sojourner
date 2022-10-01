@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TestItem
   m_EditorClassIdentifier: 
   ItemId: 0
-  ItemName: 
-  ItemObject: {fileID: 0}
+  ItemName: Test
+  ItemObject: {fileID: 4784328521760788694, guid: 11268b34c3089c44ab2f48994dae3274, type: 3}
