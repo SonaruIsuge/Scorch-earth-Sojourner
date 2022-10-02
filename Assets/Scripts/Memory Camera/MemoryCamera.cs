@@ -52,7 +52,8 @@ public class MemoryCamera : MonoBehaviour
         temporaryPhoto = await photoTakeFeature.TakePhoto();
         var item = itemDetectFeature.DetectItem();
         // photoSaveFeature.SavePhoto(temporaryPhoto);
-        if(item != null) photoSaveLoadFeature.SaveData(temporaryPhoto, (ItemPhotoData)item);
+        
+        if(item != null) photoSaveLoadFeature.SavePhotoWithData(temporaryPhoto, (ItemPhotoData)item);
     }
 
     public void MoveCamera(float x, float y) => cameraMoveFeature.MoveFrame(x, y);

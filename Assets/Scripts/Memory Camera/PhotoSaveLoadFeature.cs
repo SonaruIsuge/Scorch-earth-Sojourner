@@ -36,16 +36,11 @@ public class PhotoSaveLoadFeature : ICameraFeature
     // }
 
 
-    public void SaveData(Texture2D photo, ItemPhotoData data)
+    public void SavePhotoWithData(Texture2D photo, ItemPhotoData data)
     {
         if(!enable) return;
         
-        var json = GetItemDataJSON((ItemPhotoData)data);
-        //byte[] dataJsonByteArray = Encoding.Unicode.GetBytes(json);
-        
-        // List<byte> byteList = new List<byte>(dataJsonByteArray);
-        // byte[] byteArray = photo.EncodeToPNG();
-        // byteList.AddRange(byteArray);
+        var json = GetItemDataJSON(data);
         
         var path = Application.dataPath + owner.FilePath;
         if (!Directory.Exists(path)) Directory.CreateDirectory(path);
