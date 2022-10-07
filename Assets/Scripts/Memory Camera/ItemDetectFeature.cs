@@ -25,6 +25,7 @@ public class ItemDetectFeature : ICameraFeature
 
     public ItemPhotoData? DetectItem()
     {
+        var getRecordableItem = false;
         var point = cc.ScreenToWorldPoint(owner.PhotoFrameRectTrans.position);
         owner.GetWidthHeightInWorld(out var worldWidth, out var worldHeight);
         
@@ -39,8 +40,9 @@ public class ItemDetectFeature : ICameraFeature
         {
             var recordItem = item.GetComponent<CameraRecordableBehaviour>();
             if(!recordItem) continue;
-            
+
             recordItem.CameraHit();
+            getRecordableItem = true;
             
             var itemScreenPos = cc.WorldToScreenPoint(item.transform.position);
             var itemScreenCenterDiff = Vector2.Distance(itemScreenPos, owner.PhotoFrameRectTrans.position);
@@ -50,16 +52,10 @@ public class ItemDetectFeature : ICameraFeature
             minDisFromPhotoCenter = itemScreenCenterDiff;
             targetItemData.TargetItemId = recordItem.ItemData.ItemId;
             targetItemData.PositionInPhoto = itemScreenPos - owner.PhotoFrameRectTrans.position;
+            
         }
 
-        return targetItemData;
+        return getRecordableItem ? targetItemData : null;
     }
 }
 
-
-[System.Serializable]
-public struct ItemPhotoData
-{
-    public int TargetItemId;
-    public Vector2 PositionInPhoto;
-}

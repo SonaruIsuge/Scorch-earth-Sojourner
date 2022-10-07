@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Cysharp.Threading.Tasks;
 using SonaruUtilities;
 using UnityEngine;
@@ -19,7 +21,7 @@ public class MemoryCamera : MonoBehaviour
     public Image PhotoDisplayArea;
     [SerializeField]private RectTransform photoFrame;
 
-    public string FilePath = "/SaveData/";
+    public string FileStorageFolder = "/SaveData/";
     
     private Rect frameRect => PhotoFrameRectTrans.rect;
     private Texture2D temporaryPhoto;
@@ -28,7 +30,7 @@ public class MemoryCamera : MonoBehaviour
 
     private PhotoTakeFeature photoTakeFeature;
     private CameraMoveFeature cameraMoveFeature;
-    private PhotoSaveLoadFeature photoSaveLoadFeature;
+    //private PhotoSaveLoadFeature photoSaveLoadFeature;
     private ItemDetectFeature itemDetectFeature;
     
 
@@ -42,8 +44,14 @@ public class MemoryCamera : MonoBehaviour
         //add feature
         photoTakeFeature = new PhotoTakeFeature(this);
         cameraMoveFeature = new CameraMoveFeature(this);
-        photoSaveLoadFeature = new PhotoSaveLoadFeature(this);
+        //photoSaveLoadFeature = new PhotoSaveLoadFeature(this);
         itemDetectFeature = new ItemDetectFeature(this);
+    }
+
+
+    public void ShowCameraFrame(bool show)
+    {
+        PhotoFrameRectTrans.gameObject.SetActive(show);
     }
     
     
@@ -51,9 +59,13 @@ public class MemoryCamera : MonoBehaviour
     {
         temporaryPhoto = await photoTakeFeature.TakePhoto();
         var item = itemDetectFeature.DetectItem();
-        // photoSaveFeature.SavePhoto(temporaryPhoto);
         
-        if(item != null) photoSaveLoadFeature.SavePhotoWithData(temporaryPhoto, (ItemPhotoData)item);
+        PhotoSaveLoadHandler.Instance.SavePhoto(temporaryPhoto, item);
+        // // Hit recordable item -> save photo with data
+        // if(item != null) photoSaveLoadFeature.SavePhotoWithData(temporaryPhoto, (ItemPhotoData)item);
+        //
+        // // Not hit recordable item -> save photo
+        // else photoSaveLoadFeature.SavePhotoWithoutData(temporaryPhoto);
     }
 
     public void MoveCamera(float x, float y) => cameraMoveFeature.MoveFrame(x, y);
@@ -61,17 +73,11 @@ public class MemoryCamera : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            Debug.Log("P pressed");
-            photoSaveLoadFeature.LoadPhoto(out var data, out var photo);
-            var photoSprite = Sprite.Create(photo, new Rect(0, 0, photoWidth, photoHeight), new Vector2(0.5f, 0.5f), 100.0f);
-            PhotoDisplayArea.sprite = photoSprite;
-            
-            Debug.Log(data.TargetItemId + ", " + data.PositionInPhoto);
-        }
+           
     }
 
+    //public List<FilePhotoData> LoadAllPhotoDataFile() => photoSaveLoadFeature.GetAllSaveFiles();
+    
 
     public void GetWidthHeightInWorld(out float width, out float height)
     {

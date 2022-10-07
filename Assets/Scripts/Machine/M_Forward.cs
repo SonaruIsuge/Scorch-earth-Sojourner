@@ -9,7 +9,9 @@ public class M_Forward : MonoBehaviour, IInteractable
     public bool isInteract { get; private set; }
     public bool isSelect { get; private set; }
     
-    
+    [field:SerializeField] public string interactHint { get; private set; }
+
+
     private SpriteRenderer spriteRenderer;
     private Animator forwardAni;
     private float aniTimer;

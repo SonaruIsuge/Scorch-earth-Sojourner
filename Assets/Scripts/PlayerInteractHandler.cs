@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -7,14 +8,13 @@ using UnityEngine;
 public class PlayerInteractHandler : MonoBehaviour
 {
     [SerializeField]private Transform interactPoint;
+    [SerializeField]private TMP_Text interactHint;
     public float InteractRange;
     
     private Player player;
     private IInteractable currentSelectObj;
     private bool enableInteract;
-
-    // ray return hit object
-    // interact with the object
+    
 
     void Awake()
     {
@@ -35,7 +35,7 @@ public class PlayerInteractHandler : MonoBehaviour
         if(!enableInteract) return;
         
         currentSelectObj?.OnDeselect();
-        DetectInteractableObj();
+        ShowInteractHint(DetectInteractableObj());
         currentSelectObj?.OnSelect();
     }
 
@@ -50,7 +50,7 @@ public class PlayerInteractHandler : MonoBehaviour
     //     Gizmos.DrawSphere(interactPoint.position, InteractRange);
     // }
 
-    private void DetectInteractableObj()
+    private IInteractable DetectInteractableObj()
     {
         currentSelectObj = null;
         var hits = Physics2D.OverlapCircleAll(interactPoint.position, InteractRange);
@@ -69,5 +69,13 @@ public class PlayerInteractHandler : MonoBehaviour
             minDistance = distance;
             currentSelectObj = interact;
         }
+
+        return currentSelectObj;
+    }
+
+
+    private void ShowInteractHint(IInteractable interactable = null)
+    {
+        interactHint.text = interactable == null ? "" : $"(E) {interactable.interactHint}";
     }
 }

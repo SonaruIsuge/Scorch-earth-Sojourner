@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     private Animator playerAni;
 
     [SerializeField]private Vector2 movement = Vector2.zero;
+    [SerializeField] private Transform playerBody;
     private float previousDir;
     private bool isStopMove;
 
@@ -20,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     {
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
-        playerAni = GetComponent<Animator>();
+        playerAni = playerBody.GetComponent<Animator>();
         
         previousDir = 1;
     }
@@ -62,6 +63,6 @@ public class PlayerMove : MonoBehaviour
     {
         var playerRotation = transform.localRotation;
         playerRotation.y = isReverse ? 180 : 0;
-        transform.rotation = playerRotation;
+        playerBody.rotation = playerRotation;
     }
 }

@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         memoryCamera.Equip(this);
+        memoryCamera.ShowCameraFrame(false);
     }
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class Player : MonoBehaviour
             interactHandler.Interact();
         }
 
-        if (PlayerInput.enablePhoto)
+        if (memoryCamera && PlayerInput.enablePhoto)
         {
             memoryCamera.MoveCamera(PlayerInput.controlFrameArea.x, PlayerInput.controlFrameArea.y);
             
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour
     private void EnablePhotoTake(bool enable)
     {
         memoryCamera.enabled = enable;
+        memoryCamera.ShowCameraFrame(enable);
         playerMove.EnableMove(!enable);                 // if enable photo taker, locked move
         interactHandler.EnableInteract(!enable);        // if enable photo taker, locked interact
     }
