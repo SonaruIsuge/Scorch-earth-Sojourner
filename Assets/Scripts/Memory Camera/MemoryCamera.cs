@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using SonaruUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 
@@ -18,8 +20,9 @@ public class MemoryCamera : MonoBehaviour
     public int PhotoHeight => photoHeight;
     
     public RectTransform PhotoFrameRectTrans;
-    public Image PhotoDisplayArea;
+    public RawImage PhotoDisplayArea;
     [SerializeField]private RectTransform photoFrame;
+    [SerializeField] private Light2D cameraFlashLight;
 
     public string FileStorageFolder = "/SaveData/";
     
@@ -58,14 +61,10 @@ public class MemoryCamera : MonoBehaviour
     public async void TakePhoto()
     {
         temporaryPhoto = await photoTakeFeature.TakePhoto();
+        await CameraFlash();
         var item = itemDetectFeature.DetectItem();
         
         PhotoSaveLoadHandler.Instance.SavePhoto(temporaryPhoto, item);
-        // // Hit recordable item -> save photo with data
-        // if(item != null) photoSaveLoadFeature.SavePhotoWithData(temporaryPhoto, (ItemPhotoData)item);
-        //
-        // // Not hit recordable item -> save photo
-        // else photoSaveLoadFeature.SavePhotoWithoutData(temporaryPhoto);
     }
 
     public void MoveCamera(float x, float y) => cameraMoveFeature.MoveFrame(x, y);
@@ -87,5 +86,12 @@ public class MemoryCamera : MonoBehaviour
         var worldLeftBottom = cc.ScreenToWorldPoint(leftBottom);
         width = (worldRightTop - worldLeftBottom).x;
         height = (worldRightTop - worldLeftBottom).y;
+    }
+
+    private async UniTask CameraFlash()
+    {
+        cameraFlashLight.intensity = 20;
+        await UniTask.Delay(30);
+        cameraFlashLight.intensity = 0;
     }
 }

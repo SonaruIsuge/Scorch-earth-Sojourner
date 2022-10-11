@@ -53,15 +53,15 @@ public class PhotoTakeFeature : ICameraFeature
         screenCapture.Apply();
         underCaptureProgress = false;
 
-        showPhoto();
+        ShowPhoto();
 
         return screenCapture;
     }
 
-    // debug show
-    private void showPhoto()
+
+    private void ShowPhoto()
     {
-        var photoSprite = Sprite.Create(screenCapture, new Rect(0, 0, screenCapture.width, screenCapture.height), new Vector2(0.5f, 0.5f), 100.0f);
-        owner.PhotoDisplayArea.sprite = photoSprite;
+        owner.PhotoDisplayArea.texture = screenCapture;
+        owner.PhotoDisplayArea.SetNativeSize();
     }
 }

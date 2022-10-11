@@ -9,11 +9,13 @@ public sealed class PhotoSaveLoadHandler : TSingletonMonoBehaviour<PhotoSaveLoad
 {
     [SerializeField] private string photoDataStorageFolder = "SaveData";
     public List<FilePhotoData> AllFilePhotoList;
+    //public List<PhotoData> AllPhotoList;
     private string storagePath => Path.Combine(Application.persistentDataPath, photoDataStorageFolder);
     private string currentTime => DateTime.Now.ToString(CultureInfo.InvariantCulture).Replace("/", "_").Replace(":", "_");
     
     private string targetFullPath;
-    
+
+    public event Action OnFileChanged;
     
     protected override void Awake()
     {
@@ -24,15 +26,16 @@ public sealed class PhotoSaveLoadHandler : TSingletonMonoBehaviour<PhotoSaveLoad
     }
     
     
-    public void SavePhoto(Texture2D photo, ItemPhotoData? data = null)
+    public void SavePhoto(Texture2D photo, ItemPhotoData data = null)
     {
         if (!Directory.Exists(storagePath)) Directory.CreateDirectory(storagePath);
         
         // Photo without data
         if (data == null)
         {
-            targetFullPath = Path.Combine(storagePath, $"{currentTime}.photo");
+            targetFullPath = Path.Combine(storagePath, $"{currentTime}.photodata");
             FileDataWithPhoto.Save(photo, targetFullPath);
+            OnFileChanged?.Invoke();
             return;
         }
         
@@ -40,21 +43,14 @@ public sealed class PhotoSaveLoadHandler : TSingletonMonoBehaviour<PhotoSaveLoad
         targetFullPath = Path.Combine(storagePath, $"{currentTime}.photodata");
         var json = GetItemDataJSON((ItemPhotoData)data);
         FileDataWithPhoto.Save(json, photo, targetFullPath);
+        OnFileChanged?.Invoke();
     }
 
 
-    public void LoadPhotoWithData(string fileName, out ItemPhotoData data, out Texture2D photo)
+    public void LoadPhoto(string fileName, out ItemPhotoData data, out Texture2D photo)
     {
         var fullPath = Path.Combine(storagePath, $"{fileName}.photodata");
         FileDataWithPhoto.Load(fullPath, out data, out photo);
-    }
-
-
-    public Texture2D LoadPhotoWithoutData(string fileName)
-    {
-        var fullPath = Path.Combine(storagePath, $"{fileName}.photo");
-        
-        return FileDataWithPhoto.Load(fullPath);
     }
 
 
@@ -71,6 +67,18 @@ public sealed class PhotoSaveLoadHandler : TSingletonMonoBehaviour<PhotoSaveLoad
 
         AllFilePhotoList = resultList;
         return resultList;
+    }
+
+
+    public void RemoveData(string fileName)
+    {
+        
+    }
+
+
+    public void ClearAllData()
+    {
+        
     }
     
 

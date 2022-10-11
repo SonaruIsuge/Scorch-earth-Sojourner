@@ -76,14 +76,14 @@ public class PhotoSaveLoadFeature : ICameraFeature
     }
 
 
-    public Texture2D LoadPhotoWithoutData(string fileName)
-    {
-        var fullPath = Path.Combine(Application.persistentDataPath, owner.FileStorageFolder, $"{fileName}.photo");
-        
-        Debug.Log("Load photo");
-        
-        return FileDataWithPhoto.Load(fullPath);
-    }
+    // public Texture2D LoadPhotoWithoutData(string fileName)
+    // {
+    //     var fullPath = Path.Combine(Application.persistentDataPath, owner.FileStorageFolder, $"{fileName}.photo");
+    //     
+    //     Debug.Log("Load photo");
+    //     
+    //     return FileDataWithPhoto.Load(fullPath);
+    // }
 
 
     public List<FilePhotoData> GetAllSaveFiles()

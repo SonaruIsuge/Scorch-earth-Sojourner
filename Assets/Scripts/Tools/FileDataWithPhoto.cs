@@ -5,6 +5,12 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// This script responsible for:
+/// Turning one photo with / without data into byte[] file and saving to target path.
+/// Reading file from target path and returning it to photo (and data).
+/// </summary>
+
 public class FileDataWithPhoto
 {
     [Serializable]
@@ -43,10 +49,28 @@ public class FileDataWithPhoto
     }
     
 
+    // Save format: HeaderSize(2 bytes) + Header(Record data byte size = 0) + Texture2D
     public static void Save(Texture2D photo, string fullDataPath)
     {
         byte[] photoByteArray = photo.EncodeToPNG();
-        List<byte> byteList = new List<byte>(photoByteArray);
+        
+        var header = new Header
+        {
+            jsonByteSize = 0
+        };
+        
+        var headerJson = JsonUtility.ToJson(header);
+        byte[] headerJsonByteArray = Encoding.Unicode.GetBytes(headerJson);
+
+        ushort headerSize = (ushort) headerJsonByteArray.Length;
+        byte[] headerSizeByteArray = BitConverter.GetBytes(headerSize);
+        
+        List<byte> byteList = new List<byte>();
+        byteList.AddRange(headerSizeByteArray);
+        byteList.AddRange(headerJsonByteArray);
+        byteList.AddRange(photoByteArray);
+        
+        //List<byte> byteList = new List<byte>(photoByteArray);
         
         File.WriteAllBytes(fullDataPath, byteList.ToArray());
     }
@@ -71,10 +95,14 @@ public class FileDataWithPhoto
         Header header = JsonUtility.FromJson<Header>(headerJson);
         
         // data
-        List<byte> jsonByteList = byteList.GetRange(2 + headerSize, header.jsonByteSize);
-        string dataJson = Encoding.Unicode.GetString(jsonByteList.ToArray());
-        data = JsonUtility.FromJson<ItemPhotoData>(dataJson);
-        
+        if (header.jsonByteSize != 0)
+        {
+            List<byte> jsonByteList = byteList.GetRange(2 + headerSize, header.jsonByteSize);
+            string dataJson = Encoding.Unicode.GetString(jsonByteList.ToArray());
+            data = JsonUtility.FromJson<ItemPhotoData>(dataJson);
+        }
+        else data = null;
+
         //photo
         var startIndex = 2 + headerSize + header.jsonByteSize;
         var endIndex = byteArray.Length - startIndex;
@@ -84,14 +112,14 @@ public class FileDataWithPhoto
     }
 
 
-    public static Texture2D Load(string fullDataPath)
-    {
-        byte[] byteArray = File.ReadAllBytes(fullDataPath);
-        
-        var photo = new Texture2D(1, 1, TextureFormat.RGB24, false);
-        photo.LoadImage(byteArray);
-        return photo;
-    }
+    // public static Texture2D Load(string fullDataPath)
+    // {
+    //     byte[] byteArray = File.ReadAllBytes(fullDataPath);
+    //     
+    //     var photo = new Texture2D(1, 1, TextureFormat.RGB24, false);
+    //     photo.LoadImage(byteArray);
+    //     return photo;
+    // }
     
     
     #endregion

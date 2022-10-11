@@ -38,7 +38,5 @@ public class RecordableInventory : ScriptableObject
         {
             ItemDictionary.Remove(item.ItemId);
         }
-        
-        
     }
 }

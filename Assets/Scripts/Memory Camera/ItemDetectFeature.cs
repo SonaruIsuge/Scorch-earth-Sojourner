@@ -23,7 +23,7 @@ public class ItemDetectFeature : ICameraFeature
     }
 
 
-    public ItemPhotoData? DetectItem()
+    public ItemPhotoData DetectItem()
     {
         var getRecordableItem = false;
         var point = cc.ScreenToWorldPoint(owner.PhotoFrameRectTrans.position);
@@ -52,10 +52,11 @@ public class ItemDetectFeature : ICameraFeature
             minDisFromPhotoCenter = itemScreenCenterDiff;
             targetItemData.TargetItemId = recordItem.ItemData.ItemId;
             targetItemData.PositionInPhoto = itemScreenPos - owner.PhotoFrameRectTrans.position;
-            
         }
 
-        return getRecordableItem ? targetItemData : null;
+        if (!getRecordableItem) targetItemData = null;
+
+        return targetItemData;
     }
 }
 

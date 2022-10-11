@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public struct ItemPhotoData
+public class ItemPhotoData
 {
     public int TargetItemId;
     public Vector2 PositionInPhoto;
