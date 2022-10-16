@@ -123,6 +123,91 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &198293012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 198293013}
+  - component: {fileID: 198293016}
+  - component: {fileID: 198293015}
+  - component: {fileID: 198293014}
+  m_Layer: 0
+  m_Name: Album Book
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &198293013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198293012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 938366951}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &198293014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198293012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0808f4612d154496879f1d673281200d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  albumBtn: {fileID: 501948039}
+  closeAlbumBtn: {fileID: 916388566}
+  bookPanel: {fileID: 918208655}
+  pagePrefab: {fileID: 2691893495407236882, guid: 9444dd677a8a9c64982677c2651fef3b, type: 3}
+  photoPrefab: {fileID: 3595959441415420944, guid: 50a0a5d39239da04aa82d4d96d34e807, type: 3}
+  PhotoWidth: 400
+  PhotoHeight: 225
+  XSpacing: 100
+  YSpacing: 100
+  allPageList: []
+  allPhotoList: []
+--- !u!114 &198293015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198293012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f5278a5a4441c5b099838c1eac5b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allPhotoData: []
+--- !u!114 &198293016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198293012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9cea74cbeb0084ba447d2a03e4c3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BookData: {fileID: 198293015}
+  BookView: {fileID: 198293014}
+  MaxSaveData: 100
 --- !u!1 &305532521
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,19 +989,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 501948040}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 918208660}
-        m_TargetAssemblyTypeName: AlbumBookView, Assembly-CSharp
-        m_MethodName: OpenAlbum
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &501948040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2682,19 +2755,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 916388567}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 918208660}
-        m_TargetAssemblyTypeName: AlbumBookView, Assembly-CSharp
-        m_MethodName: CloseAlbum
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &916388567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2744,10 +2805,6 @@ GameObject:
   - component: {fileID: 918208655}
   - component: {fileID: 918208657}
   - component: {fileID: 918208656}
-  - component: {fileID: 918208658}
-  - component: {fileID: 918208661}
-  - component: {fileID: 918208660}
-  - component: {fileID: 918208659}
   m_Layer: 5
   m_Name: Album Panel
   m_TagString: Untagged
@@ -2814,75 +2871,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918208654}
   m_CullTransparentMesh: 1
---- !u!114 &918208658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918208654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e9cea74cbeb0084ba447d2a03e4c3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BookData: {fileID: 918208661}
-  BookView: {fileID: 918208660}
---- !u!114 &918208659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918208654}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 70
-    m_Bottom: 0
-  m_ChildAlignment: 1
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 400, y: 225}
-  m_Spacing: {x: 100, y: 100}
-  m_Constraint: 0
-  m_ConstraintCount: 2
---- !u!114 &918208660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918208654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0808f4612d154496879f1d673281200d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bookPanel: {fileID: 918208655}
-  photoInCanvas: {fileID: 3595959441415420944, guid: 50a0a5d39239da04aa82d4d96d34e807, type: 3}
-  PhotoWidth: 400
-  PhotoHeight: 225
-  XSpacing: 100
-  YSpacing: 100
---- !u!114 &918208661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918208654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f5278a5a4441c5b099838c1eac5b9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allPhotoData: []
 --- !u!1 &924871761
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,6 +3176,7 @@ Transform:
   - {fileID: 2096863522}
   - {fileID: 1951085473}
   - {fileID: 442261459}
+  - {fileID: 198293013}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3233,7 +3222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dc4a6cbbca56d498633ef272f1dcf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryCamera: {fileID: 442261460}
+  MemoryCamera: {fileID: 442261460}
+  AlbumBook: {fileID: 198293016}
 --- !u!50 &938366955
 Rigidbody2D:
   serializedVersion: 4

@@ -10,9 +10,9 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 
-public class MemoryCamera : MonoBehaviour
+public class MemoryCamera : MonoBehaviour, IPlayerProp
 {
-    private Player player;
+    public Player player { get; private set; }
     
     [SerializeField] private int photoWidth;
     [SerializeField] private int photoHeight;
@@ -49,15 +49,27 @@ public class MemoryCamera : MonoBehaviour
         cameraMoveFeature = new CameraMoveFeature(this);
         //photoSaveLoadFeature = new PhotoSaveLoadFeature(this);
         itemDetectFeature = new ItemDetectFeature(this);
+        
+        PhotoFrameRectTrans.gameObject.SetActive(false);
     }
 
 
-    public void ShowCameraFrame(bool show)
+    public void UnEquip()
     {
-        PhotoFrameRectTrans.gameObject.SetActive(show);
+        player = null;
+        photoTakeFeature = null;
+        cameraMoveFeature = null;
+        itemDetectFeature = null;
     }
-    
-    
+
+
+    public void EnableProp(bool enable)
+    {
+        enabled = enable;
+        PhotoFrameRectTrans.gameObject.SetActive(enable);
+    }
+
+
     public async void TakePhoto()
     {
         temporaryPhoto = await photoTakeFeature.TakePhoto();
@@ -66,16 +78,9 @@ public class MemoryCamera : MonoBehaviour
         
         PhotoSaveLoadHandler.Instance.SavePhoto(temporaryPhoto, item);
     }
+    
 
     public void MoveCamera(float x, float y) => cameraMoveFeature.MoveFrame(x, y);
-
-
-    private void Update()
-    {
-           
-    }
-
-    //public List<FilePhotoData> LoadAllPhotoDataFile() => photoSaveLoadFeature.GetAllSaveFiles();
     
 
     public void GetWidthHeightInWorld(out float width, out float height)
@@ -88,6 +93,7 @@ public class MemoryCamera : MonoBehaviour
         height = (worldRightTop - worldLeftBottom).y;
     }
 
+    
     private async UniTask CameraFlash()
     {
         cameraFlashLight.intensity = 20;

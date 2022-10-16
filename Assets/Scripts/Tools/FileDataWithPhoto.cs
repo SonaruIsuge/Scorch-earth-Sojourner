@@ -110,16 +110,9 @@ public class FileDataWithPhoto
         photo = new Texture2D(1, 1, TextureFormat.RGB24, false);
         photo.LoadImage(photoByteList.ToArray());
     }
-
-
-    // public static Texture2D Load(string fullDataPath)
-    // {
-    //     byte[] byteArray = File.ReadAllBytes(fullDataPath);
-    //     
-    //     var photo = new Texture2D(1, 1, TextureFormat.RGB24, false);
-    //     photo.LoadImage(byteArray);
-    //     return photo;
-    // }
+    
+    
+    
     
     
     #endregion
