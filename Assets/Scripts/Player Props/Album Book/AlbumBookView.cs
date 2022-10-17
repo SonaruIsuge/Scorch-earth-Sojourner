@@ -11,9 +11,12 @@ public class AlbumBookView : MonoBehaviour
 {
     public Button albumBtn;
     public Button closeAlbumBtn;
+    public Button LastPageBtn;
+    public Button NextPageBtn;
     public RectTransform bookPanel;
-    public RectTransform pagePrefab;
-    public RectTransform photoPrefab;
+    
+    [SerializeField]private RectTransform pagePrefab;
+    [SerializeField]private RectTransform photoPrefab;
 
 
     public float PhotoWidth;
@@ -32,8 +35,8 @@ public class AlbumBookView : MonoBehaviour
     private float pageWidth => photoNumInRow * onePhotoWidth - XSpacing;
     private float pageHeight => photoNumInColumn * onePhotoHeight - YSpacing;
 
-    [SerializeField] private List<RectTransform> allPageList;
-    [SerializeField] private List<PhotoViewObj> allPhotoList;
+    public List<RectTransform> allPageList {get; private set;}
+    public List<PhotoViewObj> allPhotoList {get; private set;}
 
 
     public void EnableView(bool enable)
@@ -68,6 +71,15 @@ public class AlbumBookView : MonoBehaviour
                 allPhotoList.Add(photoObj);
             }
         }
+
+        SetUIElementsLayer();
+    }
+
+
+    public void ShowCurrentPage(int pageIndex)
+    {
+        foreach(var page in allPageList) page.gameObject.SetActive(false);
+        allPageList[pageIndex-1].gameObject.SetActive(true);
     }
 
 
@@ -75,6 +87,7 @@ public class AlbumBookView : MonoBehaviour
     {
         updatePageNum(dataList.Count);
         updatePhoto(dataList);
+        SetUIElementsLayer();
     }
 
 
@@ -148,5 +161,13 @@ public class AlbumBookView : MonoBehaviour
         var selfYPos = ( (float) (photoNumInColumn - 1) / 2 - (int) (indexInPage / photoNumInRow) ) * onePhotoHeight;
 
         return new Vector2(selfXPos, selfYPos);
+    }
+
+
+    private void SetUIElementsLayer()
+    {
+        LastPageBtn.transform.SetAsLastSibling();
+        NextPageBtn.transform.SetAsLastSibling();
+        closeAlbumBtn.transform.SetAsLastSibling();
     }
 }
