@@ -6,3 +6,10 @@ public enum UsingProp
     AlbumBook,
     None
 }
+
+
+public enum SceneIndex
+{
+    Indoor,
+    Outdoor
+}

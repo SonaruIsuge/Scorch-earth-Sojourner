@@ -49,8 +49,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MemoryCamera.Equip(this);
-        AlbumBook.Equip(this);
+        if(MemoryCamera) MemoryCamera.Equip(this);
+        if(AlbumBook) AlbumBook.Equip(this);
 
         currentState = UsingProp.None;
     }

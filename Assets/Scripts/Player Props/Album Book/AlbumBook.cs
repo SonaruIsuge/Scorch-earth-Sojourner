@@ -13,6 +13,7 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     public int MaxSaveData;
 
     [SerializeField] private int currentPage;
+    [SerializeField] private string currentPhotoName;
     public int CurrentPage
     {
         get => currentPage;
@@ -24,7 +25,9 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     }
 
     private event Action<int> OnChangeCurrentPageIndex;
-
+    
+    public bool OpenAlbumBtn { get; private set; }
+    
 
     public void Equip(Player newPlayer)
     {
@@ -33,7 +36,7 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
         BookData.InitAllData();
         BookView.InitPhoto(BookData.AllPhotoData);
         
-        bindViewButton();
+        bindViewEvent();
 
         CurrentPage = 1;
     }
@@ -41,7 +44,7 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
 
     public void UnEquip()
     {
-        unbindViewButton();
+        unbindViewEvent();
     }
 
 
@@ -59,7 +62,7 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     }
 
 
-    private void bindViewButton()
+    private void bindViewEvent()
     {
         BookView.albumBtn.onClick.AddListener(AlbumBtnClick);
         BookView.closeAlbumBtn.onClick.AddListener(AlbumCancelBtnClick);
@@ -71,7 +74,7 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     }
 
 
-    private void unbindViewButton()
+    private void unbindViewEvent()
     {
         BookView.albumBtn.onClick.RemoveAllListeners();
         BookView.closeAlbumBtn.onClick.RemoveAllListeners();

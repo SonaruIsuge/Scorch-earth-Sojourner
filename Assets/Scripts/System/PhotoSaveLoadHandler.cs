@@ -59,7 +59,7 @@ public sealed class PhotoSaveLoadHandler : TSingletonMonoBehaviour<PhotoSaveLoad
 
     public void RemoveData(string fileName)
     {
-        var fullPath = Path.Combine(storagePath, fileName);
+        var fullPath = Path.Combine(storagePath, fileName + ".photodata");
         if(!File.Exists(fullPath)) return;
         
         File.Delete(fullPath);

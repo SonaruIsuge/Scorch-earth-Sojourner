@@ -36,7 +36,7 @@ public class AlbumBookView : MonoBehaviour
     private float pageHeight => photoNumInColumn * onePhotoHeight - YSpacing;
 
     public List<RectTransform> allPageList {get; private set;}
-    public List<PhotoViewObj> allPhotoList {get; private set;}
+    [field: SerializeField] public List<PhotoViewObj> allPhotoList {get; private set;}
 
 
     public void EnableView(bool enable)
@@ -68,6 +68,8 @@ public class AlbumBookView : MonoBehaviour
                 photoObj.SetImage(dataList[i].photo);
                 photoObj.SetName(dataList[i].fileName);
                 photoObj.SetLocalPosition(calcPhotoPosInCanvas(i));
+                photoObj.SetClickEvent(Debug.Log);
+                photoObj.SetRemoveEvent(PhotoSaveLoadHandler.Instance.RemoveData);
                 allPhotoList.Add(photoObj);
             }
         }
@@ -116,37 +118,40 @@ public class AlbumBookView : MonoBehaviour
     }
 
 
-    private void updatePhoto(List<FilePhotoData> dataList)
+    private void updatePhoto(List<FilePhotoData> newDataList)
     {
-        var moreNewData = dataList.Count >= allPhotoList.Count;
-        
-        if (moreNewData)                    // new data  more than / equal with old data
+        if (newDataList.Count >= allPhotoList.Count)
         {
-            for (var i = 0; i < dataList.Count; i++)
+            for (var i = 0; i < newDataList.Count; i++)
             {
                 if (i >= allPhotoList.Count)
                 {
                     var newPhoto = Instantiate(photoPrefab, allPageList[i / containNum].transform);
                     allPhotoList.Add(new PhotoViewObj(newPhoto));
                 }
-                allPhotoList[i].SetImage(dataList[i].photo);
-                allPhotoList[i].SetName(dataList[i].fileName);
+                allPhotoList[i].SetImage(newDataList[i].photo);
+                allPhotoList[i].SetName(newDataList[i].fileName);
                 allPhotoList[i].SetLocalPosition(calcPhotoPosInCanvas(i));
+                allPhotoList[i].SetRemoveEvent(PhotoSaveLoadHandler.Instance.RemoveData);
+                allPhotoList[i].SetClickEvent(Debug.Log);
             }
         }
-        else                               //new data less than old data
+        else
         {
-            foreach (var (photoViewObj, i) in allPhotoList.Select((value, index) => (value, index)))
+            foreach (var (photoViewObj, i) in allPhotoList.Select( (value, index) => (value, index) ).ToList())
             {
-                if (i < allPhotoList.Count)
+                if (i < newDataList.Count)
                 {
-                    photoViewObj.SetImage(dataList[i].photo);
-                    photoViewObj.SetName(dataList[i].fileName);
-                    allPhotoList[i].SetLocalPosition(calcPhotoPosInCanvas(i));
+                    photoViewObj.SetImage(newDataList[i].photo);
+                    photoViewObj.SetName(newDataList[i].fileName);
+                    photoViewObj.SetLocalPosition(calcPhotoPosInCanvas(i));
+                    photoViewObj.SetRemoveEvent(PhotoSaveLoadHandler.Instance.RemoveData);
+                    photoViewObj.SetClickEvent(Debug.Log);
                 }
                 else
                 {
                     allPhotoList.Remove(photoViewObj);
+                    Destroy(photoViewObj.PhotoRectTransform.gameObject);
                 }
             }
         }

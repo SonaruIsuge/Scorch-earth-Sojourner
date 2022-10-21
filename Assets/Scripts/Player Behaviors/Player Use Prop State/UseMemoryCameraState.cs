@@ -30,6 +30,11 @@ public class UseMemoryCameraState : IPropState
         {
             player.ChangePropState(UsingProp.None);
         }
+
+        if (!memoryCamera)
+        {
+            player.ChangePropState(UsingProp.None);
+        }
     }
 
     public void ExitState()

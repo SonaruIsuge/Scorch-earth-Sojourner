@@ -41,12 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 1861932551
+  - name: W_Floor
+    uniqueID: 3559925271
     locked: 0
-  - name: MachineBackground
-    uniqueID: 4120499709
+  - name: W_Background
+    uniqueID: 3847792961
     locked: 0
-  - name: Player
-    uniqueID: 4073259157
+  - name: W_Object
+    uniqueID: 3394152241
+    locked: 0
+  - name: W_Foreground
+    uniqueID: 1735562623
     locked: 0

@@ -11,7 +11,8 @@ public class PlayerInputSystemInput : IInput
     [field: SerializeField] public bool enablePhoto { get; private set; }
     [field: SerializeField] public Vector2 controlFrameArea { get; private set; }
     [field: SerializeField] public bool takePhoto { get; private set; }
-    
+    [field: SerializeField] public bool toggleAlbum { get; private set; }
+
     private readonly InputControl inputControl;
     
     public PlayerInputSystemInput()
@@ -20,6 +21,7 @@ public class PlayerInputSystemInput : IInput
         inputControl.Enable();
 
         enablePhoto = false;
+        toggleAlbum = false;
     }
     public void Register()
     {
@@ -41,7 +43,9 @@ public class PlayerInputSystemInput : IInput
     {
         interact = inputControl.Player.Interact.WasPressedThisFrame();
         takePhoto = inputControl.Player.TakePicture.WasPressedThisFrame();
+        
         if (inputControl.Player.EnablePicture.WasPressedThisFrame()) enablePhoto = !enablePhoto;
+        if (inputControl.Player.EnableAlbum.WasPressedThisFrame()) toggleAlbum = !toggleAlbum;
     }
     
 

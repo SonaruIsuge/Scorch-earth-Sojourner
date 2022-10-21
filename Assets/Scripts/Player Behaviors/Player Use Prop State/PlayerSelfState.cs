@@ -3,6 +3,8 @@ public class PlayerSelfState : IPropState
 {
     public Player player { get; private set; }
 
+    private bool enableAlbumStateChange;
+    
 
     public PlayerSelfState(Player owner)
     {
@@ -14,6 +16,8 @@ public class PlayerSelfState : IPropState
     {
         player.PlayerMove.EnableMove(true);
         player.InteractHandler.EnableInteract(true);
+        
+        enableAlbumStateChange = player.PlayerInput.toggleAlbum;
     }
 
     public void StayState()
@@ -28,9 +32,14 @@ public class PlayerSelfState : IPropState
         
         
         // Check change state
-        if (player.PlayerInput.enablePhoto)
+        if (player.MemoryCamera && player.PlayerInput.enablePhoto)
         {
             player.ChangePropState(UsingProp.MemoryCamera);
+        }
+
+        if (player.AlbumBook && enableAlbumStateChange != player.PlayerInput.toggleAlbum)
+        {
+            player.ChangePropState(UsingProp.AlbumBook);
         }
     }
 

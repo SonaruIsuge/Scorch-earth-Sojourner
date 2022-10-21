@@ -9,6 +9,6 @@ public class RecordableItem : ScriptableObject
     public string ItemName;
     public GameObject ItemObject;
 
-    public ICameraRecordable GetRecordable() => ItemObject != null ? ItemObject.GetComponent<ICameraRecordable>() : null;
+    public CameraRecordableBehaviour GetRecordable() => ItemObject != null ? ItemObject.GetComponent<CameraRecordableBehaviour>() : null;
 
 }

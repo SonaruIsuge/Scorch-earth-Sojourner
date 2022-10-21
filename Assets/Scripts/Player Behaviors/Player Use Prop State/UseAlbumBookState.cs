@@ -3,8 +3,11 @@ public class UseAlbumBookState : IPropState
 {
     public Player player { get; private set; }
 
+    private bool enableAlbumStateChange;
+    
     private AlbumBook albumBook;
 
+    public FilePhotoData? currentData; 
 
     public UseAlbumBookState(Player owner)
     {
@@ -16,6 +19,8 @@ public class UseAlbumBookState : IPropState
     public void EnterState()
     {
         albumBook.EnableProp(true);
+        currentData = null;
+        enableAlbumStateChange = player.PlayerInput.toggleAlbum;
     }
 
     public void StayState()
@@ -23,7 +28,15 @@ public class UseAlbumBookState : IPropState
         
         
         // Check change state
-        
+        if (enableAlbumStateChange != player.PlayerInput.toggleAlbum)
+        {
+            player.ChangePropState(UsingProp.None);
+        }
+
+        if (!albumBook)
+        {
+            player.ChangePropState(UsingProp.None);
+        }
     }
 
     public void ExitState()

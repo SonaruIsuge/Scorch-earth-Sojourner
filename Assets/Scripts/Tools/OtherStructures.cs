@@ -31,8 +31,10 @@ public class PhotoViewObj
     private RawImage PhotoImage;
     private Button PhotoBtn;
     private TMP_Text PhotoText;
+    [SerializeField]private Button RemovePhotoBtn;
 
-    public event Action<string> OnPhotoViewObjClick;
+    private event Action<string> OnPhotoViewObjClick;
+    private event Action<string> OnPhotoRemoveBtnClick;
 
     public PhotoViewObj(RectTransform obj)
     {
@@ -41,8 +43,11 @@ public class PhotoViewObj
         PhotoImage = obj.GetComponent<RawImage>();
         PhotoBtn = obj.GetComponent<Button>();
         PhotoText = obj.GetComponentInChildren<TMP_Text>();
-
+        // Since get component also find parent's component, get second button component.
+        RemovePhotoBtn = obj.GetComponentsInChildren<Button>()[1];
+        
         PhotoBtn.onClick.AddListener(() => OnPhotoViewObjClick?.Invoke(PhotoName));
+        RemovePhotoBtn.onClick.AddListener(() => OnPhotoRemoveBtnClick?.Invoke(PhotoName));
     }
 
 
@@ -70,9 +75,16 @@ public class PhotoViewObj
         OnPhotoViewObjClick += newEvent;
     }
 
+
+    public void SetRemoveEvent(Action<string> newEvent)
+    {
+        OnPhotoRemoveBtnClick += newEvent;
+    }
+
     
-    public void RemoveClickEvent()
+    public void RemoveAllClickEvent()
     {
         OnPhotoViewObjClick = null;
+        OnPhotoRemoveBtnClick = null;
     }
 }

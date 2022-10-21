@@ -71,6 +71,15 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnableAlbum"",
+                    ""type"": ""Button"",
+                    ""id"": ""643a1eef-c283-4c03-b95b-b7f44830cdce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,28 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""action"": ""TakePicture"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d5dce8b-ece6-4813-babb-9925d1e191b7"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableAlbum"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a5533f0-1d84-411f-be54-893235b6b766"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableAlbum"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -284,6 +315,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         m_Player_EnablePicture = m_Player.FindAction("EnablePicture", throwIfNotFound: true);
         m_Player_ControlPictureArea = m_Player.FindAction("ControlPictureArea", throwIfNotFound: true);
         m_Player_TakePicture = m_Player.FindAction("TakePicture", throwIfNotFound: true);
+        m_Player_EnableAlbum = m_Player.FindAction("EnableAlbum", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -348,6 +380,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_EnablePicture;
     private readonly InputAction m_Player_ControlPictureArea;
     private readonly InputAction m_Player_TakePicture;
+    private readonly InputAction m_Player_EnableAlbum;
     public struct PlayerActions
     {
         private @InputControl m_Wrapper;
@@ -357,6 +390,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         public InputAction @EnablePicture => m_Wrapper.m_Player_EnablePicture;
         public InputAction @ControlPictureArea => m_Wrapper.m_Player_ControlPictureArea;
         public InputAction @TakePicture => m_Wrapper.m_Player_TakePicture;
+        public InputAction @EnableAlbum => m_Wrapper.m_Player_EnableAlbum;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -381,6 +415,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @TakePicture.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTakePicture;
                 @TakePicture.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTakePicture;
                 @TakePicture.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTakePicture;
+                @EnableAlbum.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableAlbum;
+                @EnableAlbum.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableAlbum;
+                @EnableAlbum.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableAlbum;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -400,6 +437,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @TakePicture.started += instance.OnTakePicture;
                 @TakePicture.performed += instance.OnTakePicture;
                 @TakePicture.canceled += instance.OnTakePicture;
+                @EnableAlbum.started += instance.OnEnableAlbum;
+                @EnableAlbum.performed += instance.OnEnableAlbum;
+                @EnableAlbum.canceled += instance.OnEnableAlbum;
             }
         }
     }
@@ -411,5 +451,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         void OnEnablePicture(InputAction.CallbackContext context);
         void OnControlPictureArea(InputAction.CallbackContext context);
         void OnTakePicture(InputAction.CallbackContext context);
+        void OnEnableAlbum(InputAction.CallbackContext context);
     }
 }
