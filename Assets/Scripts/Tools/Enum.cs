@@ -1,5 +1,13 @@
 ﻿
 
+public enum InputType
+{
+    Player,
+    MemoryCamera,
+    AlbumBook,
+}
+
+
 public enum UsingProp
 {
     MemoryCamera,

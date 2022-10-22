@@ -22,42 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "EnablePicture",
-                    "type": "Button",
-                    "id": "1adb0630-55ce-4df6-ae0c-e7de4fb82e04",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ControlPictureArea",
-                    "type": "Value",
-                    "id": "c6501e13-e08d-4094-bec3-6ff506534ca0",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "TakePicture",
-                    "type": "Button",
-                    "id": "a78a527b-cc94-4e71-8ed7-99e87f4ccaaf",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "EnableAlbum",
-                    "type": "Button",
-                    "id": "643a1eef-c283-4c03-b95b-b7f44830cdce",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -192,32 +156,261 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "AlbumBook",
+            "id": "01c65cb1-5f1d-4e0d-bcbc-7474603b6a58",
+            "actions": [
+                {
+                    "name": "Up",
+                    "type": "Button",
+                    "id": "1a237abc-301e-48a4-978f-739e8e637586",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "4a8d9e33-03e6-4c9a-abc1-ffbef04a134a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "d69d5c6c-8006-4875-8208-71e1e1e1f158",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "ed0f5f4d-03ee-47c0-94dc-1aba65978d3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LastPage",
+                    "type": "Button",
+                    "id": "c7846e8b-0d0d-4333-a11d-3d2ba48d7c6a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NextPage",
+                    "type": "Button",
+                    "id": "f7bc411f-bcf9-4326-a753-73413d3f42a6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "5e0c4be3-ae87-44b5-9ecb-b605ef6a72a3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "cd8b2ae1-70bd-4bd2-bfa0-330103811e3c",
-                    "path": "<Keyboard>/f",
+                    "id": "e35b2d61-86c1-49e2-9a82-2fb530f63641",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "EnablePicture",
+                    "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "c382f598-2acd-40a9-9b9a-1aa678eb8533",
-                    "path": "<Gamepad>/buttonNorth",
+                    "id": "fbe444c8-ef3a-42e2-afef-bae115580147",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "EnablePicture",
+                    "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "c5540eef-ce4b-43f5-baf4-e5ef7657aa96",
+                    "id": "e98596b4-b6d2-45f0-8a44-127c7da1f565",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09e85616-4860-437e-b24e-2dc588faf63d",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "94bfb969-55dc-407e-bb84-d9226bbd32d2",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e5e337a-dc4e-4f8c-be78-120a551aa25f",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0ff9b08-6750-468a-b769-fb840ebce109",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LastPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b61b4ba9-6cf7-4875-a609-a9230a832e86",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LastPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee5f4cea-dd7a-42fb-a176-0f96fcac3e97",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4665695-eb91-4662-a7bc-2f0ebbc6c9ad",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a961c28-63ca-4daf-95ce-08bae638325a",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1f2085f-f1af-4291-8a16-0aaf40bcef7e",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6b58b80-9e44-44ce-88b6-127dd95d4c61",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "220224a3-f133-45f9-95b8-3650cea6bc54",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MemoryCamera",
+            "id": "45ce1829-4a74-4244-bee5-77845f2bfd0d",
+            "actions": [
+                {
+                    "name": "ControlPictureArea",
+                    "type": "Value",
+                    "id": "70d4f2c1-3891-4714-b05a-fe7801f519fe",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TakePicture",
+                    "type": "Button",
+                    "id": "03fb5530-2cd9-4221-aa0b-dec1add90fb4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2f54b589-d7f9-4358-9c84-5a7cd2d1a2f5",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
@@ -228,7 +421,7 @@
                 },
                 {
                     "name": "",
-                    "id": "d3388a37-8f61-46eb-9e77-8099511f9486",
+                    "id": "0213c8ff-64ee-4dae-9f99-85493139f445",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
@@ -239,7 +432,7 @@
                 },
                 {
                     "name": "",
-                    "id": "0e455ee7-13e6-41ab-8b4c-afdcc8a9979a",
+                    "id": "1b4bf145-f382-4cf1-a4b6-3e6d5b328771",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -250,7 +443,7 @@
                 },
                 {
                     "name": "",
-                    "id": "ad7300a1-1ec6-4d8b-a5ce-3b041fd3d829",
+                    "id": "46598655-dc96-47fb-8338-cdcbaf6f15e5",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
@@ -258,26 +451,105 @@
                     "action": "TakePicture",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CommonInput",
+            "id": "87980a91-e99d-4542-8eba-49bb0bf86cea",
+            "actions": [
+                {
+                    "name": "ToggleAlbum",
+                    "type": "Button",
+                    "id": "0f116360-1a54-44b4-8e82-0ee0c119eeb3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
+                    "name": "ToggleCamera",
+                    "type": "Button",
+                    "id": "05339857-7f71-4787-85f7-ede38c58d93c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleSetting",
+                    "type": "Button",
+                    "id": "aa1ea277-9895-44cd-8f2c-2d3aaf50c2f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "6d5dce8b-ece6-4813-babb-9925d1e191b7",
+                    "id": "d1b1178e-cf19-42fc-8883-62d052e7b05c",
                     "path": "<Keyboard>/b",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "EnableAlbum",
+                    "action": "ToggleAlbum",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "1a5533f0-1d84-411f-be54-893235b6b766",
+                    "id": "21a15e5d-687b-43e2-8161-93efe9607421",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "EnableAlbum",
+                    "action": "ToggleAlbum",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e2fd444-ff95-4d0c-88b3-201c28352f7a",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "316a4320-8640-4f90-8a01-21e366a19b5b",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2362cf59-5771-4025-a202-2ca6d8c25363",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleSetting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "928f320c-37a7-4de9-8def-8f3f9cd867e1",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleSetting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -12,9 +12,14 @@ public class AlbumBookData : MonoBehaviour
     public List<FilePhotoData> AllPhotoData => allPhotoData;
 
     private Dictionary<string, FilePhotoData> fileDataDict;
-    
 
-    #region Init data
+    private FilePhotoData? currentPhotoData;
+
+    public FilePhotoData? CurrentPhotoData
+    {
+        get => currentPhotoData;
+        set => currentPhotoData = value;
+    }
     
     public void InitAllData()
     {
@@ -34,9 +39,6 @@ public class AlbumBookData : MonoBehaviour
         }
     }
     
-    #endregion
-
-    #region Renew data
 
     public void UpdateData()
     {
@@ -44,8 +46,7 @@ public class AlbumBookData : MonoBehaviour
         fileDataDict.Clear();
         InitDataDict();
     }
-
-    #endregion
+    
     
     public FilePhotoData? GetFilePhotoData(string fileName)
     {

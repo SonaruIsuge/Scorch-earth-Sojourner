@@ -2,7 +2,8 @@
 public class UseMemoryCameraState : IPropState
 {
     public Player player { get; private set; }
-
+    
+    private MemoryCameraInput input;
     private MemoryCamera memoryCamera;
 
 
@@ -16,17 +17,23 @@ public class UseMemoryCameraState : IPropState
     
     public void EnterState()
     {
+        player.EnableInputType(InputType.MemoryCamera);
+        input = player.CurrentInput as MemoryCameraInput;
+        input?.Register();
+        
         memoryCamera.EnableProp(true);
     }
 
     public void StayState()
     {
-        memoryCamera.MoveCamera(player.PlayerInput.controlFrameArea.x, player.PlayerInput.controlFrameArea.y);
-        if(player.PlayerInput.takePhoto) memoryCamera.TakePhoto();
+        input.ReadInput();
+        
+        memoryCamera.MoveCamera(input.controlFrameArea.x, input.controlFrameArea.y);
+        if(input.takePhoto) memoryCamera.TakePhoto();
         
         
         // Check change state
-        if (!player.PlayerInput.enablePhoto)
+        if (!player.CommonInput.togglePhoto)
         {
             player.ChangePropState(UsingProp.None);
         }
@@ -39,6 +46,7 @@ public class UseMemoryCameraState : IPropState
 
     public void ExitState()
     {
+        input?.Unregister();
         memoryCamera.EnableProp(false);
     }
 }

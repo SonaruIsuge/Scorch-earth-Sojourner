@@ -44,42 +44,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EnablePicture"",
-                    ""type"": ""Button"",
-                    ""id"": ""1adb0630-55ce-4df6-ae0c-e7de4fb82e04"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ControlPictureArea"",
-                    ""type"": ""Value"",
-                    ""id"": ""c6501e13-e08d-4094-bec3-6ff506534ca0"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""TakePicture"",
-                    ""type"": ""Button"",
-                    ""id"": ""a78a527b-cc94-4e71-8ed7-99e87f4ccaaf"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EnableAlbum"",
-                    ""type"": ""Button"",
-                    ""id"": ""643a1eef-c283-4c03-b95b-b7f44830cdce"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -214,32 +178,261 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""AlbumBook"",
+            ""id"": ""01c65cb1-5f1d-4e0d-bcbc-7474603b6a58"",
+            ""actions"": [
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a237abc-301e-48a4-978f-739e8e637586"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""4a8d9e33-03e6-4c9a-abc1-ffbef04a134a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""d69d5c6c-8006-4875-8208-71e1e1e1f158"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""ed0f5f4d-03ee-47c0-94dc-1aba65978d3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LastPage"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7846e8b-0d0d-4333-a11d-3d2ba48d7c6a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextPage"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7bc411f-bcf9-4326-a753-73413d3f42a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e0c4be3-ae87-44b5-9ecb-b605ef6a72a3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""cd8b2ae1-70bd-4bd2-bfa0-330103811e3c"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""id"": ""e35b2d61-86c1-49e2-9a82-2fb530f63641"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""EnablePicture"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c382f598-2acd-40a9-9b9a-1aa678eb8533"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""id"": ""fbe444c8-ef3a-42e2-afef-bae115580147"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""EnablePicture"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c5540eef-ce4b-43f5-baf4-e5ef7657aa96"",
+                    ""id"": ""e98596b4-b6d2-45f0-8a44-127c7da1f565"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09e85616-4860-437e-b24e-2dc588faf63d"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94bfb969-55dc-407e-bb84-d9226bbd32d2"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e5e337a-dc4e-4f8c-be78-120a551aa25f"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0ff9b08-6750-468a-b769-fb840ebce109"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LastPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b61b4ba9-6cf7-4875-a609-a9230a832e86"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LastPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee5f4cea-dd7a-42fb-a176-0f96fcac3e97"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4665695-eb91-4662-a7bc-2f0ebbc6c9ad"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a961c28-63ca-4daf-95ce-08bae638325a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1f2085f-f1af-4291-8a16-0aaf40bcef7e"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6b58b80-9e44-44ce-88b6-127dd95d4c61"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""220224a3-f133-45f9-95b8-3650cea6bc54"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""MemoryCamera"",
+            ""id"": ""45ce1829-4a74-4244-bee5-77845f2bfd0d"",
+            ""actions"": [
+                {
+                    ""name"": ""ControlPictureArea"",
+                    ""type"": ""Value"",
+                    ""id"": ""70d4f2c1-3891-4714-b05a-fe7801f519fe"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TakePicture"",
+                    ""type"": ""Button"",
+                    ""id"": ""03fb5530-2cd9-4221-aa0b-dec1add90fb4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2f54b589-d7f9-4358-9c84-5a7cd2d1a2f5"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -250,7 +443,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d3388a37-8f61-46eb-9e77-8099511f9486"",
+                    ""id"": ""0213c8ff-64ee-4dae-9f99-85493139f445"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -261,7 +454,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0e455ee7-13e6-41ab-8b4c-afdcc8a9979a"",
+                    ""id"": ""1b4bf145-f382-4cf1-a4b6-3e6d5b328771"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -272,7 +465,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ad7300a1-1ec6-4d8b-a5ce-3b041fd3d829"",
+                    ""id"": ""46598655-dc96-47fb-8338-cdcbaf6f15e5"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -280,26 +473,105 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""action"": ""TakePicture"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""CommonInput"",
+            ""id"": ""87980a91-e99d-4542-8eba-49bb0bf86cea"",
+            ""actions"": [
+                {
+                    ""name"": ""ToggleAlbum"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f116360-1a54-44b4-8e82-0ee0c119eeb3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ToggleCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""05339857-7f71-4787-85f7-ede38c58d93c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleSetting"",
+                    ""type"": ""Button"",
+                    ""id"": ""aa1ea277-9895-44cd-8f2c-2d3aaf50c2f4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""6d5dce8b-ece6-4813-babb-9925d1e191b7"",
+                    ""id"": ""d1b1178e-cf19-42fc-8883-62d052e7b05c"",
                     ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""EnableAlbum"",
+                    ""action"": ""ToggleAlbum"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1a5533f0-1d84-411f-be54-893235b6b766"",
+                    ""id"": ""21a15e5d-687b-43e2-8161-93efe9607421"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""EnableAlbum"",
+                    ""action"": ""ToggleAlbum"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e2fd444-ff95-4d0c-88b3-201c28352f7a"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""316a4320-8640-4f90-8a01-21e366a19b5b"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2362cf59-5771-4025-a202-2ca6d8c25363"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleSetting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""928f320c-37a7-4de9-8def-8f3f9cd867e1"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleSetting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -312,10 +584,24 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_EnablePicture = m_Player.FindAction("EnablePicture", throwIfNotFound: true);
-        m_Player_ControlPictureArea = m_Player.FindAction("ControlPictureArea", throwIfNotFound: true);
-        m_Player_TakePicture = m_Player.FindAction("TakePicture", throwIfNotFound: true);
-        m_Player_EnableAlbum = m_Player.FindAction("EnableAlbum", throwIfNotFound: true);
+        // AlbumBook
+        m_AlbumBook = asset.FindActionMap("AlbumBook", throwIfNotFound: true);
+        m_AlbumBook_Up = m_AlbumBook.FindAction("Up", throwIfNotFound: true);
+        m_AlbumBook_Down = m_AlbumBook.FindAction("Down", throwIfNotFound: true);
+        m_AlbumBook_Left = m_AlbumBook.FindAction("Left", throwIfNotFound: true);
+        m_AlbumBook_Right = m_AlbumBook.FindAction("Right", throwIfNotFound: true);
+        m_AlbumBook_LastPage = m_AlbumBook.FindAction("LastPage", throwIfNotFound: true);
+        m_AlbumBook_NextPage = m_AlbumBook.FindAction("NextPage", throwIfNotFound: true);
+        m_AlbumBook_Submit = m_AlbumBook.FindAction("Submit", throwIfNotFound: true);
+        // MemoryCamera
+        m_MemoryCamera = asset.FindActionMap("MemoryCamera", throwIfNotFound: true);
+        m_MemoryCamera_ControlPictureArea = m_MemoryCamera.FindAction("ControlPictureArea", throwIfNotFound: true);
+        m_MemoryCamera_TakePicture = m_MemoryCamera.FindAction("TakePicture", throwIfNotFound: true);
+        // CommonInput
+        m_CommonInput = asset.FindActionMap("CommonInput", throwIfNotFound: true);
+        m_CommonInput_ToggleAlbum = m_CommonInput.FindAction("ToggleAlbum", throwIfNotFound: true);
+        m_CommonInput_ToggleCamera = m_CommonInput.FindAction("ToggleCamera", throwIfNotFound: true);
+        m_CommonInput_ToggleSetting = m_CommonInput.FindAction("ToggleSetting", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -377,20 +663,12 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_EnablePicture;
-    private readonly InputAction m_Player_ControlPictureArea;
-    private readonly InputAction m_Player_TakePicture;
-    private readonly InputAction m_Player_EnableAlbum;
     public struct PlayerActions
     {
         private @InputControl m_Wrapper;
         public PlayerActions(@InputControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @EnablePicture => m_Wrapper.m_Player_EnablePicture;
-        public InputAction @ControlPictureArea => m_Wrapper.m_Player_ControlPictureArea;
-        public InputAction @TakePicture => m_Wrapper.m_Player_TakePicture;
-        public InputAction @EnableAlbum => m_Wrapper.m_Player_EnableAlbum;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -406,18 +684,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @EnablePicture.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePicture;
-                @EnablePicture.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePicture;
-                @EnablePicture.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePicture;
-                @ControlPictureArea.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnControlPictureArea;
-                @ControlPictureArea.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnControlPictureArea;
-                @ControlPictureArea.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnControlPictureArea;
-                @TakePicture.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTakePicture;
-                @TakePicture.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTakePicture;
-                @TakePicture.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTakePicture;
-                @EnableAlbum.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableAlbum;
-                @EnableAlbum.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableAlbum;
-                @EnableAlbum.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableAlbum;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -428,29 +694,205 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @EnablePicture.started += instance.OnEnablePicture;
-                @EnablePicture.performed += instance.OnEnablePicture;
-                @EnablePicture.canceled += instance.OnEnablePicture;
+            }
+        }
+    }
+    public PlayerActions @Player => new PlayerActions(this);
+
+    // AlbumBook
+    private readonly InputActionMap m_AlbumBook;
+    private IAlbumBookActions m_AlbumBookActionsCallbackInterface;
+    private readonly InputAction m_AlbumBook_Up;
+    private readonly InputAction m_AlbumBook_Down;
+    private readonly InputAction m_AlbumBook_Left;
+    private readonly InputAction m_AlbumBook_Right;
+    private readonly InputAction m_AlbumBook_LastPage;
+    private readonly InputAction m_AlbumBook_NextPage;
+    private readonly InputAction m_AlbumBook_Submit;
+    public struct AlbumBookActions
+    {
+        private @InputControl m_Wrapper;
+        public AlbumBookActions(@InputControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Up => m_Wrapper.m_AlbumBook_Up;
+        public InputAction @Down => m_Wrapper.m_AlbumBook_Down;
+        public InputAction @Left => m_Wrapper.m_AlbumBook_Left;
+        public InputAction @Right => m_Wrapper.m_AlbumBook_Right;
+        public InputAction @LastPage => m_Wrapper.m_AlbumBook_LastPage;
+        public InputAction @NextPage => m_Wrapper.m_AlbumBook_NextPage;
+        public InputAction @Submit => m_Wrapper.m_AlbumBook_Submit;
+        public InputActionMap Get() { return m_Wrapper.m_AlbumBook; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AlbumBookActions set) { return set.Get(); }
+        public void SetCallbacks(IAlbumBookActions instance)
+        {
+            if (m_Wrapper.m_AlbumBookActionsCallbackInterface != null)
+            {
+                @Up.started -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnUp;
+                @Up.performed -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnUp;
+                @Up.canceled -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnUp;
+                @Down.started -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnDown;
+                @Left.started -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnLeft;
+                @Left.performed -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnLeft;
+                @Left.canceled -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnLeft;
+                @Right.started -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnRight;
+                @Right.performed -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnRight;
+                @Right.canceled -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnRight;
+                @LastPage.started -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnLastPage;
+                @LastPage.performed -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnLastPage;
+                @LastPage.canceled -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnLastPage;
+                @NextPage.started -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnNextPage;
+                @NextPage.performed -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnNextPage;
+                @NextPage.canceled -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnNextPage;
+                @Submit.started -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnSubmit;
+                @Submit.performed -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnSubmit;
+                @Submit.canceled -= m_Wrapper.m_AlbumBookActionsCallbackInterface.OnSubmit;
+            }
+            m_Wrapper.m_AlbumBookActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Up.started += instance.OnUp;
+                @Up.performed += instance.OnUp;
+                @Up.canceled += instance.OnUp;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+                @Left.started += instance.OnLeft;
+                @Left.performed += instance.OnLeft;
+                @Left.canceled += instance.OnLeft;
+                @Right.started += instance.OnRight;
+                @Right.performed += instance.OnRight;
+                @Right.canceled += instance.OnRight;
+                @LastPage.started += instance.OnLastPage;
+                @LastPage.performed += instance.OnLastPage;
+                @LastPage.canceled += instance.OnLastPage;
+                @NextPage.started += instance.OnNextPage;
+                @NextPage.performed += instance.OnNextPage;
+                @NextPage.canceled += instance.OnNextPage;
+                @Submit.started += instance.OnSubmit;
+                @Submit.performed += instance.OnSubmit;
+                @Submit.canceled += instance.OnSubmit;
+            }
+        }
+    }
+    public AlbumBookActions @AlbumBook => new AlbumBookActions(this);
+
+    // MemoryCamera
+    private readonly InputActionMap m_MemoryCamera;
+    private IMemoryCameraActions m_MemoryCameraActionsCallbackInterface;
+    private readonly InputAction m_MemoryCamera_ControlPictureArea;
+    private readonly InputAction m_MemoryCamera_TakePicture;
+    public struct MemoryCameraActions
+    {
+        private @InputControl m_Wrapper;
+        public MemoryCameraActions(@InputControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ControlPictureArea => m_Wrapper.m_MemoryCamera_ControlPictureArea;
+        public InputAction @TakePicture => m_Wrapper.m_MemoryCamera_TakePicture;
+        public InputActionMap Get() { return m_Wrapper.m_MemoryCamera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MemoryCameraActions set) { return set.Get(); }
+        public void SetCallbacks(IMemoryCameraActions instance)
+        {
+            if (m_Wrapper.m_MemoryCameraActionsCallbackInterface != null)
+            {
+                @ControlPictureArea.started -= m_Wrapper.m_MemoryCameraActionsCallbackInterface.OnControlPictureArea;
+                @ControlPictureArea.performed -= m_Wrapper.m_MemoryCameraActionsCallbackInterface.OnControlPictureArea;
+                @ControlPictureArea.canceled -= m_Wrapper.m_MemoryCameraActionsCallbackInterface.OnControlPictureArea;
+                @TakePicture.started -= m_Wrapper.m_MemoryCameraActionsCallbackInterface.OnTakePicture;
+                @TakePicture.performed -= m_Wrapper.m_MemoryCameraActionsCallbackInterface.OnTakePicture;
+                @TakePicture.canceled -= m_Wrapper.m_MemoryCameraActionsCallbackInterface.OnTakePicture;
+            }
+            m_Wrapper.m_MemoryCameraActionsCallbackInterface = instance;
+            if (instance != null)
+            {
                 @ControlPictureArea.started += instance.OnControlPictureArea;
                 @ControlPictureArea.performed += instance.OnControlPictureArea;
                 @ControlPictureArea.canceled += instance.OnControlPictureArea;
                 @TakePicture.started += instance.OnTakePicture;
                 @TakePicture.performed += instance.OnTakePicture;
                 @TakePicture.canceled += instance.OnTakePicture;
-                @EnableAlbum.started += instance.OnEnableAlbum;
-                @EnableAlbum.performed += instance.OnEnableAlbum;
-                @EnableAlbum.canceled += instance.OnEnableAlbum;
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public MemoryCameraActions @MemoryCamera => new MemoryCameraActions(this);
+
+    // CommonInput
+    private readonly InputActionMap m_CommonInput;
+    private ICommonInputActions m_CommonInputActionsCallbackInterface;
+    private readonly InputAction m_CommonInput_ToggleAlbum;
+    private readonly InputAction m_CommonInput_ToggleCamera;
+    private readonly InputAction m_CommonInput_ToggleSetting;
+    public struct CommonInputActions
+    {
+        private @InputControl m_Wrapper;
+        public CommonInputActions(@InputControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ToggleAlbum => m_Wrapper.m_CommonInput_ToggleAlbum;
+        public InputAction @ToggleCamera => m_Wrapper.m_CommonInput_ToggleCamera;
+        public InputAction @ToggleSetting => m_Wrapper.m_CommonInput_ToggleSetting;
+        public InputActionMap Get() { return m_Wrapper.m_CommonInput; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CommonInputActions set) { return set.Get(); }
+        public void SetCallbacks(ICommonInputActions instance)
+        {
+            if (m_Wrapper.m_CommonInputActionsCallbackInterface != null)
+            {
+                @ToggleAlbum.started -= m_Wrapper.m_CommonInputActionsCallbackInterface.OnToggleAlbum;
+                @ToggleAlbum.performed -= m_Wrapper.m_CommonInputActionsCallbackInterface.OnToggleAlbum;
+                @ToggleAlbum.canceled -= m_Wrapper.m_CommonInputActionsCallbackInterface.OnToggleAlbum;
+                @ToggleCamera.started -= m_Wrapper.m_CommonInputActionsCallbackInterface.OnToggleCamera;
+                @ToggleCamera.performed -= m_Wrapper.m_CommonInputActionsCallbackInterface.OnToggleCamera;
+                @ToggleCamera.canceled -= m_Wrapper.m_CommonInputActionsCallbackInterface.OnToggleCamera;
+                @ToggleSetting.started -= m_Wrapper.m_CommonInputActionsCallbackInterface.OnToggleSetting;
+                @ToggleSetting.performed -= m_Wrapper.m_CommonInputActionsCallbackInterface.OnToggleSetting;
+                @ToggleSetting.canceled -= m_Wrapper.m_CommonInputActionsCallbackInterface.OnToggleSetting;
+            }
+            m_Wrapper.m_CommonInputActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ToggleAlbum.started += instance.OnToggleAlbum;
+                @ToggleAlbum.performed += instance.OnToggleAlbum;
+                @ToggleAlbum.canceled += instance.OnToggleAlbum;
+                @ToggleCamera.started += instance.OnToggleCamera;
+                @ToggleCamera.performed += instance.OnToggleCamera;
+                @ToggleCamera.canceled += instance.OnToggleCamera;
+                @ToggleSetting.started += instance.OnToggleSetting;
+                @ToggleSetting.performed += instance.OnToggleSetting;
+                @ToggleSetting.canceled += instance.OnToggleSetting;
+            }
+        }
+    }
+    public CommonInputActions @CommonInput => new CommonInputActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnEnablePicture(InputAction.CallbackContext context);
+    }
+    public interface IAlbumBookActions
+    {
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
+        void OnLastPage(InputAction.CallbackContext context);
+        void OnNextPage(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
+    }
+    public interface IMemoryCameraActions
+    {
         void OnControlPictureArea(InputAction.CallbackContext context);
         void OnTakePicture(InputAction.CallbackContext context);
-        void OnEnableAlbum(InputAction.CallbackContext context);
+    }
+    public interface ICommonInputActions
+    {
+        void OnToggleAlbum(InputAction.CallbackContext context);
+        void OnToggleCamera(InputAction.CallbackContext context);
+        void OnToggleSetting(InputAction.CallbackContext context);
     }
 }

@@ -61,6 +61,7 @@ public class PhotoTakeFeature : ICameraFeature
 
     private void ShowPhoto()
     {
+        if(!owner.PhotoDisplayArea) return;
         owner.PhotoDisplayArea.texture = screenCapture;
         owner.PhotoDisplayArea.SetNativeSize();
     }

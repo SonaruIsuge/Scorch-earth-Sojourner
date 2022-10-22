@@ -41,7 +41,7 @@ public class PlayerInteractHandler : MonoBehaviour
 
     public void Interact()
     {
-        currentSelectObj?.Interact();
+        currentSelectObj?.Interact(player);
     }
     
     

@@ -2,11 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     // Player components
-    public IInput PlayerInput { get; private set; }
+    private InputControl InputControl;
+    public IInput CurrentInput { get; private set; }
+    public CommonInput CommonInput { get; private set; }
+    public Dictionary<InputType, IInput> AllInput;
+    //public IInput PlayerInput { get; private set; }
+    
     public PlayerMove PlayerMove { get; private set; }
     public PlayerInteractHandler InteractHandler { get; private set; }
 
@@ -21,7 +27,19 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        PlayerInput = new PlayerInputSystemInput();
+        InputControl = new InputControl();
+        CommonInput = new CommonInput(InputControl);
+        
+        AllInput = new Dictionary<InputType, IInput>()
+        {
+            {InputType.Player, new PlayerInputSystemInput(InputControl)},
+            {InputType.MemoryCamera, new MemoryCameraInput(InputControl)},
+            {InputType.AlbumBook, new AlbumInput(InputControl)},
+        };
+
+        CurrentInput = AllInput[InputType.Player];
+        //PlayerInput = new PlayerInputSystemInput(InputControl);
+        
         InteractHandler = GetComponent<PlayerInteractHandler>();
         PlayerMove = GetComponent<PlayerMove>();
 
@@ -38,12 +56,12 @@ public class Player : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerInput?.Register();
+        CurrentInput?.Register();
     }
 
     void OnDisable()
     {
-        PlayerInput?.Unregister();
+        CurrentInput?.Unregister();
     }
 
     // Start is called before the first frame update
@@ -52,13 +70,13 @@ public class Player : MonoBehaviour
         if(MemoryCamera) MemoryCamera.Equip(this);
         if(AlbumBook) AlbumBook.Equip(this);
 
-        currentState = UsingProp.None;
+        ChangePropState(UsingProp.None);
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerInput.ReadInput();
+        CommonInput.ReadInput();
         
         stateDict[currentState].StayState();
     }
@@ -69,5 +87,13 @@ public class Player : MonoBehaviour
         if(stateDict[currentState] != null ) stateDict[currentState].ExitState();
         if(stateDict.ContainsKey(newState)) currentState = newState;
         stateDict[currentState].EnterState();
+    }
+
+
+    public void EnableInputType(InputType newType)
+    {
+        foreach (var inputType in AllInput.Values) inputType.EnableInput(false);
+        CurrentInput = AllInput[newType];
+        CurrentInput.EnableInput(true);
     }
 }

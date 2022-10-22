@@ -14,7 +14,7 @@ public class M_ExitDoor : MonoBehaviour, IInteractable
         isSelect = true;
     }
 
-    public void Interact()
+    public void Interact(Player player)
     {
         GameFlowHandler.Instance.LoadScene(SceneIndex.Outdoor, new OutDoorData(machineControl.MachinePosInWorld, machineControl.RotateAngle));
     }

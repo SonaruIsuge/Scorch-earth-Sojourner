@@ -7,7 +7,7 @@ public class ItemDetectFeature : ICameraFeature
     public MemoryCamera owner { get; private set; }
     public bool enable { get; private set; }
 
-    private Camera cc;
+    private Camera targetCamera;
     
     
     public void EnableFeature(bool b)
@@ -19,14 +19,14 @@ public class ItemDetectFeature : ICameraFeature
     public ItemDetectFeature(MemoryCamera camera)
     {
         owner = camera;
-        cc = Camera.main;
+        targetCamera = owner.TargetCamera;
     }
 
 
     public ItemPhotoData DetectItem()
     {
         var getRecordableItem = false;
-        var point = cc.ScreenToWorldPoint(owner.PhotoFrameRectTrans.position);
+        var point = targetCamera.ScreenToWorldPoint(owner.PhotoFrameRectTrans.position);
         owner.GetWidthHeightInWorld(out var worldWidth, out var worldHeight);
         
         var detectItems = Physics2D.OverlapBoxAll(point, new Vector2(worldWidth,  worldHeight), 0);
@@ -44,7 +44,7 @@ public class ItemDetectFeature : ICameraFeature
             recordItem.CameraHit();
             getRecordableItem = true;
             
-            var itemScreenPos = cc.WorldToScreenPoint(item.transform.position);
+            var itemScreenPos = targetCamera.WorldToScreenPoint(item.transform.position);
             var itemScreenCenterDiff = Vector2.Distance(itemScreenPos, owner.PhotoFrameRectTrans.position);
             
             if (itemScreenCenterDiff >= minDisFromPhotoCenter) continue;

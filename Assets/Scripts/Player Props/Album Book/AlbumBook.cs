@@ -12,22 +12,10 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     
     public int MaxSaveData;
 
-    [SerializeField] private int currentPage;
-    [SerializeField] private string currentPhotoName;
-    public int CurrentPage
-    {
-        get => currentPage;
-        set
-        {
-            currentPage = Mathf.Min(Mathf.Max(1, value), BookView.allPageList.Count);
-            OnChangeCurrentPageIndex?.Invoke(currentPage);
-        }
-    }
+    
 
-    private event Action<int> OnChangeCurrentPageIndex;
-    
-    public bool OpenAlbumBtn { get; private set; }
-    
+    [SerializeField] private string currentPhotoName;
+
 
     public void Equip(Player newPlayer)
     {
@@ -37,8 +25,6 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
         BookView.InitPhoto(BookData.AllPhotoData);
         
         bindViewEvent();
-
-        CurrentPage = 1;
     }
 
 
@@ -62,14 +48,27 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     }
 
 
+    public void SetCurrentPage(int addPage)
+    {
+        BookView.ChangePage(addPage);
+    }
+
+    
+    public void SetCurrentPhoto(bool up, bool down, bool left, bool right)
+    {
+        BookView.SetCurrentChoosePhoto(up, down, left, right);
+        currentPhotoName = BookView.allPhotoList.Count > 0 ? BookView.allPhotoList[BookView.CurrentViewObjIndex].PhotoName : null;
+        BookData.CurrentPhotoData = BookData.GetFilePhotoData(currentPhotoName);
+    }
+    
+
     private void bindViewEvent()
     {
         BookView.albumBtn.onClick.AddListener(AlbumBtnClick);
         BookView.closeAlbumBtn.onClick.AddListener(AlbumCancelBtnClick);
-        BookView.LastPageBtn.onClick.AddListener(() => CurrentPage--);
-        BookView.NextPageBtn.onClick.AddListener(() => CurrentPage++);
-
-        OnChangeCurrentPageIndex += BookView.ShowCurrentPage;
+        BookView.LastPageBtn.onClick.AddListener(() => BookView.ChangePage(-1));
+        BookView.NextPageBtn.onClick.AddListener(() => BookView.ChangePage(1));
+        
         PhotoSaveLoadHandler.Instance.OnFileChanged += updateAlbum;
     }
 
@@ -81,11 +80,10 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
         BookView.LastPageBtn.onClick.RemoveAllListeners();
         BookView.NextPageBtn.onClick.RemoveAllListeners();
         
-        OnChangeCurrentPageIndex -= BookView.ShowCurrentPage;
         if(PhotoSaveLoadHandler.Instance != null) PhotoSaveLoadHandler.Instance.OnFileChanged -= updateAlbum;
     }
 
-    
+
     #region Bind Function
 
     private void AlbumBtnClick()

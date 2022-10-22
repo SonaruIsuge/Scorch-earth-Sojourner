@@ -28,7 +28,7 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
     
     private Rect frameRect => PhotoFrameRectTrans.rect;
     private Texture2D temporaryPhoto;
-    private Camera cc => Camera.main;
+    [field: SerializeField] public Camera TargetCamera { get; private set; }
     
 
     private PhotoTakeFeature photoTakeFeature;
@@ -87,8 +87,8 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
     {
         var rightTop = new Vector3((float)photoWidth / 2, (float)photoHeight / 2, 0);
         var leftBottom = new Vector3(-(float)photoWidth / 2, -(float)photoHeight / 2, 0);
-        var worldRightTop = cc.ScreenToWorldPoint(rightTop);
-        var worldLeftBottom = cc.ScreenToWorldPoint(leftBottom);
+        var worldRightTop = TargetCamera.ScreenToWorldPoint(rightTop);
+        var worldLeftBottom = TargetCamera.ScreenToWorldPoint(leftBottom);
         width = (worldRightTop - worldLeftBottom).x;
         height = (worldRightTop - worldLeftBottom).y;
     }

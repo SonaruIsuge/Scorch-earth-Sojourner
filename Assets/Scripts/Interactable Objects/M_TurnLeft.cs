@@ -35,7 +35,7 @@ public class M_TurnLeft : MonoBehaviour, IInteractable
         spriteRenderer.material.SetFloat(OutlineThickness, 1.0f);
     }
 
-    public void Interact()
+    public void Interact(Player player)
     {
         if (aniTimer <= leftAni.GetCurrentAnimatorStateInfo(0).length) return;
         

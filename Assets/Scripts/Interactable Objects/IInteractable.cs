@@ -7,6 +7,6 @@ public interface IInteractable
     string interactHint { get; }
 
     void OnSelect();
-    void Interact();
+    void Interact(Player player);
     void OnDeselect();
 }
