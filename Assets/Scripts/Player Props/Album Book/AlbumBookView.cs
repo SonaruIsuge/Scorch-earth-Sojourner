@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,36 +42,26 @@ public class AlbumBookView : MonoBehaviour
     [field: SerializeField] public List<PhotoViewObj> allPhotoList {get; private set;}
     
     // current show page / current choose photo
-    [SerializeField]
-    private int currentPage {
-        set => ShowCurrentPage(value);
-    }
-    // public int CurrentPage
-    // {
-    //     get => currentPage;
-    //     set
-    //     {
-    //         currentPage = Mathf.Clamp(value, 0, allPageList.Count - 1);
-    //         ShowCurrentPage(currentPage);
-    //     }
-    // }
-    
-    [SerializeField] private int currentViewObjIndex;
-    public int CurrentViewObjIndex
+    private int currentPage { set => ShowCurrentPage(value); }
+
+    [SerializeField] private int currentChooseViewObjIndex;
+    public int CurrentChooseViewObjIndex
     {
-        get => currentViewObjIndex;
+        get => currentChooseViewObjIndex;
         private set
         {
-            currentViewObjIndex = Mathf.Clamp(value, 0, allPhotoList.Count - 1);
-            currentPage = currentViewObjIndex / containNum;
-            if(choosingPhotoTrans) choosingPhotoTrans.localPosition = calcPhotoPosInCanvas(currentViewObjIndex);
+            currentChooseViewObjIndex = Mathf.Clamp(value, 0, allPhotoList.Count - 1);
+            currentPage = currentChooseViewObjIndex / containNum;
+            if(choosingPhotoTrans) choosingPhotoTrans.localPosition = calcPhotoPosInCanvas(currentChooseViewObjIndex);
         }
     }
 
+    [field: SerializeField]public string SubmitPhotoName { get; private set; }
 
 
     public void EnableView(bool enable)
     {
+        if (!enable) SubmitPhotoName = null;
         bookPanel.gameObject.SetActive(enable);
     }
 
@@ -99,8 +88,7 @@ public class AlbumBookView : MonoBehaviour
             
             // add new page
             var pageObj = Instantiate(pagePrefab, bookPanel);
-            pageObj.name = $"Page {nowPageNum + 1}";
-            allPageList.Add(pageObj.GetComponent<RectTransform>());
+            pageObj.name = $"Page {nowPageNum + 1}";allPageList.Add(pageObj.GetComponent<RectTransform>());
 
             // add photo
             for (var i = 0 + containNum * nowPageNum; i < Mathf.Min((nowPageNum + 1) * containNum, dataList.Count); i++)
@@ -111,16 +99,14 @@ public class AlbumBookView : MonoBehaviour
                 photoObj.SetImage(dataList[i].photo);
                 photoObj.SetName(dataList[i].fileName);
                 photoObj.SetLocalPosition(calcPhotoPosInCanvas(i));
-                photoObj.SetClickEvent(Debug.Log);
+                photoObj.SetClickEvent( str => SubmitPhotoName = str );
                 photoObj.SetRemoveEvent(PhotoSaveLoadHandler.Instance.RemoveData);
                 allPhotoList.Add(photoObj);
             }
         }
-
-        currentPage = 1;
-        CurrentViewObjIndex = 0;
-        
-        if(allPhotoList.Count == 0) choosingPhotoTrans.gameObject.SetActive(false);
+        CurrentChooseViewObjIndex = 0;
+        choosingPhotoTrans.gameObject.SetActive(allPhotoList.Count > 0);
+        SubmitPhotoName = null;
         
         SetUIElementsLayer();
     }
@@ -129,7 +115,7 @@ public class AlbumBookView : MonoBehaviour
     private void ShowCurrentPage(int pageIndex)
     {
         foreach(var page in allPageList) page.gameObject.SetActive(false);
-        allPageList[pageIndex].gameObject.SetActive(true);
+        if(allPageList.Count > 0) allPageList[pageIndex].gameObject.SetActive(true);
     }
 
 
@@ -151,7 +137,7 @@ public class AlbumBookView : MonoBehaviour
             {
                 var newPage = Instantiate(pagePrefab, bookPanel);
                 newPage.name = $"Page {i + 1}";
-                allPageList.Add(newPage.GetComponent<RectTransform>());
+                allPageList.Add(newPage);
             }
         }
         else if (pageAmount < allPageList.Count)
@@ -182,7 +168,7 @@ public class AlbumBookView : MonoBehaviour
                 allPhotoList[i].SetName(newDataList[i].fileName);
                 allPhotoList[i].SetLocalPosition(calcPhotoPosInCanvas(i));
                 allPhotoList[i].SetRemoveEvent(PhotoSaveLoadHandler.Instance.RemoveData);
-                allPhotoList[i].SetClickEvent(Debug.Log);
+                allPhotoList[i].SetClickEvent(str => SubmitPhotoName = str);
             }
         }
         // remove old photo
@@ -196,7 +182,7 @@ public class AlbumBookView : MonoBehaviour
                     photoViewObj.SetName(newDataList[i].fileName);
                     photoViewObj.SetLocalPosition(calcPhotoPosInCanvas(i));
                     photoViewObj.SetRemoveEvent(PhotoSaveLoadHandler.Instance.RemoveData);
-                    photoViewObj.SetClickEvent(Debug.Log);
+                    photoViewObj.SetClickEvent(str => SubmitPhotoName = str);
                 }
                 else
                 {
@@ -206,22 +192,29 @@ public class AlbumBookView : MonoBehaviour
             }
         }
         
-        CurrentViewObjIndex = allPageList.Count - 1;
-        if(allPhotoList.Count == 0) choosingPhotoTrans.gameObject.SetActive(false);
+        CurrentChooseViewObjIndex = allPageList.Count - 1;
+        choosingPhotoTrans.gameObject.SetActive(allPhotoList.Count > 0);
     }
 
 
     public void SetCurrentChoosePhoto(bool up, bool down, bool left, bool right)
     {
-        if (left) CurrentViewObjIndex--;
-        if(right) CurrentViewObjIndex++;
-        if (down) CurrentViewObjIndex += photoNumInRow;
-        if(up) CurrentViewObjIndex -= photoNumInRow;
+        if (left) CurrentChooseViewObjIndex--;
+        if(right) CurrentChooseViewObjIndex++;
+        if (down) CurrentChooseViewObjIndex += photoNumInRow;
+        if(up) CurrentChooseViewObjIndex -= photoNumInRow;
     }
+
+
+    public void SendSubmitMessage()
+    {
+        SubmitPhotoName = allPhotoList[CurrentChooseViewObjIndex].PhotoName;
+    }
+    
 
     public void ChangePage(int addPage)
     {
-        CurrentViewObjIndex += containNum * addPage;
+        CurrentChooseViewObjIndex += containNum * addPage;
     }
 
 

@@ -12,7 +12,10 @@ public sealed class ItemControlHandler : TSingletonMonoBehaviour<ItemControlHand
         
         inventory.InitItemDict();
     }
-    
-    
-    
+
+
+    public RecordableItem GetRecordableItemById(int id)
+    {
+        return inventory.ItemDictionary.ContainsKey(id) ? inventory.ItemDictionary[id] : null;
+    }
 }

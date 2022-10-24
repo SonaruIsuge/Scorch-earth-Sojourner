@@ -12,7 +12,7 @@ public class PlayerInteractHandler : MonoBehaviour
     public float InteractRange;
     
     private Player player;
-    private IInteractable currentSelectObj;
+    public IInteractable currentSelectObj { get; private set; }
     private bool enableInteract;
     
 

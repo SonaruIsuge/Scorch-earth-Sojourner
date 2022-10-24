@@ -82,11 +82,11 @@ public class Player : MonoBehaviour
     }
 
 
-    public void ChangePropState(UsingProp newState)
+    public void ChangePropState(UsingProp newState, MoreInfo moreInfo = MoreInfo.None)
     {
         if(stateDict[currentState] != null ) stateDict[currentState].ExitState();
         if(stateDict.ContainsKey(newState)) currentState = newState;
-        stateDict[currentState].EnterState();
+        stateDict[currentState].EnterState(moreInfo);
     }
 
 
@@ -95,5 +95,31 @@ public class Player : MonoBehaviour
         foreach (var inputType in AllInput.Values) inputType.EnableInput(false);
         CurrentInput = AllInput[newType];
         CurrentInput.EnableInput(true);
+    }
+    
+    
+    // Delay function
+    public void DelayDo(Action onComplete, float delay)
+    {
+        StartCoroutine(DelayDoInner(delay, onComplete));
+    }
+
+    public void DelayDo<T>(Action<T> onComplete, T param1, float delay)
+    {
+        StartCoroutine(DelayDoInner<T>(delay, onComplete, param1));
+    }
+
+    private IEnumerator DelayDoInner(float delay, Action onComplete = null)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        onComplete?.Invoke();
+    }
+
+    private IEnumerator DelayDoInner<T>(float delay, Action<T> onComplete, T param1)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        onComplete?.Invoke(param1);
     }
 }

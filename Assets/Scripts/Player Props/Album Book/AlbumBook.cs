@@ -11,11 +11,10 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     public AlbumBookView BookView;
     
     public int MaxSaveData;
-
     
-
-    [SerializeField] private string currentPhotoName;
-
+    [SerializeField] private string currentChoosePhotoName;
+    public string CurrentSubmitPhotoName => BookView.SubmitPhotoName;
+    
 
     public void Equip(Player newPlayer)
     {
@@ -53,12 +52,26 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
         BookView.ChangePage(addPage);
     }
 
-    
-    public void SetCurrentPhoto(bool up, bool down, bool left, bool right)
+    public void SetCurrentChoosePhoto(bool up, bool down, bool left, bool right)
     {
         BookView.SetCurrentChoosePhoto(up, down, left, right);
-        currentPhotoName = BookView.allPhotoList.Count > 0 ? BookView.allPhotoList[BookView.CurrentViewObjIndex].PhotoName : null;
-        BookData.CurrentPhotoData = BookData.GetFilePhotoData(currentPhotoName);
+        currentChoosePhotoName = BookView.allPhotoList.Count > 0 ? BookView.allPhotoList[BookView.CurrentChooseViewObjIndex].PhotoName : null;
+        BookData.CurrentPhotoData = BookData.GetFilePhotoData(currentChoosePhotoName);
+    }
+
+
+    public void SetSubmitPhoto()
+    {
+        BookView.SendSubmitMessage();
+        BookData.CurrentPhotoData = BookData.GetFilePhotoData(CurrentSubmitPhotoName);
+    }
+
+
+    public void TryGetPhotoData(out Texture2D photo, out ItemPhotoData data)
+    {
+        var filePhotoData = BookData.GetFilePhotoData(CurrentSubmitPhotoName);
+        photo = filePhotoData?.photo;
+        data = filePhotoData?.data;
     }
     
 

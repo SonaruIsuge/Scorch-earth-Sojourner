@@ -16,7 +16,7 @@ namespace SonaruUtilities
 
         public float Remain01 => Remain / targetTime;
         
-        public bool IsFinish => Time.time >= finishTime;
+        public bool IsFinish => Time.time >= finishTime && !IsPause;
 
         
         public SimpleTimer(float timer)

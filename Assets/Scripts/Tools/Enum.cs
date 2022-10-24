@@ -16,6 +16,13 @@ public enum UsingProp
 }
 
 
+public enum MoreInfo
+{
+    FromProjector,
+    None
+}
+
+
 public enum SceneIndex
 {
     Indoor,

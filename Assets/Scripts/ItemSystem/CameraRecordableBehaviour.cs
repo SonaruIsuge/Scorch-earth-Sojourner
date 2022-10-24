@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 public abstract class CameraRecordableBehaviour : MonoBehaviour
 {
     public RecordableItem ItemData;
+    [field: SerializeField] public bool IsClone { get; private set; }
+
+
+    private void Awake()
+    {
+        IsClone = false;
+    }
 
     public virtual void CameraHit()
     {
@@ -12,6 +20,7 @@ public abstract class CameraRecordableBehaviour : MonoBehaviour
 
     public virtual void ItemUse()
     {
+        IsClone = true;
         Debug.Log($"Use Photo Item : {ItemData.ItemName}");
     }
 }

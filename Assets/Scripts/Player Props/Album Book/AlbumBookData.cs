@@ -50,6 +50,7 @@ public class AlbumBookData : MonoBehaviour
     
     public FilePhotoData? GetFilePhotoData(string fileName)
     {
+        if (fileName == null) return null;
         if (!fileDataDict.ContainsKey(fileName)) return null;
 
         return fileDataDict[fileName];

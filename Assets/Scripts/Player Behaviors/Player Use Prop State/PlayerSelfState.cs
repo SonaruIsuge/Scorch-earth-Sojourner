@@ -13,7 +13,7 @@ public class PlayerSelfState : IPropState
     }
     
     
-    public void EnterState()
+    public void EnterState(MoreInfo info)
     {
         player.EnableInputType(InputType.Player);
         input = player.CurrentInput as PlayerInputSystemInput;

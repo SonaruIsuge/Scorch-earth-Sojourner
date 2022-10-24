@@ -38,8 +38,9 @@ public class ItemDetectFeature : ICameraFeature
         
         foreach (var item in detectItems)
         {
+            // If taking photo of clone object, can't see it as a recordable object.
             var recordItem = item.GetComponent<CameraRecordableBehaviour>();
-            if(!recordItem) continue;
+            if(!recordItem || recordItem.IsClone) continue;
 
             recordItem.CameraHit();
             getRecordableItem = true;

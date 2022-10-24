@@ -29,9 +29,9 @@ public class PhotoViewObj
     public string PhotoName { get; private set; }
 
     private RawImage PhotoImage;
-    private Button PhotoBtn;
     private TMP_Text PhotoText;
-    [SerializeField]private Button RemovePhotoBtn;
+    private Button PhotoBtn;
+    private Button RemovePhotoBtn;
 
     private event Action<string> OnPhotoViewObjClick;
     private event Action<string> OnPhotoRemoveBtnClick;
@@ -72,12 +72,14 @@ public class PhotoViewObj
 
     public void SetClickEvent(Action<string> newEvent)
     {
+        OnPhotoViewObjClick = null;
         OnPhotoViewObjClick += newEvent;
     }
 
 
     public void SetRemoveEvent(Action<string> newEvent)
     {
+        OnPhotoRemoveBtnClick = null;
         OnPhotoRemoveBtnClick += newEvent;
     }
 
@@ -87,4 +89,5 @@ public class PhotoViewObj
         OnPhotoViewObjClick = null;
         OnPhotoRemoveBtnClick = null;
     }
+    
 }
