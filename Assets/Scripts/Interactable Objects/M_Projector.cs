@@ -31,6 +31,10 @@ public class M_Projector : MonoBehaviour, IInteractable
     
     [SerializeField] private ItemPhotoData photoData;
     private SimpleTimer projectObjTimer;
+     
+    [SerializeField] private bool hasData;
+
+    private float resizeCameraOrthographicSize;
     
     private void Awake()
     {
@@ -41,26 +45,28 @@ public class M_Projector : MonoBehaviour, IInteractable
         projectImage = projectCanvas.GetComponentInChildren<RawImage>();
         
         InitProjectorScreen();
-
+        
         photoData = null;
-        projectObjTimer = new SimpleTimer(3);
+        projectObjTimer = new SimpleTimer(2);
         projectObjTimer.Pause();
     }
 
 
     private void Update()
     {
+        hasData = photoData == null;
         if (photoData != null && projectObjTimer.IsFinish)
         {
             // Generate recordable item by its id
             var generateItem = ItemControlHandler.Instance.GetRecordableItemById(photoData.TargetItemId);
             var itemObj = Instantiate(generateItem.ItemObject, projectPoint);
             
-            var itemPos = new Vector2(photoData.PositionInPhoto.x / 100.0f, photoData.PositionInPhoto.y / 100.0f);
-            itemObj.transform.localPosition = itemPos;
-            var itemScale = projectScale.x * 100 / projectImage.texture.width;
+            Debug.Log(projectImage.texture.width);
+            Debug.Log(projectScale.x);
+            var itemScale = projectScale.x * 100 / (projectImage.texture.width * resizeCameraOrthographicSize);
             itemObj.transform.localScale = Vector3.one * itemScale;
-            Debug.Log(itemPos);
+            var itemPos = new Vector2(photoData.PositionInPhoto.x / 100.0f, photoData.PositionInPhoto.y / 100.0f) * (itemScale * resizeCameraOrthographicSize) + offset;
+            itemObj.transform.localPosition = itemPos;
             itemObj.GetComponent<CameraRecordableBehaviour>().ItemUse();
 
             // reset timer and photoData
@@ -87,6 +93,7 @@ public class M_Projector : MonoBehaviour, IInteractable
 
         if (player.AlbumBook)
         {
+            resizeCameraOrthographicSize = player.MemoryCamera.WorldCamera.orthographicSize * 2 * 100 / Screen.height;
             DOProjectorAnimation(0.8f, 0.7f, 1);
             player.DelayDo(() => player.ChangePropState(UsingProp.AlbumBook, MoreInfo.FromProjector), 1);
             photoData = null;
@@ -104,7 +111,7 @@ public class M_Projector : MonoBehaviour, IInteractable
     public void OnChoosePhotoOver()
     {
         if(photoData == null) DOProjectorAnimation(0, 0, 1);
-        else projectObjTimer.Reset(3);
+        else projectObjTimer.Reset(2);
     }
     
 

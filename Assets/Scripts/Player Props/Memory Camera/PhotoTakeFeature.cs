@@ -9,7 +9,6 @@ public class PhotoTakeFeature : ICameraFeature
 {
     public bool enable { get; private set; }
     public MemoryCamera owner { get; private set; }
-    private Rect frameRect => owner.PhotoFrameRectTrans.rect;
     private Texture2D screenCapture;
 
     private bool underCaptureProgress;
@@ -43,26 +42,12 @@ public class PhotoTakeFeature : ICameraFeature
     {
         underCaptureProgress = true;
         await UniTask.WaitForEndOfFrame(owner);
-        
-        //rect.x -> distance from left , rect.y -> distance from top
-        var rect = UnityTool.RectTransformToScreenSpace(owner.PhotoFrameRectTrans);
 
-        var bottomBound = Screen.height - frameRect.height - rect.y;
-        rect.y = bottomBound;
-        screenCapture.ReadPixels(rect, 0,0,false);
+        RenderTexture.active= owner.memoryCameraFilm;
+        screenCapture.ReadPixels(new Rect(0, 0, owner.memoryCameraFilm.width, owner.memoryCameraFilm.height),0,0);
         screenCapture.Apply();
+        
         underCaptureProgress = false;
-
-        ShowPhoto();
-
         return screenCapture;
-    }
-
-
-    private void ShowPhoto()
-    {
-        if(!owner.PhotoDisplayArea) return;
-        owner.PhotoDisplayArea.texture = screenCapture;
-        owner.PhotoDisplayArea.SetNativeSize();
     }
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RecordableItems:
   - {fileID: 11400000, guid: 0db5872dda848a44aa6a5e58ada40708, type: 2}
+  - {fileID: 11400000, guid: 1ed9c84772f838b48bb6a9070924fb84, type: 2}

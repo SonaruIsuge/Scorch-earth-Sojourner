@@ -15,12 +15,12 @@ public abstract class CameraRecordableBehaviour : MonoBehaviour
 
     public virtual void CameraHit()
     {
-        Debug.Log($"Hit Item : {ItemData.ItemName}");
+        //Debug.Log($"Hit Item : {ItemData.ItemName}");
     }
 
     public virtual void ItemUse()
     {
         IsClone = true;
-        Debug.Log($"Use Photo Item : {ItemData.ItemName}");
+        //Debug.Log($"Use Photo Item : {ItemData.ItemName}");
     }
 }

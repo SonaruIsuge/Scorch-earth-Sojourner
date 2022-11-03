@@ -12,5 +12,14 @@ namespace SonaruUtilities
             rect.y -= ((1.0f - transform.pivot.y) * size.y);
             return rect;
         }
+
+
+        public static Vector2 GetOrthographicCameraWorldSize(Camera camera)
+        {
+            if (!camera.orthographic) return Vector2.zero;
+
+            var height = camera.orthographicSize * 2.0f;   
+            return new Vector2(camera.aspect * height, height);
+        }
     }
 }

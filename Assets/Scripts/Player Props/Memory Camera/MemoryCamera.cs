@@ -12,45 +12,50 @@ using UnityEngine.UI;
 
 public class MemoryCamera : MonoBehaviour, IPlayerProp
 {
+    public Camera WorldCamera => Camera.main;
+    public RectTransform PhotoTakeOuterFrame;
+    public RectTransform PhotoFrameRectTrans;
+    private Light2D cameraFlashLight;
+    public Camera memoryCameraLens { get; private set; }
+    [field: SerializeField] public RenderTexture memoryCameraFilm { get; private set; }
+    public RectTransform DetectPoint;
     public Player player { get; private set; }
     
     [SerializeField] private int photoWidth;
     [SerializeField] private int photoHeight;
     public int PhotoWidth => photoWidth;
     public int PhotoHeight => photoHeight;
-    
-    public RectTransform PhotoFrameRectTrans;
-    public RawImage PhotoDisplayArea;
-    [SerializeField]private RectTransform photoFrame;
-    [SerializeField] private Light2D cameraFlashLight;
 
     public string FileStorageFolder = "/SaveData/";
     
-    private Rect frameRect => PhotoFrameRectTrans.rect;
     private Texture2D temporaryPhoto;
-    [field: SerializeField] public Camera TargetCamera { get; private set; }
-    
+    private Tweener cameraFlashTween;
 
     private PhotoTakeFeature photoTakeFeature;
     private CameraMoveFeature cameraMoveFeature;
-    //private PhotoSaveLoadFeature photoSaveLoadFeature;
     private ItemDetectFeature itemDetectFeature;
     
 
     public void Equip(Player newPlayer)
     {
+        // Get component
         player = newPlayer;
-        //ScreenCapture = new Texture2D(photoWidth, photoHeight, TextureFormat.RGB24, false);
+        memoryCameraLens = GetComponentInChildren<Camera>();
+        cameraFlashLight = GetComponentInChildren<Light2D>();
+        
+        // Set component data
         PhotoFrameRectTrans.sizeDelta = new Vector2(photoWidth, photoHeight);
-        photoFrame.sizeDelta = new Vector2(photoWidth + 20, photoHeight + 20);
-
+        memoryCameraFilm.width = photoWidth;
+        memoryCameraFilm.height = photoHeight;
+        memoryCameraLens.orthographicSize = photoHeight * WorldCamera.orthographicSize / Screen.height;
+        PhotoTakeOuterFrame.gameObject.SetActive(false);
+        PhotoFrameRectTrans.gameObject.SetActive(false);
+        DetectPoint.transform.gameObject.SetActive(false);
+        
         //add feature
         photoTakeFeature = new PhotoTakeFeature(this);
         cameraMoveFeature = new CameraMoveFeature(this);
-        //photoSaveLoadFeature = new PhotoSaveLoadFeature(this);
         itemDetectFeature = new ItemDetectFeature(this);
-        
-        PhotoFrameRectTrans.gameObject.SetActive(false);
     }
 
 
@@ -67,37 +72,32 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
     {
         enabled = enable;
         PhotoFrameRectTrans.gameObject.SetActive(enable);
+        PhotoTakeOuterFrame.gameObject.SetActive(enable);
     }
 
 
     public async void TakePhoto()
     {
         temporaryPhoto = await photoTakeFeature.TakePhoto();
-        await CameraFlash();
+        DOCameraFlash(20, 0.25f);
         var item = itemDetectFeature.DetectItem();
         
         PhotoSaveLoadHandler.Instance.SavePhoto(temporaryPhoto, item);
     }
     
 
-    public void MoveCamera(float x, float y) => cameraMoveFeature.MoveFrame(x, y);
-    
-
-    public void GetWidthHeightInWorld(out float width, out float height)
+    public void MoveCamera(float x, float y)
     {
-        var rightTop = new Vector3((float)photoWidth / 2, (float)photoHeight / 2, 0);
-        var leftBottom = new Vector3(-(float)photoWidth / 2, -(float)photoHeight / 2, 0);
-        var worldRightTop = TargetCamera.ScreenToWorldPoint(rightTop);
-        var worldLeftBottom = TargetCamera.ScreenToWorldPoint(leftBottom);
-        width = (worldRightTop - worldLeftBottom).x;
-        height = (worldRightTop - worldLeftBottom).y;
+        cameraMoveFeature.MoveFrame(x, y);
+        itemDetectFeature.TryDetectItem();
     }
 
-    
-    private async UniTask CameraFlash()
+
+    private void DOCameraFlash(float intensity, float during)
     {
-        cameraFlashLight.intensity = 20;
-        await UniTask.Delay(30);
-        cameraFlashLight.intensity = 0;
+        cameraFlashTween?.Kill();
+        cameraFlashTween = DOTween.To(()=> cameraFlashLight.intensity, x=> cameraFlashLight.intensity = x, intensity, during);
+        cameraFlashTween.onComplete += () => DOTween.To(()=> cameraFlashLight.intensity, x=> cameraFlashLight.intensity = x, 0, during);
+        cameraFlashTween.Play();
     }
 }

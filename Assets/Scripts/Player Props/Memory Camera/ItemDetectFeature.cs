@@ -1,4 +1,5 @@
 ﻿
+using System.Buffers;
 using SonaruUtilities;
 using UnityEngine;
 
@@ -7,8 +8,10 @@ public class ItemDetectFeature : ICameraFeature
     public MemoryCamera owner { get; private set; }
     public bool enable { get; private set; }
 
-    private Camera targetCamera;
+    private Collider2D currentDetectItem;
     
+    //private float detectHeight => owner.memoryCameraLens.orthographicSize * 2;
+    //private float detectWidth => detectHeight * owner.memoryCameraLens.aspect;
     
     public void EnableFeature(bool b)
     {
@@ -19,43 +22,47 @@ public class ItemDetectFeature : ICameraFeature
     public ItemDetectFeature(MemoryCamera camera)
     {
         owner = camera;
-        targetCamera = owner.TargetCamera;
     }
 
 
-    public ItemPhotoData DetectItem()
+    public void TryDetectItem()
     {
-        var getRecordableItem = false;
-        var point = targetCamera.ScreenToWorldPoint(owner.PhotoFrameRectTrans.position);
-        owner.GetWidthHeightInWorld(out var worldWidth, out var worldHeight);
+        var cameraWorldSize = UnityTool.GetOrthographicCameraWorldSize(owner.memoryCameraLens);
+        var detectItems = 
+            Physics2D.OverlapBoxAll(owner.memoryCameraLens.transform.position, cameraWorldSize, 0);
+        if(detectItems.Length <= 0) return;
         
-        var detectItems = Physics2D.OverlapBoxAll(point, new Vector2(worldWidth,  worldHeight), 0);
-        
-        if (detectItems.Length <= 0) return null;
-        
-        var targetItemData = new ItemPhotoData();
         var minDisFromPhotoCenter = Mathf.Infinity;
-        
+        currentDetectItem = null;
         foreach (var item in detectItems)
         {
-            // If taking photo of clone object, can't see it as a recordable object.
-            var recordItem = item.GetComponent<CameraRecordableBehaviour>();
-            if(!recordItem || recordItem.IsClone) continue;
+            if (!item.TryGetComponent<CameraRecordableBehaviour>(out var recordItem)) continue;
+            if(recordItem.IsClone) continue;
 
-            recordItem.CameraHit();
-            getRecordableItem = true;
-            
-            var itemScreenPos = targetCamera.WorldToScreenPoint(item.transform.position);
-            var itemScreenCenterDiff = Vector2.Distance(itemScreenPos, owner.PhotoFrameRectTrans.position);
-            
-            if (itemScreenCenterDiff >= minDisFromPhotoCenter) continue;
-            
-            minDisFromPhotoCenter = itemScreenCenterDiff;
-            targetItemData.TargetItemId = recordItem.ItemData.ItemId;
-            targetItemData.PositionInPhoto = itemScreenPos - owner.PhotoFrameRectTrans.position;
+            var itemDistanceFromCenter =
+                Vector2.Distance(owner.memoryCameraLens.transform.position, item.transform.position);
+                
+            if (itemDistanceFromCenter >= minDisFromPhotoCenter) continue;
+            minDisFromPhotoCenter = itemDistanceFromCenter;
+            currentDetectItem = item;
         }
+        owner.DetectPoint.gameObject.SetActive(currentDetectItem);
+        owner.DetectPoint.position = currentDetectItem ? owner.WorldCamera.WorldToScreenPoint(currentDetectItem.transform.position): Vector3.zero;
+        //currentDetectItem = tempItem;
+    }
+    
+    
+    public ItemPhotoData DetectItem()
+    {
+        var targetItemData = new ItemPhotoData();
+        if (!currentDetectItem) return null;
+        
+        var recordable = currentDetectItem.GetComponent<CameraRecordableBehaviour>();
+        if (!recordable) return null;
 
-        if (!getRecordableItem) targetItemData = null;
+        targetItemData.TargetItemId = recordable.ItemData.ItemId;
+        targetItemData.PositionInPhoto = owner.WorldCamera.WorldToScreenPoint(currentDetectItem.transform.position) - owner.PhotoFrameRectTrans.position;
+        
 
         return targetItemData;
     }
