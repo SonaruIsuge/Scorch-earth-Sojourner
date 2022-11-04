@@ -6,13 +6,13 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    // Player components
+    // Player input
     private InputControl InputControl;
-    public IInput CurrentInput { get; private set; }
     public CommonInput CommonInput { get; private set; }
-    public Dictionary<InputType, IInput> AllInput;
-    //public IInput PlayerInput { get; private set; }
+    public IInput CurrentInput { get; private set; }
+    private Dictionary<InputType, IInput> AllInput;
     
+    // Player components
     public PlayerMove PlayerMove { get; private set; }
     public PlayerInteractHandler InteractHandler { get; private set; }
 
@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     // Player use prop state machine
     private UsingProp currentState;
     private Dictionary<UsingProp, IPropState> stateDict;
+    
+    // Player equip prop event
+    public event Action<IPlayerProp> OnPropEquiped;
     
 
     void Awake()
@@ -67,8 +70,17 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(MemoryCamera) MemoryCamera.Equip(this);
-        if(AlbumBook) AlbumBook.Equip(this);
+        if (MemoryCamera)
+        {
+            MemoryCamera.Equip(this);
+            OnPropEquiped?.Invoke(MemoryCamera);
+        }
+
+        if (AlbumBook)
+        {
+            AlbumBook.Equip(this);
+            OnPropEquiped?.Invoke(AlbumBook);
+        }
 
         ChangePropState(UsingProp.None);
     }
@@ -97,6 +109,8 @@ public class Player : MonoBehaviour
         CurrentInput.EnableInput(true);
     }
     
+
+    #region Delay function
     
     // Delay function
     public void DelayDo(Action onComplete, float delay)
@@ -122,4 +136,6 @@ public class Player : MonoBehaviour
         
         onComplete?.Invoke(param1);
     }
+
+    #endregion
 }

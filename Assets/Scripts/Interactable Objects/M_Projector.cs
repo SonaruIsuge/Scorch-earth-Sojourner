@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class M_Projector : MonoBehaviour, IInteractable
 {
+    private Camera worldCamera => Camera.main;
     private SpriteRenderer spriteRenderer;
-
     private Player interactPlayer;
     
     public bool isInteract { get; private set; }
@@ -60,12 +60,13 @@ public class M_Projector : MonoBehaviour, IInteractable
             // Generate recordable item by its id
             var generateItem = ItemControlHandler.Instance.GetRecordableItemById(photoData.TargetItemId);
             var itemObj = Instantiate(generateItem.ItemObject, projectPoint);
-            
-            Debug.Log(projectImage.texture.width);
-            Debug.Log(projectScale.x);
-            var itemScale = projectScale.x * 100 / (projectImage.texture.width * resizeCameraOrthographicSize);
+
+            var OrthoTimes = worldCamera.orthographicSize / photoData.cameraOrthoSize;
+            var itemScale = projectScale.x * 100 / (projectImage.texture.width * resizeCameraOrthographicSize) * OrthoTimes;
             itemObj.transform.localScale = Vector3.one * itemScale;
-            var itemPos = new Vector2(photoData.PositionInPhoto.x / 100.0f, photoData.PositionInPhoto.y / 100.0f) * (itemScale * resizeCameraOrthographicSize) + offset;
+            //var itemPos = new Vector2(photoData.PositionInPhoto.x / 100.0f, photoData.PositionInPhoto.y / 100.0f) * (itemScale * resizeCameraOrthographicSize) + offset;
+            
+            var itemPos = photoData.PositionFromCenter * itemScale + offset;
             itemObj.transform.localPosition = itemPos;
             itemObj.GetComponent<CameraRecordableBehaviour>().ItemUse();
 

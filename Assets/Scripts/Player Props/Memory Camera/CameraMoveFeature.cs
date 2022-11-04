@@ -24,10 +24,7 @@ public class CameraMoveFeature : ICameraFeature
     {
         if(!enable) return;
         
-        x = Mathf.Clamp(x, owner.PhotoFrameRectTrans.rect.width / 2, Screen.width - owner.PhotoFrameRectTrans.rect.width / 2);
-        y = Mathf.Clamp(y, owner.PhotoFrameRectTrans.rect.height / 2, Screen.height - owner.PhotoFrameRectTrans.rect.height / 2);
-        owner.PhotoFrameRectTrans.position = new Vector2(x, y);
-        owner.memoryCameraLens.transform.position = owner.WorldCamera.ScreenToWorldPoint(owner.PhotoFrameRectTrans.position);
+        owner.memoryCameraLens.transform.position = owner.WorldCamera.ScreenToWorldPoint(new Vector3(x, y));
     }
 
 

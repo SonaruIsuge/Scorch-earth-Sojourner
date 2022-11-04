@@ -18,7 +18,7 @@ namespace SonaruUtilities
         {
             if (!camera.orthographic) return Vector2.zero;
 
-            var height = camera.orthographicSize * 2.0f;   
+            var height = camera.orthographicSize * 2.0f;
             return new Vector2(camera.aspect * height, height);
         }
     }

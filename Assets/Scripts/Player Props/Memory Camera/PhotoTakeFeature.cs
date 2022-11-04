@@ -43,9 +43,11 @@ public class PhotoTakeFeature : ICameraFeature
         underCaptureProgress = true;
         await UniTask.WaitForEndOfFrame(owner);
 
+        var currentRT = RenderTexture.active;
         RenderTexture.active= owner.memoryCameraFilm;
         screenCapture.ReadPixels(new Rect(0, 0, owner.memoryCameraFilm.width, owner.memoryCameraFilm.height),0,0);
         screenCapture.Apply();
+        RenderTexture.active = currentRT;
         
         underCaptureProgress = false;
         return screenCapture;

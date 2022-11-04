@@ -8,11 +8,8 @@ public class ItemDetectFeature : ICameraFeature
     public MemoryCamera owner { get; private set; }
     public bool enable { get; private set; }
 
-    private Collider2D currentDetectItem;
-    
-    //private float detectHeight => owner.memoryCameraLens.orthographicSize * 2;
-    //private float detectWidth => detectHeight * owner.memoryCameraLens.aspect;
-    
+    public Collider2D currentDetectItem { get; private set; }
+
     public void EnableFeature(bool b)
     {
         enable = b;
@@ -46,24 +43,24 @@ public class ItemDetectFeature : ICameraFeature
             minDisFromPhotoCenter = itemDistanceFromCenter;
             currentDetectItem = item;
         }
-        owner.DetectPoint.gameObject.SetActive(currentDetectItem);
-        owner.DetectPoint.position = currentDetectItem ? owner.WorldCamera.WorldToScreenPoint(currentDetectItem.transform.position): Vector3.zero;
+        
         //currentDetectItem = tempItem;
     }
     
     
     public ItemPhotoData DetectItem()
     {
-        var targetItemData = new ItemPhotoData();
         if (!currentDetectItem) return null;
         
         var recordable = currentDetectItem.GetComponent<CameraRecordableBehaviour>();
         if (!recordable) return null;
 
-        targetItemData.TargetItemId = recordable.ItemData.ItemId;
-        targetItemData.PositionInPhoto = owner.WorldCamera.WorldToScreenPoint(currentDetectItem.transform.position) - owner.PhotoFrameRectTrans.position;
-        
-
+        var targetItemData = new ItemPhotoData
+        {
+            TargetItemId = recordable.ItemData.ItemId,
+            PositionFromCenter = currentDetectItem.transform.position - owner.memoryCameraLens.transform.position,
+            cameraOrthoSize = owner.WorldCamera.orthographicSize
+        };
         return targetItemData;
     }
 }

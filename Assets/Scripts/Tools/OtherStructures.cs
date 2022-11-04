@@ -9,7 +9,8 @@ using UnityEngine.UI;
 public class ItemPhotoData
 {
     public int TargetItemId;
-    public Vector2 PositionInPhoto;
+    public Vector2 PositionFromCenter;
+    public float cameraOrthoSize;
 }
 
 
