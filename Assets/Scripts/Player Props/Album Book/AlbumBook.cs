@@ -7,8 +7,8 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
 {
     public Player player { get; private set; }
     
-    public AlbumBookData BookData;
-    public AlbumBookView BookView;
+    [SerializeField] private AlbumBookData BookData;
+    [SerializeField] private AlbumBookView BookView;
     
     public int MaxSaveData;
     
@@ -72,6 +72,12 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
         var filePhotoData = BookData.GetFilePhotoData(CurrentSubmitPhotoName);
         photo = filePhotoData?.photo;
         data = filePhotoData?.data;
+    }
+
+
+    public List<FilePhotoData> GetAllPhotoData()
+    {
+        return BookData.AllPhotoData;
     }
     
 

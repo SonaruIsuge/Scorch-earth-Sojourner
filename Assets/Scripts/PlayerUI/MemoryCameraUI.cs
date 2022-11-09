@@ -21,9 +21,15 @@ public class MemoryCameraUI : MonoBehaviour
 
     private void OnEnable()
     {
-        player.OnPropEquiped += RegisterMemoryCameraUI;
+        player.OnPropEquipped += RegisterMemoryCameraUI;
     }
 
+
+    private void OnDisable()
+    {
+        player.OnPropEquipped -= RegisterMemoryCameraUI;
+    }
+    
 
     private void RegisterMemoryCameraUI(IPlayerProp prop)
     {

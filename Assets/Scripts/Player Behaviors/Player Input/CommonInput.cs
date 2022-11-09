@@ -18,6 +18,7 @@ public class CommonInput : IInput
         
         togglePhoto = false;
         toggleAlbum = false;
+        toggleSetting = false;
     }
     
     

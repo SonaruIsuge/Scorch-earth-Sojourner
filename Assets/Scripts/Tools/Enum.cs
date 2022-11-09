@@ -12,13 +12,7 @@ public enum UsingProp
 {
     MemoryCamera,
     AlbumBook,
-    None
-}
-
-
-public enum MoreInfo
-{
-    FromProjector,
+    Projector,
     None
 }
 

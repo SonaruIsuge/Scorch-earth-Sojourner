@@ -11,14 +11,12 @@ public class UseAlbumBookState : IPropState
     
     private bool enableAlbumStateChange;
 
-    private M_Projector interactProjector;
+    
     public FilePhotoData? currentSubmitData;
     private string detectSubmitName;
 
-    private MoreInfo currentMoreInfo = MoreInfo.None;
-    
-    
-    
+
+
     public UseAlbumBookState(Player owner)
     {
         player = owner;
@@ -26,7 +24,7 @@ public class UseAlbumBookState : IPropState
     }
     
     
-    public void EnterState(MoreInfo info)
+    public void EnterState()
     {
         player.EnableInputType(InputType.AlbumBook);
         input = player.CurrentInput as AlbumInput;
@@ -36,11 +34,7 @@ public class UseAlbumBookState : IPropState
         
         enableAlbumStateChange = player.CommonInput.toggleAlbum;
 
-        detectSubmitName = albumBook.BookView.SubmitPhotoName;
-        currentMoreInfo = info;
-        
-        if (currentMoreInfo == MoreInfo.FromProjector) interactProjector = (M_Projector) player.InteractHandler.currentSelectObj;
-        else interactProjector = null;
+        detectSubmitName = albumBook.CurrentSubmitPhotoName;
     }
 
     public void StayState()
@@ -68,22 +62,11 @@ public class UseAlbumBookState : IPropState
         {
             albumBook.SetSubmitPhoto();
         }
-        
-        if (interactProjector && albumBook.CurrentSubmitPhotoName != null)
-        {
-            albumBook.TryGetPhotoData(out var photo, out var data);
-            interactProjector.SetProjectPhoto(photo, data);
-            player.ChangePropState(UsingProp.None);
-        }
     }
 
     public void ExitState()
     {
         input?.Unregister();
-        
-        if(interactProjector) interactProjector.OnChoosePhotoOver();
-        currentMoreInfo = MoreInfo.None;
-        
         albumBook.EnableProp(false);
     }
 }

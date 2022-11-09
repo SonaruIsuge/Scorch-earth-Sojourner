@@ -25,8 +25,8 @@ public class Player : MonoBehaviour
     private Dictionary<UsingProp, IPropState> stateDict;
     
     // Player equip prop event
-    public event Action<IPlayerProp> OnPropEquiped;
-    
+    public event Action<IPlayerProp> OnPropEquipped;
+
 
     void Awake()
     {
@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
         };
 
         CurrentInput = AllInput[InputType.Player];
-        //PlayerInput = new PlayerInputSystemInput(InputControl);
         
         InteractHandler = GetComponent<PlayerInteractHandler>();
         PlayerMove = GetComponent<PlayerMove>();
@@ -54,6 +53,7 @@ public class Player : MonoBehaviour
             {UsingProp.None, new PlayerSelfState(this)},
             {UsingProp.MemoryCamera, new UseMemoryCameraState(this)},
             {UsingProp.AlbumBook, new UseAlbumBookState(this)},
+            {UsingProp.Projector, new UseProjectorState(this)},
         };
     }
 
@@ -73,13 +73,13 @@ public class Player : MonoBehaviour
         if (MemoryCamera)
         {
             MemoryCamera.Equip(this);
-            OnPropEquiped?.Invoke(MemoryCamera);
+            OnPropEquipped?.Invoke(MemoryCamera);
         }
 
         if (AlbumBook)
         {
             AlbumBook.Equip(this);
-            OnPropEquiped?.Invoke(AlbumBook);
+            OnPropEquipped?.Invoke(AlbumBook);
         }
 
         ChangePropState(UsingProp.None);
@@ -94,11 +94,11 @@ public class Player : MonoBehaviour
     }
 
 
-    public void ChangePropState(UsingProp newState, MoreInfo moreInfo = MoreInfo.None)
+    public void ChangePropState(UsingProp newState)
     {
         if(stateDict[currentState] != null ) stateDict[currentState].ExitState();
         if(stateDict.ContainsKey(newState)) currentState = newState;
-        stateDict[currentState].EnterState(moreInfo);
+        stateDict[currentState].EnterState();
     }
 
 

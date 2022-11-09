@@ -7,7 +7,7 @@ public interface IPropState
     Player player { get; }
     
     
-    void EnterState(MoreInfo info = MoreInfo.None);
+    void EnterState();
     void StayState();
     void ExitState();
 }

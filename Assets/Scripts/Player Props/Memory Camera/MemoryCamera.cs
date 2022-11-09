@@ -82,6 +82,7 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
     {
         temporaryPhoto = await photoTakeFeature.TakePhoto();
         OnPhotoTake?.Invoke();
+        
         DOCameraFlash(20, 0.25f);
         var item = itemDetectFeature.DetectItem();
         
@@ -94,8 +95,8 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
         x = Mathf.Clamp(x, photoWidth / 2.0f, Screen.width - photoWidth / 2.0f);
         y = Mathf.Clamp(y, photoHeight / 2.0f, Screen.height - photoHeight / 2.0f);
         
-        OnPhotoFrameMove?.Invoke(x, y);
         cameraMoveFeature.MoveFrame(x, y);
+        OnPhotoFrameMove?.Invoke(x, y);
         
         itemDetectFeature.TryDetectItem();
         OnRecordableDetect?.Invoke(itemDetectFeature.currentDetectItem);

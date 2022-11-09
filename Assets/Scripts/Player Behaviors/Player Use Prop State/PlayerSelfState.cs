@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 public class PlayerSelfState : IPropState
 {
     public Player player { get; private set; }
@@ -13,7 +15,7 @@ public class PlayerSelfState : IPropState
     }
     
     
-    public void EnterState(MoreInfo info)
+    public void EnterState()
     {
         player.EnableInputType(InputType.Player);
         input = player.CurrentInput as PlayerInputSystemInput;
@@ -47,6 +49,12 @@ public class PlayerSelfState : IPropState
         if (player.AlbumBook && enableAlbumStateChange != player.CommonInput.toggleAlbum)
         {
             player.ChangePropState(UsingProp.AlbumBook);
+        }
+
+        if (player.InteractHandler.currentSelectObj is M_Projector &&
+            player.InteractHandler.currentSelectObj.isInteract)
+        {
+            player.ChangePropState(UsingProp.Projector);
         }
     }
 

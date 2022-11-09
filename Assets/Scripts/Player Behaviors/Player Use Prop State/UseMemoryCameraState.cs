@@ -15,7 +15,7 @@ public class UseMemoryCameraState : IPropState
     }
     
     
-    public void EnterState(MoreInfo info)
+    public void EnterState()
     {
         player.EnableInputType(InputType.MemoryCamera);
         input = player.CurrentInput as MemoryCameraInput;

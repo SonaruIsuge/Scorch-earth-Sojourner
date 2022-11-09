@@ -15,6 +15,7 @@ public class PlayerInteractHandler : MonoBehaviour
     public IInteractable currentSelectObj { get; private set; }
     private bool enableInteract;
     
+    public event Action<IInteractable> OnItemInteract;
 
     void Awake()
     {
@@ -42,6 +43,7 @@ public class PlayerInteractHandler : MonoBehaviour
     public void Interact()
     {
         currentSelectObj?.Interact(player);
+        OnItemInteract?.Invoke(currentSelectObj);
     }
     
     
