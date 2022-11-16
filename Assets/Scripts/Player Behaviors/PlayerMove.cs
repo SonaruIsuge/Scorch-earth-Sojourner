@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour
         movement.y = vertical;
         if(rb) rb.velocity = MoveSpeed * movement;
         playerAni.SetBool(AnimatorParam.Move, movement != Vector2.zero);
-        playerAni.SetFloat(AnimatorParam.Direction, movement.x);
+        playerAni.SetFloat(AnimatorParam.Direction, movement.sqrMagnitude);
     }
 
     private bool checkFlip() => previousDir < 0;

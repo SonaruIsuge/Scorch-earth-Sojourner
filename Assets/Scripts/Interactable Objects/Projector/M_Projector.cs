@@ -16,12 +16,18 @@ public class M_Projector : MonoBehaviour, IInteractable
     public bool isSelect { get; private set; }
     
     private Camera worldCamera => Camera.main;
-    private SpriteRenderer spriteRenderer;    private Transform projectPoint;
-    private RectTransform projectCanvas;
+    
+    // projector parts
+    private Transform projectPoint;
+    private RectTransform projectCanvas; 
+    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer projectorPointRenderer;
+    private CanvasGroup imageGroup;
+    private RawImage projectorCanvasMask;
     private RawImage projectImage;
     private Light2D projectLight;
     
-    [SerializeField] private Vector2 offset;
+    // projector data
     [SerializeField] private Vector2 projectScale;
     [field:SerializeField] public string interactHint { get; private set; }
     
@@ -43,11 +49,15 @@ public class M_Projector : MonoBehaviour, IInteractable
     
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         projectPoint = transform.Find("Project Point").transform;
-        projectLight = projectPoint.GetComponentInChildren<Light2D>();
         projectCanvas = projectPoint.Find("Project Screen").GetComponent<RectTransform>();
-        projectImage = projectCanvas.GetComponentInChildren<RawImage>();
+        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        projectorPointRenderer = projectPoint.GetComponent<SpriteRenderer>();
+        projectLight = projectPoint.GetComponentInChildren<Light2D>();
+        imageGroup = projectCanvas.GetComponent<CanvasGroup>();
+        projectorCanvasMask = projectCanvas.GetComponentInChildren<RawImage>();
+        projectImage = projectorCanvasMask.transform.Find("Projector Image").GetComponent<RawImage>();
         
         InitProjectorScreen();
         
@@ -63,6 +73,7 @@ public class M_Projector : MonoBehaviour, IInteractable
     {
         isSelect = true;
         spriteRenderer.material.SetFloat(OutlineThickness, 1.0f);
+        projectorPointRenderer.material.SetFloat(OutlineThickness, 1.0f);
     }
 
     public void Interact(Player player)
@@ -74,7 +85,7 @@ public class M_Projector : MonoBehaviour, IInteractable
         photoData = null;
         resizeCameraOrthographicSize = player.MemoryCamera.WorldCamera.orthographicSize * 2 * 100 / Screen.height;
 
-        DOProjectorAnimation(0.8f, 0.7f, 1);
+        DOProjectorAnimation(2.0f, 0.7f, 1);
 
         choosePhotoIndex = Mathf.Max(Mathf.Min(choosePhotoIndex, allPlayerPhoto.Count - 1), 0);
         var startPhoto = allPlayerPhoto.Count > 0 ? allPlayerPhoto[choosePhotoIndex].photo : null;
@@ -86,6 +97,7 @@ public class M_Projector : MonoBehaviour, IInteractable
         isSelect = false;
         interactPlayer = null;
         spriteRenderer.material.SetFloat(OutlineThickness, 0);
+        projectorPointRenderer.material.SetFloat(OutlineThickness, 0);
     }
 
 
@@ -159,24 +171,23 @@ public class M_Projector : MonoBehaviour, IInteractable
         
         var OrthoTimes = worldCamera.orthographicSize / targetPhotoData.cameraOrthoSize;
         var itemScale = projectScale.x * 100 / (projectImage.texture.width * resizeCameraOrthographicSize) * OrthoTimes;
-        var itemPos = targetPhotoData.PositionFromCenter * itemScale + offset;
-        
+        var itemPos = targetPhotoData.PositionFromCenter * itemScale + projectCanvas.anchoredPosition;
         itemObj.transform.localScale = Vector3.one * itemScale;
         itemObj.transform.localPosition = itemPos;
         return itemObj.GetComponent<CameraRecordableBehaviour>();
     }
     
     
-    private void DOProjectorAnimation(float lightIntensity, float imageColorAlpha, float during)
+    private void DOProjectorAnimation(float lightIntensity, float groupAlpha, float during)
     {
         var imageColor = projectImage.color;
-        imageColor.a = imageColorAlpha;
+        imageColor.a = groupAlpha;
         lightIntensityTween?.Kill();
         imageColorTween?.Kill();
         
         lightIntensityTween = DOTween.To(()=> projectLight.intensity, x=> projectLight.intensity = x, lightIntensity, during);
-        imageColorTween = projectImage.DOColor(imageColor, during);
-            
+        imageColorTween = DOTween.To(() => imageGroup.alpha, x => imageGroup.alpha = x, groupAlpha, during);
+        
         lightIntensityTween.Play();
         imageColorTween.Play();
     }
@@ -185,8 +196,7 @@ public class M_Projector : MonoBehaviour, IInteractable
     private void InitProjectorScreen()
     {
         projectCanvas.sizeDelta = new Vector2(projectScale.x, projectScale.y);
-        projectLight.transform.localScale = projectCanvas.sizeDelta;
-        projectCanvas.Translate(offset);
-        projectLight.transform.Translate(offset);
+        projectLight.pointLightOuterRadius = Mathf.Abs(projectCanvas.anchoredPosition.y) + projectScale.y / 2;
+        projectLight.pointLightOuterAngle = 2 * Mathf.Atan((projectScale.x / 2) / Mathf.Abs(projectCanvas.anchoredPosition.y) )  * Mathf.Rad2Deg;
     }
 }

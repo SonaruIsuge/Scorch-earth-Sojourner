@@ -33,7 +33,6 @@ public class UseAlbumBookState : IPropState
         albumBook.EnableProp(true);
         
         enableAlbumStateChange = player.CommonInput.toggleAlbum;
-
         detectSubmitName = albumBook.CurrentSubmitPhotoName;
     }
 

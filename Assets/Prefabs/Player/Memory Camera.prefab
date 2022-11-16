@@ -46,12 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8872ae49e3db4e3f8a0f6dcd1b02a895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TargetCamera>k__BackingField: {fileID: 0}
-  PhotoFrameRectTrans: {fileID: 0}
-  PhotoDisplayArea: {fileID: 0}
-  photoFrame: {fileID: 0}
-  cameraFlashLight: {fileID: 609009399324593743}
-  <memoryCameraLens>k__BackingField: {fileID: 4070723003319070804}
   <memoryCameraFilm>k__BackingField: {fileID: 8400000, guid: 2bafff6f1982fa54bb100160b0637793, type: 2}
   photoWidth: 640
   photoHeight: 360
@@ -108,7 +102,7 @@ MonoBehaviour:
   m_Intensity: 0
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000172630d441a958e531a74eca7f95726707d6fa6efdd599f59500c9f2
+  m_ApplyToSortingLayers: 00000000172630d431a74eca7f95726741a958e5
   m_LightCookieSprite: {fileID: 21300000, guid: 258fa1f869ec9214b9cca17f88b249e7, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -156,7 +150,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 20
+  m_PointLightOuterRadius: 40
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -193,7 +187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2205766277052091152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.59, y: 1.03, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
