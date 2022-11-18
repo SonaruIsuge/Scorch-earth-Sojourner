@@ -432,8 +432,8 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""2f54b589-d7f9-4358-9c84-5a7cd2d1a2f5"",
-                    ""path"": ""<Mouse>/position"",
+                    ""id"": ""0213c8ff-64ee-4dae-9f99-85493139f445"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -443,8 +443,8 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0213c8ff-64ee-4dae-9f99-85493139f445"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""id"": ""2f54b589-d7f9-4358-9c84-5a7cd2d1a2f5"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

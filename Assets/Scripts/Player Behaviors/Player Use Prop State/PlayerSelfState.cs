@@ -38,15 +38,21 @@ public class PlayerSelfState : IPropState
         {
             player.InteractHandler.Interact();
         }
+
+        if (player.AlbumBook && enableAlbumStateChange != player.CommonInput.toggleAlbum)
+        {
+            player.AlbumBook.EnableProp(true);
+        }
         
         
-        // Check change state
+        // // Change state
+        
         if (player.MemoryCamera && player.CommonInput.togglePhoto)
         {
             player.ChangePropState(UsingProp.MemoryCamera);
         }
 
-        if (player.AlbumBook && enableAlbumStateChange != player.CommonInput.toggleAlbum)
+        if (player.AlbumBook.enabled)
         {
             player.ChangePropState(UsingProp.AlbumBook);
         }

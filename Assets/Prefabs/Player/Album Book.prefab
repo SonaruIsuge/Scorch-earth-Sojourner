@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8410059234286212024}
   - component: {fileID: 8410059234286212021}
   - component: {fileID: 8410059234286212026}
-  - component: {fileID: 8410059234286212027}
   m_Layer: 0
   m_Name: Album Book
   m_TagString: Untagged
@@ -47,10 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BookData: {fileID: 8410059234286212026}
-  BookView: {fileID: 8410059234286212027}
   MaxSaveData: 100
-  currentPage: 0
-  currentPhotoName: 
+  currentChoosePhotoIndex: 0
 --- !u!114 &8410059234286212026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,27 +61,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPhotoData: []
---- !u!114 &8410059234286212027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8410059234286212025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0808f4612d154496879f1d673281200d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  albumBtn: {fileID: 0}
-  closeAlbumBtn: {fileID: 0}
-  LastPageBtn: {fileID: 0}
-  NextPageBtn: {fileID: 0}
-  bookPanel: {fileID: 0}
-  pagePrefab: {fileID: 2691893495407236882, guid: 9444dd677a8a9c64982677c2651fef3b, type: 3}
-  photoPrefab: {fileID: 3595959441415420944, guid: 50a0a5d39239da04aa82d4d96d34e807, type: 3}
-  PhotoWidth: 400
-  PhotoHeight: 225
-  XSpacing: 100
-  YSpacing: 100
-  <allPhotoList>k__BackingField: []

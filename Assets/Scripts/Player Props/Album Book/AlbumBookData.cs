@@ -12,14 +12,7 @@ public class AlbumBookData : MonoBehaviour
     public List<FilePhotoData> AllPhotoData => allPhotoData;
 
     private Dictionary<string, FilePhotoData> fileDataDict;
-
-    private FilePhotoData? currentPhotoData;
-
-    public FilePhotoData? CurrentPhotoData
-    {
-        get => currentPhotoData;
-        set => currentPhotoData = value;
-    }
+    
     
     public void InitAllData()
     {

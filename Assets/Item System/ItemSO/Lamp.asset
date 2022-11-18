@@ -15,3 +15,4 @@ MonoBehaviour:
   ItemId: 2
   ItemName: Lamp
   ItemObject: {fileID: 1360720845340845462, guid: 3f5b39043b42ec74a8431ae6bbaa1bc3, type: 3}
+  Description: "\u9577\u7684\u50CF\u6CB9\u71C8\u7684\u6771\u897F\uFF0C\u4F46\u4E0D\u77E5\u9053\u70BA\u4EC0\u9EBC\u597D\u50CF\u80FD\u4E0D\u65B7\u7684\u71C3\u71D2\u4E0B\u53BB?"

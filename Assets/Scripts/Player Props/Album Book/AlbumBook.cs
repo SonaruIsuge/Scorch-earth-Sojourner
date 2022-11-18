@@ -8,12 +8,23 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     public Player player { get; private set; }
     
     [SerializeField] private AlbumBookData BookData;
-    [SerializeField] private AlbumBookView BookView;
-    
     public int MaxSaveData;
     
-    [SerializeField] private string currentChoosePhotoName;
-    public string CurrentSubmitPhotoName => BookView.SubmitPhotoName;
+    [SerializeField] private int currentChoosePhotoIndex;
+
+    public int CurrentChoosePhotoIndex
+    {
+        get => currentChoosePhotoIndex;
+        set
+        {
+            currentChoosePhotoIndex = Mathf.Max(Mathf.Min(value, BookData.AllPhotoData.Count - 1), 0);
+            OnAlbumChangeCurrentPhoto?.Invoke(BookData.AllPhotoData.Count > 0 ?BookData.AllPhotoData[currentChoosePhotoIndex] : null);
+        }
+    }
+
+    public event Action<bool> OnAlbumBookToggleEnable;
+    public event Action<FilePhotoData?> OnAlbumChangeCurrentPhoto;
+    
     
 
     public void Equip(Player newPlayer)
@@ -21,57 +32,42 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
         player = newPlayer;
         
         BookData.InitAllData();
-        BookView.InitPhoto(BookData.AllPhotoData);
         
-        bindViewEvent();
+        enabled = false;
+        CurrentChoosePhotoIndex = 0;
+        
+        PhotoSaveLoadHandler.Instance.OnFileChanged += updateAlbum;
     }
 
 
     public void UnEquip()
     {
-        unbindViewEvent();
+        player = null;
+        if(PhotoSaveLoadHandler.Instance != null) PhotoSaveLoadHandler.Instance.OnFileChanged -= updateAlbum;
     }
 
 
     public void EnableProp(bool enable)
     {
         enabled = enable;
-        BookView.EnableView(enable);
+        OnAlbumBookToggleEnable?.Invoke(enable);
     }
 
 
     private void updateAlbum()
     {
         BookData.UpdateData();
-        BookView.UpdateView(BookData.AllPhotoData);
+        CurrentChoosePhotoIndex = Mathf.Max(Mathf.Min(CurrentChoosePhotoIndex, BookData.AllPhotoData.Count - 1), 0);
     }
 
 
-    public void SetCurrentPage(int addPage)
+    public void SetCurrentChoosePhoto(bool left, bool right)
     {
-        BookView.ChangePage(addPage);
-    }
+        if (left) CurrentChoosePhotoIndex--;
+        if (right) CurrentChoosePhotoIndex++;
 
-    public void SetCurrentChoosePhoto(bool up, bool down, bool left, bool right)
-    {
-        BookView.SetCurrentChoosePhoto(up, down, left, right);
-        currentChoosePhotoName = BookView.allPhotoList.Count > 0 ? BookView.allPhotoList[BookView.CurrentChooseViewObjIndex].PhotoName : null;
-        BookData.CurrentPhotoData = BookData.GetFilePhotoData(currentChoosePhotoName);
-    }
-
-
-    public void SetSubmitPhoto()
-    {
-        BookView.SendSubmitMessage();
-        BookData.CurrentPhotoData = BookData.GetFilePhotoData(CurrentSubmitPhotoName);
-    }
-
-
-    public void TryGetPhotoData(out Texture2D photo, out ItemPhotoData data)
-    {
-        var filePhotoData = BookData.GetFilePhotoData(CurrentSubmitPhotoName);
-        photo = filePhotoData?.photo;
-        data = filePhotoData?.data;
+        //currentChoosePhotoIndex = Mathf.Max(Mathf.Min(currentChoosePhotoIndex, BookData.AllPhotoData.Count - 1), 0);
+        //if(BookData.AllPhotoData.Count > 0) OnAlbumChangeCurrentPhoto?.Invoke(BookData.AllPhotoData[currentChoosePhotoIndex]);
     }
 
 
@@ -79,43 +75,14 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     {
         return BookData.AllPhotoData;
     }
+
+
+    public FilePhotoData? GetCurrentChooseData()
+    {
+        if (BookData.AllPhotoData.Count <= 0) return null;
+        
+        return BookData.AllPhotoData[currentChoosePhotoIndex];
+    }
     
-
-    private void bindViewEvent()
-    {
-        BookView.albumBtn.onClick.AddListener(AlbumBtnClick);
-        BookView.closeAlbumBtn.onClick.AddListener(AlbumCancelBtnClick);
-        BookView.LastPageBtn.onClick.AddListener(() => BookView.ChangePage(-1));
-        BookView.NextPageBtn.onClick.AddListener(() => BookView.ChangePage(1));
-        
-        PhotoSaveLoadHandler.Instance.OnFileChanged += updateAlbum;
-    }
-
-
-    private void unbindViewEvent()
-    {
-        BookView.albumBtn.onClick.RemoveAllListeners();
-        BookView.closeAlbumBtn.onClick.RemoveAllListeners();
-        BookView.LastPageBtn.onClick.RemoveAllListeners();
-        BookView.NextPageBtn.onClick.RemoveAllListeners();
-        
-        if(PhotoSaveLoadHandler.Instance != null) PhotoSaveLoadHandler.Instance.OnFileChanged -= updateAlbum;
-    }
-
-
-    #region Bind Function
-
-    private void AlbumBtnClick()
-    {
-        BookView.bookPanel.gameObject.SetActive(true);
-        player.ChangePropState(UsingProp.AlbumBook);
-    }
-
-    private void AlbumCancelBtnClick()
-    {
-        BookView.bookPanel.gameObject.SetActive(false);
-        player.ChangePropState(UsingProp.None);
-    }
-
-    #endregion
+    
 }

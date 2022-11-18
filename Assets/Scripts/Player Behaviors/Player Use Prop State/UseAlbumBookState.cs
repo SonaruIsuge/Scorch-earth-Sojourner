@@ -33,20 +33,26 @@ public class UseAlbumBookState : IPropState
         albumBook.EnableProp(true);
         
         enableAlbumStateChange = player.CommonInput.toggleAlbum;
-        detectSubmitName = albumBook.CurrentSubmitPhotoName;
     }
 
     public void StayState()
     {
         input.ReadInput();
 
-        if (input.LeftPage) albumBook.SetCurrentPage(-1);
-        if (input.RightPage) albumBook.SetCurrentPage(1);
-        albumBook.SetCurrentChoosePhoto(input.Up, input.Down, input.Left, input.Right);
+        if (input.Left || input.Right)
+        {
+            albumBook.SetCurrentChoosePhoto(input.Left, input.Right);
+        }
         
-        
-        // Check change state
         if (enableAlbumStateChange != player.CommonInput.toggleAlbum)
+        {
+            albumBook.EnableProp(false);
+        }
+        
+        
+        // Change state
+        
+        if (!albumBook.enabled)
         {
             player.ChangePropState(UsingProp.None);
         }
@@ -59,7 +65,7 @@ public class UseAlbumBookState : IPropState
 
         if (input.Submit)
         {
-            albumBook.SetSubmitPhoto();
+            
         }
     }
 

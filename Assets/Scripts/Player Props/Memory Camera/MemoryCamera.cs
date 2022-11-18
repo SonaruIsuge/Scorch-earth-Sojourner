@@ -68,6 +68,11 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
         photoTakeFeature = null;
         cameraMoveFeature = null;
         itemDetectFeature = null;
+        
+        OnPhotoFrameToggleEnable = null;
+        OnPhotoFrameMove = null;
+        OnRecordableDetect = null;
+        OnPhotoTake = null;
     }
 
 

@@ -29,8 +29,8 @@ public class AlbumBookView : MonoBehaviour
     public float YSpacing;
     
     // Calculate data
-    private float onePhotoWidth => photoPrefab.rect.width + XSpacing;
-    private float onePhotoHeight => photoPrefab.rect.height + YSpacing;
+    private float onePhotoWidth => PhotoWidth + XSpacing;
+    private float onePhotoHeight => PhotoHeight + YSpacing;
     private int photoNumInRow => (int) ( (bookPanel.rect.width - PhotoWidth) / onePhotoWidth) + 1;
     private int photoNumInColumn => (int) ( (bookPanel.rect.height - PhotoHeight) / onePhotoHeight) + 1;
     private int containNum => photoNumInRow * photoNumInColumn;
@@ -72,6 +72,7 @@ public class AlbumBookView : MonoBehaviour
         LastPageBtn = bookPanel.Find("Last Page Button").GetComponent<Button>();
         NextPageBtn = bookPanel.Find("Next Page Button").GetComponent<Button>();
         choosingPhotoTrans = bookPanel.Find("Choosing Photo Frame").GetComponent<RectTransform>();
+        choosingPhotoTrans.sizeDelta = new Vector2(PhotoWidth, PhotoHeight);
     }
 
 
@@ -94,8 +95,8 @@ public class AlbumBookView : MonoBehaviour
             for (var i = 0 + containNum * nowPageNum; i < Mathf.Min((nowPageNum + 1) * containNum, dataList.Count); i++)
             {
                 var newPhoto = Instantiate(photoPrefab, pageObj.transform);
-                var photoObj = new PhotoViewObj(newPhoto); 
-                
+                newPhoto.sizeDelta = new Vector2(PhotoWidth, PhotoHeight);
+                var photoObj = new PhotoViewObj(newPhoto);
                 photoObj.SetImage(dataList[i].photo);
                 photoObj.SetName(dataList[i].fileName);
                 photoObj.SetLocalPosition(calcPhotoPosInCanvas(i));
@@ -162,6 +163,7 @@ public class AlbumBookView : MonoBehaviour
                 if (i >= allPhotoList.Count)
                 {
                     var newPhoto = Instantiate(photoPrefab, allPageList[i / containNum].transform);
+                    newPhoto.sizeDelta = new Vector2(PhotoWidth, PhotoHeight);
                     allPhotoList.Add(new PhotoViewObj(newPhoto));
                 }
                 allPhotoList[i].SetImage(newDataList[i].photo); 
