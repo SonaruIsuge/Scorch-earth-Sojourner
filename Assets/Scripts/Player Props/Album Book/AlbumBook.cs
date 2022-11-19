@@ -65,9 +65,6 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     {
         if (left) CurrentChoosePhotoIndex--;
         if (right) CurrentChoosePhotoIndex++;
-
-        //currentChoosePhotoIndex = Mathf.Max(Mathf.Min(currentChoosePhotoIndex, BookData.AllPhotoData.Count - 1), 0);
-        //if(BookData.AllPhotoData.Count > 0) OnAlbumChangeCurrentPhoto?.Invoke(BookData.AllPhotoData[currentChoosePhotoIndex]);
     }
 
 
@@ -85,4 +82,9 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     }
     
     
+    public int GetLastPhotoIndex()
+    {
+        if (BookData.AllPhotoData.Count <= 0) return 0;
+        return BookData.AllPhotoData.Count - 1;
+    }
 }

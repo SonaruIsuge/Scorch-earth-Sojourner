@@ -7,7 +7,7 @@ public class PlayerSelfState : IPropState
 
     private PlayerInputSystemInput input;
     private bool enableAlbumStateChange;
-    
+    private bool enableMemoryCameraChange;
 
     public PlayerSelfState(Player owner)
     {
@@ -25,6 +25,7 @@ public class PlayerSelfState : IPropState
         player.InteractHandler.EnableInteract(true);
         
         enableAlbumStateChange = player.CommonInput.toggleAlbum;
+        enableMemoryCameraChange = player.CommonInput.togglePhoto;
     }
 
     public void StayState()
@@ -43,11 +44,16 @@ public class PlayerSelfState : IPropState
         {
             player.AlbumBook.EnableProp(true);
         }
+
+        if (player.MemoryCamera && enableMemoryCameraChange != player.CommonInput.togglePhoto)
+        {
+            player.MemoryCamera.EnableProp(true);
+        }
         
         
         // // Change state
         
-        if (player.MemoryCamera && player.CommonInput.togglePhoto)
+        if (player.MemoryCamera.enabled)
         {
             player.ChangePropState(UsingProp.MemoryCamera);
         }

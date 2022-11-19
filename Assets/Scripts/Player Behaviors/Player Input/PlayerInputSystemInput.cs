@@ -31,6 +31,12 @@ public class PlayerInputSystemInput : IInput
 
     public void Unregister()
     {
+        // reset data value
+        horizontal = 0;
+        vertical = 0;
+        interact = false;
+        
+        // unregister event
         inputControl.Player.Move.performed -= OnMovePerformed;
         inputControl.Player.Move.canceled -= OnMoveCanceled;
     }

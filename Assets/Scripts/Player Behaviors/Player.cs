@@ -70,19 +70,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (MemoryCamera)
-        {
-            MemoryCamera.Equip(this);
-            OnPropEquipped?.Invoke(MemoryCamera);
-        }
-
-        if (AlbumBook)
-        {
-            AlbumBook.Equip(this);
-            OnPropEquipped?.Invoke(AlbumBook);
-        }
+        EquipProp(MemoryCamera);
+        EquipProp(AlbumBook);
 
         ChangePropState(UsingProp.None);
+        
+        // register events in props
+        MemoryCamera.OnRecordableItemPhotoTake += OnRecordableItemPhotoTake;
     }
 
     // Update is called once per frame
@@ -108,7 +102,20 @@ public class Player : MonoBehaviour
         CurrentInput = AllInput[newType];
         CurrentInput.EnableInput(true);
     }
-    
+
+
+    private void EquipProp(IPlayerProp prop)
+    {
+        prop.Equip(this);
+        OnPropEquipped?.Invoke(prop);
+    }
+
+
+    private void OnRecordableItemPhotoTake(Texture photo, ItemPhotoData data)
+    {
+        AlbumBook.CurrentChoosePhotoIndex = AlbumBook.GetLastPhotoIndex();
+        ChangePropState(UsingProp.AlbumBook);
+    }
 
     #region Delay function
     

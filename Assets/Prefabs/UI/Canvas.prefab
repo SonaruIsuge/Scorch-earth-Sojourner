@@ -906,6 +906,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   albumUI: {fileID: 6109253897775680009}
+  photoPage: {fileID: 2106552084998287625}
+  memoPage: {fileID: 3216581506915637140}
   bookPhotoArea: {fileID: 7733563010490230093}
   photoDescription: {fileID: 7518948781868001422}
   albumBtn: {fileID: 3680255727024850071}

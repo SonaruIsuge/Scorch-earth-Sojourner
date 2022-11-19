@@ -39,7 +39,14 @@ public class AlbumInput : IInput
 
     public void Unregister()
     {
-        
+        //reset data value
+        Up = false;
+        Down = false;
+        Left = false;
+        Right = false;
+        LeftPage = false;
+        RightPage = false;
+        Submit = false;
     }
 
 

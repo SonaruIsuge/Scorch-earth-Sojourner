@@ -14,6 +14,8 @@ public class M_Projector : MonoBehaviour, IInteractable
     
     public bool isInteract { get; private set; }
     public bool isSelect { get; private set; }
+
+    private IMaterialSwitcher materialSwitcher;
     
     private Camera worldCamera => Camera.main;
     
@@ -49,6 +51,8 @@ public class M_Projector : MonoBehaviour, IInteractable
     
     private void Awake()
     {
+        materialSwitcher = GetComponent<IMaterialSwitcher>();
+            
         projectPoint = transform.Find("Project Point").transform;
         projectCanvas = projectPoint.Find("Project Screen").GetComponent<RectTransform>();
         
@@ -72,8 +76,7 @@ public class M_Projector : MonoBehaviour, IInteractable
     public void OnSelect()
     {
         isSelect = true;
-        spriteRenderer.material.SetFloat(OutlineThickness, 1.0f);
-        projectorPointRenderer.material.SetFloat(OutlineThickness, 1.0f);
+        materialSwitcher.ReplaceMaterial();
     }
 
     public void Interact(Player player)
@@ -96,8 +99,7 @@ public class M_Projector : MonoBehaviour, IInteractable
     {
         isSelect = false;
         interactPlayer = null;
-        spriteRenderer.material.SetFloat(OutlineThickness, 0);
-        projectorPointRenderer.material.SetFloat(OutlineThickness, 0);
+        materialSwitcher.ResetMaterial();
     }
 
 

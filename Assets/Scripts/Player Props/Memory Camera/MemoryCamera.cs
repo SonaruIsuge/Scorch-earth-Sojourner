@@ -41,6 +41,7 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
     public event Action<float, float> OnPhotoFrameMove;
     public event Action<Collider2D> OnRecordableDetect;
     public event Action OnPhotoTake;
+    public event Action<Texture, ItemPhotoData> OnRecordableItemPhotoTake;
     
 
     public void Equip(Player newPlayer)
@@ -92,6 +93,7 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
         var item = itemDetectFeature.DetectItem();
         
         PhotoSaveLoadHandler.Instance.SavePhoto(temporaryPhoto, item);
+        if (item != null) OnRecordableItemPhotoTake?.Invoke(temporaryPhoto, item);
     }
     
 

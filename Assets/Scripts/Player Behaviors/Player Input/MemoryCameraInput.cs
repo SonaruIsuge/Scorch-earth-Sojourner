@@ -32,6 +32,11 @@ public class MemoryCameraInput : IInput
     
     public void Unregister()
     {
+        // reset data value
+        controlFrameArea = Vector2.zero;
+        takePhoto = false;
+        
+        // unregister event
         inputControl.MemoryCamera.ControlPictureArea.performed -= OnFrameControlPerformed;
         inputControl.MemoryCamera.ControlPictureArea.canceled -= OnFrameControlCanceled;
     }

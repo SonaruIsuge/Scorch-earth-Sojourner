@@ -10,6 +10,8 @@ public class AlbumBookUI : MonoBehaviour
     private AlbumBook albumBook;
 
     [SerializeField] private RectTransform albumUI;
+    [SerializeField] private RectTransform photoPage;
+    [SerializeField] private RectTransform memoPage;
     [SerializeField] private RectTransform bookPhotoArea;
     [SerializeField] private TMP_Text photoDescription;
     private RawImage currentDisplayPhoto;

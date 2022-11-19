@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 8512727110977493998}
   - component: {fileID: 8512727110977493997}
   - component: {fileID: 8512727110977493996}
+  - component: {fileID: 2873355780520193785}
   m_Layer: 0
   m_Name: Projector
   m_TagString: Untagged
@@ -605,3 +606,20 @@ MonoBehaviour:
     cameraOrthoSize: 0
   choosePhotoIndex: 0
   currentProjectItem: {fileID: 0}
+--- !u!114 &2873355780520193785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8512727110977493993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e1f7d2c81b4ce5915e9557688cc852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <defaultMaterial>k__BackingField: {fileID: 2100000, guid: 93ef860a0a0903944902fc1fe07ae716, type: 2}
+  <replaceMaterial>k__BackingField: {fileID: 2100000, guid: 890e565c15ff5b2449de0c0572d227f0, type: 2}
+  <changeRenderer>k__BackingField:
+  - {fileID: 8512727110977493998}
+  - {fileID: 8512727110586589965}

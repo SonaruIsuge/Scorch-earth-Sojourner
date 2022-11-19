@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 public class UseMemoryCameraState : IPropState
 {
     public Player player { get; private set; }
@@ -6,7 +8,7 @@ public class UseMemoryCameraState : IPropState
     private MemoryCameraInput input;
     private MemoryCamera memoryCamera;
 
-
+    private bool enableCameraStateChange;
 
     public UseMemoryCameraState(Player owner)
     {
@@ -22,6 +24,8 @@ public class UseMemoryCameraState : IPropState
         input?.Register();
         
         memoryCamera.EnableProp(true);
+
+        enableCameraStateChange = player.CommonInput.togglePhoto;
     }
 
     public void StayState()
@@ -30,10 +34,15 @@ public class UseMemoryCameraState : IPropState
         
         memoryCamera.MoveCamera(input.controlFrameArea.x, input.controlFrameArea.y);
         if(input.takePhoto) memoryCamera.TakePhoto();
+
+        if (enableCameraStateChange != player.CommonInput.togglePhoto)
+        {
+            memoryCamera.EnableProp(false);
+        }
         
         
         // Check change state
-        if (!player.CommonInput.togglePhoto)
+        if (!memoryCamera.enabled)
         {
             player.ChangePropState(UsingProp.None);
         }
