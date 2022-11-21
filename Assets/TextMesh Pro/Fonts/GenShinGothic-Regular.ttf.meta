@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 719c7bd89dc1ac34eaf105cd20ada085
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Gen Shin Gothic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 30ca5f87df2ff1d488b3037aaae68cb2, type: 3}
+  - {fileID: 12800000, guid: 01aec82b330d2a5428d7751304fab9f6, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

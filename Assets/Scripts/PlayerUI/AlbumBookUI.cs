@@ -11,7 +11,6 @@ public class AlbumBookUI : MonoBehaviour
 
     [SerializeField] private RectTransform albumUI;
     [SerializeField] private RectTransform photoPage;
-    [SerializeField] private RectTransform memoPage;
     [SerializeField] private RectTransform bookPhotoArea;
     [SerializeField] private TMP_Text photoDescription;
     private RawImage currentDisplayPhoto;
@@ -61,6 +60,7 @@ public class AlbumBookUI : MonoBehaviour
 
         albumBook.OnAlbumBookToggleEnable += AlbumBookUIEnable;
         albumBook.OnAlbumChangeCurrentPhoto += ChangeCurrentPhotoData;
+        albumBook.OnAlbumPageTypeChange += ChangeAlbumTypePage;
 
         albumBtn.onClick.AddListener(() => albumBook.EnableProp(true));
         closeAlbumBtn.onClick.AddListener(()=>albumBook.EnableProp(false));
@@ -74,7 +74,7 @@ public class AlbumBookUI : MonoBehaviour
     {
         albumUI.gameObject.SetActive(enable);
         var firstPhoto = albumBook.GetCurrentChooseData();
-        if (firstPhoto != null) ChangeCurrentPhotoData(firstPhoto.Value);
+        if (firstPhoto != null) ChangeCurrentPhotoData(firstPhoto);
         else photoDescription.text = presetDescription;
 
         var imageColor = currentDisplayPhoto.color;
@@ -83,7 +83,7 @@ public class AlbumBookUI : MonoBehaviour
     }
 
 
-    private void ChangeCurrentPhotoData(FilePhotoData? filePhotoData)
+    private void ChangeCurrentPhotoData(FilePhotoData filePhotoData)
     {
         var imageColor = currentDisplayPhoto.color;
         
@@ -96,13 +96,19 @@ public class AlbumBookUI : MonoBehaviour
         }
         else
         {
-            currentDisplayPhoto.texture = filePhotoData.Value.photo;
-            photoDescription.text = filePhotoData.Value.data == null ? presetDescription : ItemControlHandler.Instance.GetRecordableItemById(filePhotoData.Value.data.TargetItemId).Description;
+            currentDisplayPhoto.texture = filePhotoData.photo;
+            photoDescription.text = filePhotoData.data == null ? presetDescription : ItemControlHandler.Instance.GetRecordableItemById(filePhotoData.data.TargetItemId).Description;
             imageColor.a = 1;
             currentDisplayPhoto.color = imageColor;
         }
     }
 
+
+    private void ChangeAlbumTypePage(AlbumPage targetPage)
+    {
+        photoPage.gameObject.SetActive(targetPage == AlbumPage.Photo);
+    }
+    
 
     private void OnLastBtnClick()
     {
@@ -120,6 +126,7 @@ public class AlbumBookUI : MonoBehaviour
     {
         var targetPhoto = albumBook.GetCurrentChooseData();
         if (targetPhoto == null) return;
-        PhotoSaveLoadHandler.Instance.RemoveData(targetPhoto.Value.fileName);
+        PhotoSaveLoadHandler.Instance.RemoveData(targetPhoto.fileName);
     }
 }
+

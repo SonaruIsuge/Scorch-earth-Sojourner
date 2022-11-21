@@ -4,18 +4,23 @@ using UnityEngine;
 
 public sealed class ItemControlHandler : TSingletonMonoBehaviour<ItemControlHandler>
 {
-    [SerializeField] private RecordableInventory inventory;
+    [SerializeField] private RecordableInventory recordableInventory;
+    [SerializeField] private MemoInventory memoInventory;
 
     protected override void Awake()
     {
         base.Awake();
         
-        inventory.InitItemDict();
+        recordableInventory.InitItemDict();
+        memoInventory.InitMemoDict();
     }
 
 
     public RecordableItem GetRecordableItemById(int id)
     {
-        return inventory.ItemDictionary.ContainsKey(id) ? inventory.ItemDictionary[id] : null;
+        return recordableInventory.ItemDictionary.ContainsKey(id) ? recordableInventory.ItemDictionary[id] : null;
     }
+
+
+    public MemoData GetMemoData(int id) => memoInventory.GetMemoData(id);
 }

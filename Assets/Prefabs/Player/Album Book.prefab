@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8410059234286212024}
   - component: {fileID: 8410059234286212021}
   - component: {fileID: 8410059234286212026}
+  - component: {fileID: 677332556615663664}
   m_Layer: 0
   m_Name: Album Book
   m_TagString: Untagged
@@ -46,8 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BookData: {fileID: 8410059234286212026}
+  memoData: {fileID: 677332556615663664}
   MaxSaveData: 100
+  currentPage: 0
   currentChoosePhotoIndex: 0
+  currentChooseMemoIndex: 0
 --- !u!114 &8410059234286212026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,4 +64,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f5278a5a4441c5b099838c1eac5b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allPhotoData: []
+--- !u!114 &677332556615663664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8410059234286212025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76822d232114cc5921652fd50891775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AllMemoId>k__BackingField: 

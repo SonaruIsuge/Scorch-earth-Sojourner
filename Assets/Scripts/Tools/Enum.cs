@@ -22,3 +22,10 @@ public enum SceneIndex
     Indoor,
     Outdoor
 }
+
+
+public enum AlbumPage
+{
+    Photo,
+    Memo
+}

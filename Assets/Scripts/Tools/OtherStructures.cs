@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-[System.Serializable]
+[Serializable]
 public class ItemPhotoData
 {
     public int TargetItemId;
@@ -14,8 +14,8 @@ public class ItemPhotoData
 }
 
 
-[System.Serializable]
-public struct FilePhotoData
+//[Serializable]
+public class FilePhotoData
 {
     public string fileName;
     public Texture2D photo;

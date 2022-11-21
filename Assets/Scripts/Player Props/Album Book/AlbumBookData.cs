@@ -39,16 +39,4 @@ public class AlbumBookData : MonoBehaviour
         fileDataDict.Clear();
         InitDataDict();
     }
-    
-    
-    public FilePhotoData? GetFilePhotoData(string fileName)
-    {
-        if (fileName == null) return null;
-        if (!fileDataDict.ContainsKey(fileName)) return null;
-
-        return fileDataDict[fileName];
-    }
-
-
-    
 }

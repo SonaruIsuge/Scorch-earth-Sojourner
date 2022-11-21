@@ -12,7 +12,7 @@ public class UseAlbumBookState : IPropState
     private bool enableAlbumStateChange;
 
     
-    public FilePhotoData? currentSubmitData;
+    public FilePhotoData currentSubmitData;
     private string detectSubmitName;
 
 
@@ -39,6 +39,11 @@ public class UseAlbumBookState : IPropState
     {
         input.ReadInput();
 
+        if (input.LeftPage || input.RightPage)
+        {
+            albumBook.SetCurrentPage(input.LeftPage, input.RightPage);
+        }
+        
         if (input.Left || input.Right)
         {
             albumBook.SetCurrentChoosePhoto(input.Left, input.Right);
