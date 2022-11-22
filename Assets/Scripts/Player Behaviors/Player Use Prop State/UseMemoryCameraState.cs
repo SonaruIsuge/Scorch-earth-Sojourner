@@ -26,6 +26,9 @@ public class UseMemoryCameraState : IPropState
         memoryCamera.EnableProp(true);
 
         enableCameraStateChange = player.CommonInput.togglePhoto;
+        
+        // not show some object 
+        memoryCamera.WorldCamera.cullingMask &= ~(1 << Constant.NotShowInPhotoTakeModeLayer);
     }
 
     public void StayState()
@@ -55,6 +58,8 @@ public class UseMemoryCameraState : IPropState
 
     public void ExitState()
     {
+        memoryCamera.WorldCamera.cullingMask |= (1 << Constant.NotShowInPhotoTakeModeLayer);
+        
         input?.Unregister();
         memoryCamera.EnableProp(false);
     }
