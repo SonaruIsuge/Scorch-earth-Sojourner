@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
     private void OnRecordableItemPhotoTake(Texture photo, ItemPhotoData data)
     {
         AlbumBook.CurrentChoosePhotoIndex = AlbumBook.GetLastPhotoIndex();
+        AlbumBook.SetCurrentPage(AlbumPage.Photo);
         ChangePropState(UsingProp.AlbumBook);
     }
 

@@ -20,6 +20,7 @@ public class AlbumBookUI : MonoBehaviour
     [SerializeField] private Button LastPageBtn;
     [SerializeField] private Button NextPageBtn;
     [SerializeField] private Button DeleteBtn;
+    [SerializeField] private Button ChangeToPhotoBtn;
     
     [SerializeField] private string presetDescription;
     
@@ -67,6 +68,7 @@ public class AlbumBookUI : MonoBehaviour
         LastPageBtn.onClick.AddListener(OnLastBtnClick);
         NextPageBtn.onClick.AddListener(OnNextBtnClick);
         DeleteBtn.onClick.AddListener(OnDeleteBtnClick);
+        ChangeToPhotoBtn.onClick.AddListener(() => albumBook.SetCurrentPage(AlbumPage.Photo));
     }
 
 

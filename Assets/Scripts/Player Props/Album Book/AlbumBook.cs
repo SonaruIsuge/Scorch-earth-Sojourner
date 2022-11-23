@@ -101,6 +101,13 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     }
 
 
+    public void SetCurrentPage(AlbumPage page)
+    {
+        currentPage = page;
+        OnAlbumPageTypeChange?.Invoke(currentPage);
+    }
+
+
     public void GetNewMemo(MemoData newData)
     {
         memoData.AddNewMemo(newData);

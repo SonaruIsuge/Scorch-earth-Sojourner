@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class MemoUI : MonoBehaviour
@@ -11,6 +12,8 @@ public class MemoUI : MonoBehaviour
     [SerializeField] private RectTransform bookMemoArea;
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text contents;
+
+    [SerializeField] private Button ChangeToMemoBtn;
     
     
     private void Awake()
@@ -40,6 +43,8 @@ public class MemoUI : MonoBehaviour
         albumBook.OnAlbumBookToggleEnable += MemoUISet;
         albumBook.OnAlbumPageTypeChange += ChangeAlbumTypePage;
         albumBook.OnAlbumChangeCurrentMemo += ChangeCurrentMemo;
+        
+        ChangeToMemoBtn.onClick.AddListener(() => albumBook.SetCurrentPage(AlbumPage.Memo));
     }
 
 

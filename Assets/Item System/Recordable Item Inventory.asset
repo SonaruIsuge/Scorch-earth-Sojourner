@@ -15,3 +15,4 @@ MonoBehaviour:
   RecordableItems:
   - {fileID: 11400000, guid: 0db5872dda848a44aa6a5e58ada40708, type: 2}
   - {fileID: 11400000, guid: 1ed9c84772f838b48bb6a9070924fb84, type: 2}
+  - {fileID: 11400000, guid: 1ba8eaae45aeff04b9cd20467525831a, type: 2}

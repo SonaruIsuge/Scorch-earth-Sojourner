@@ -10,6 +10,7 @@ public class TestMapToLevelMap : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             mainCamera.GetComponent<CameraFollowControl>().enabled = false;
+            other.transform.localScale = Vector3.one * (2.0f / 3.0f); 
         }
     }
 }
