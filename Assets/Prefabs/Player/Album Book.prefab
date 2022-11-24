@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BookData: {fileID: 8410059234286212026}
   memoData: {fileID: 677332556615663664}
-  MaxSaveData: 100
+  MaxSaveData: 256
   currentPage: 0
   currentChoosePhotoIndex: 0
   currentChooseMemoIndex: 0
