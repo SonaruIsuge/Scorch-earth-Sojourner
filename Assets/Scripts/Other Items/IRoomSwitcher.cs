@@ -5,6 +5,6 @@ using UnityEngine;
 public interface IRoomSwitcher
 {
     SpriteRenderer changeRoom { get; }
-    
-    void SetOnRoomChange();
+    Room currentRoom { get; }   
+    void SetOnRoomChange(RoomData roomData);
 }

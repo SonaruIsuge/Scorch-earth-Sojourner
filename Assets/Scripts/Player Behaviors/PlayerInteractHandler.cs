@@ -42,6 +42,8 @@ public class PlayerInteractHandler : MonoBehaviour
 
     public void Interact()
     {
+        if(!enableInteract) return;
+        
         currentSelectObj?.Interact(player);
         OnItemInteract?.Invoke(currentSelectObj);
     }

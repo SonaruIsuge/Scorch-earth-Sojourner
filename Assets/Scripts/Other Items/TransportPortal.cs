@@ -8,6 +8,7 @@ public class TransportPortal : MonoBehaviour
 
     [SerializeField] private TransportPortal pairPortal;
 
+    private RoomsController roomController;
     private bool isDestinationThisTime;
     private IRoomSwitcher roomSwitcher;
 
@@ -15,6 +16,7 @@ public class TransportPortal : MonoBehaviour
     private void Awake()
     {
         roomSwitcher = GetComponent<IRoomSwitcher>();
+        roomController = GetComponentInParent<RoomsController>();
     }
     
 
@@ -39,7 +41,7 @@ public class TransportPortal : MonoBehaviour
         {
             other.transform.position = pairPortal.transform.position;
             pairPortal.IsTransportDestination();
-            pairPortal.roomSwitcher?.SetOnRoomChange();
+            roomController.ChangeRoom(pairPortal.roomSwitcher.currentRoom);
         }
     }
 

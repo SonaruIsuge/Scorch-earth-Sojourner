@@ -92,3 +92,13 @@ public class PhotoViewObj
     }
     
 }
+
+
+[Serializable]
+public struct RoomData
+{
+    public Room roomType;
+    public string RoomName;
+    public Transform RoomCenter;
+    public SpriteRenderer CameraSizeRef;
+}

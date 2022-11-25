@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MemoryCameraUI : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class MemoryCameraUI : MonoBehaviour
     private MemoryCamera memoryCamera;
     private Camera WorldCamera => Camera.main;
     
-    [SerializeField] public RectTransform PhotoTakeOuterFrame;
-    [SerializeField] public RectTransform PhotoFrameRectTrans;
-    [SerializeField] public RectTransform DetectPoint;
+    [SerializeField] private RectTransform PhotoTakeOuterFrame;
+    [SerializeField] private RectTransform PhotoFrameRectTrans;
+    [SerializeField] private RectTransform DetectPoint;
+    [SerializeField] private Button TakePhotoBtn;
     
     private void Awake()
     {
@@ -46,6 +48,8 @@ public class MemoryCameraUI : MonoBehaviour
         memoryCamera.OnPhotoFrameMove += CameraUIMove;
         memoryCamera.OnPhotoTake += CameraUIPhotoTake;
         memoryCamera.OnRecordableDetect += CameraUIDetectItem;
+        
+        TakePhotoBtn.onClick.AddListener(() => memoryCamera.EnableProp(true));
     }
 
 

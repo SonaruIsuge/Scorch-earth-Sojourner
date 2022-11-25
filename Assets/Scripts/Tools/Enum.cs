@@ -29,3 +29,21 @@ public enum AlbumPage
     Photo,
     Memo
 }
+
+
+public enum Room
+{
+    EmptyWarehouse,
+    AbandonedCorridor,
+    ReceptionRoom,
+    LeftCorridor,
+    RightCorridor,
+    LeftHall,
+    RightHall,
+    LeftWarehouse,
+    PowerSupplyRoom,
+    Bedroom,
+    LeftElevatorCorridor,
+    RightElevatorCorridor,
+    ElevatorRoom
+}

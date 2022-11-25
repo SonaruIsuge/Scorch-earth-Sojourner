@@ -606,10 +606,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Left Room
+  m_text: "\u7A7A\u5009\u5EAB"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 29a0c44dc447bdc4793d6f2617e8d54a, type: 2}
-  m_sharedMaterial: {fileID: 7757883104336114095, guid: 29a0c44dc447bdc4793d6f2617e8d54a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1c2de80f6301fb74ba1e597de39fce8d, type: 2}
+  m_sharedMaterial: {fileID: -3571506689838790136, guid: 1c2de80f6301fb74ba1e597de39fce8d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1997,6 +1997,7 @@ GameObject:
   - component: {fileID: 3680255726221321140}
   - component: {fileID: 3680255726221321139}
   - component: {fileID: 3680255726221321138}
+  - component: {fileID: 1370781883349146830}
   - component: {fileID: 2574848250946078136}
   - component: {fileID: 8335081457415937506}
   - component: {fileID: 4983250202364667022}
@@ -2095,6 +2096,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1370781883349146830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680255726221321137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83932c508623515419320cb02f01685d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractBtn: {fileID: 5845408607865562010}
+  RoomText: {fileID: 4882471031038403596}
 --- !u!114 &2574848250946078136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2110,6 +2125,7 @@ MonoBehaviour:
   PhotoTakeOuterFrame: {fileID: 2217618324009655520}
   PhotoFrameRectTrans: {fileID: 3680255726078631832}
   DetectPoint: {fileID: 7682582683845452950}
+  TakePhotoBtn: {fileID: 1525530377379132013}
 --- !u!114 &8335081457415937506
 MonoBehaviour:
   m_ObjectHideFlags: 0
