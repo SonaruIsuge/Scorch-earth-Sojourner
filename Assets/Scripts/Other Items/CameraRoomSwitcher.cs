@@ -34,11 +34,11 @@ public class CameraRoomSwitcher : MonoBehaviour, IRoomSwitcher
 
     public void SetOnRoomChange(RoomData data)
     {
-        var cameraPos = mainCamera.transform.position;
-        cameraPos.x = data.RoomCenter.position.x;
-        cameraPos.y = data.RoomCenter.position.y;
+        var centerPos = data.RoomCenter.position;
+        var cameraTrans = mainCamera.transform;
         
-        mainCamera.transform.DOMove(cameraPos, .05f);
+        var newCameraPos = new Vector3(centerPos.x, centerPos.y, cameraTrans.position.z);
+        cameraTrans.position = newCameraPos;
         mainCamera.orthographicSize = data.CameraSizeRef.sprite.bounds.size.y / 2;
     }
 }

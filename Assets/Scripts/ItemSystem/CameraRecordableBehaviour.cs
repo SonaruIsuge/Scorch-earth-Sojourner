@@ -18,7 +18,7 @@ public abstract class CameraRecordableBehaviour : MonoBehaviour
         //Debug.Log($"Hit Item : {ItemData.ItemName}");
     }
 
-    public virtual void ItemUse()
+    public virtual void ItemUse(M_ProjectMachine machine)
     {
         IsClone = true;
         //Debug.Log($"Use Photo Item : {ItemData.ItemName}");

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ProjectorUI : MonoBehaviour
 {
     private Player player;
-    private M_Projector projector;
+    private M_ProjectMachine projector;
 
     private Dictionary<string, Texture2D> allDisplayPhotoDict;
 
@@ -55,9 +55,9 @@ public class ProjectorUI : MonoBehaviour
 
     private void ChangeTargetProjector(IInteractable interactItem)
     {
-        if(!(interactItem is M_Projector)) return;
+        if(!(interactItem is M_ProjectMachine)) return;
         
-        var newProjector = (M_Projector) interactItem;
+        var newProjector = (M_ProjectMachine) interactItem;
         if(projector) UnregisterProjector();
         projector = newProjector;
         RegisterProjector();

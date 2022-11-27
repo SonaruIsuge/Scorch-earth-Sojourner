@@ -1,0 +1,9 @@
+移動：
+move_1
+move_1
+move_1
+defualt_1
+
+平時：
+defualt_1
+defualt_2

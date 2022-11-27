@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5cdd64eedce79499b64fb25e87ffda, type: 3}
+  m_Name: Crawl Marks
+  m_EditorClassIdentifier: 
+  ItemId: 6
+  ItemName: "\u722C\u884C\u7684\u75D5\u8DE1"
+  ItemObject: {fileID: 5192163571704586871, guid: 5c7d2009f256a8e468fd593902ae80b1, type: 3}
+  Description: "\u3010\u722C\u884C\u7684\u75D5\u8DE1\u3011\r\n\r\n\u6709\u4EC0\u9EBC\u6771\u897F\u62D6\u884C\u904E\u7684\u75D5\u8DE1\uFF0C\u4F3C\u4E4E\u5F80\u53F3\u908A\u53BB\u4E86\u3002\r\r\n\u75D5\u8DE1\u56DB\u5468\u7684\u91D1\u5C6C\u8868\u9762\u4F3C\u4E4E\u878D\u5316\u4E86\u3002"

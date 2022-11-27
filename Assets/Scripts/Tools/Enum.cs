@@ -47,3 +47,11 @@ public enum Room
     RightElevatorCorridor,
     ElevatorRoom
 }
+
+
+public enum KeyEvent
+{
+    WarehouseKeyGet,
+    DoorEatenBySlime,
+    EmergencyPowerOpened
+}

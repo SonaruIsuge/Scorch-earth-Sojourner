@@ -6,7 +6,7 @@ public class UseProjectorState : IPropState
     public Player player { get; private set; }
     private AlbumInput input;
     
-    private M_Projector targetProjector;
+    private M_ProjectMachine targetProjector;
 
     private bool exitInputState;
     
@@ -23,7 +23,7 @@ public class UseProjectorState : IPropState
         input = player.CurrentInput as AlbumInput;
         input?.Register();
         
-        targetProjector = (M_Projector) player.InteractHandler.currentSelectObj;
+        targetProjector = (M_ProjectMachine) player.InteractHandler.currentSelectObj;
         exitInputState = player.CommonInput.toggleSetting;
         
         if (!targetProjector) player.ChangePropState(UsingProp.None);

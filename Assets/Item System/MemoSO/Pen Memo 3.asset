@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e35abc830e3d8d40a2a9703b202ae2a, type: 3}
+  m_Name: Pen Memo 3
+  m_EditorClassIdentifier: 
+  Id: 5
+  Title: "\u92FC\u7B46\u5B57\u7684\u7D19\u689D3"
+  Content: "\u300C\u96FB\u68AF\u58DE\u4E86\uFF0C\u5176\u4ED6\u7684\u8DEF\u4E5F\u90FD\u5835\u6B7B\u4E86\uFF0C\u770B\u4F86\u6211\u771F\u7684\u88AB\u56F0\u5728\u9019\u88E1\u4E86......\u81F3\u5C11\u98F2\u6C34\u6A5F\u88E1\u7684\u98F2\u6599\u9084\u5F88\u5145\u8DB3\u3002\u300D\r\n\r\u300C\u628A\u96FB\u63A7\u5BA4\u88E1\u7684\u7DCA\u6025\u96FB\u6E90\u6253\u958B\u53EF\u4EE5\u91CD\u555F\u96FB\u68AF\u7684\u8A71......\u5982\u679C\u53EF\u4EE5\u628A\u90A3\u91D1\u5C6C\u5927\u9580\u6253\u958B\u5C31\u597D\u4E86\u3002\u300D"

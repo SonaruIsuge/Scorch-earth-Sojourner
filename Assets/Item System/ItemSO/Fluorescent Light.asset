@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5cdd64eedce79499b64fb25e87ffda, type: 3}
+  m_Name: Fluorescent Light
+  m_EditorClassIdentifier: 
+  ItemId: 7
+  ItemName: "\u87A2\u5149\u71C8"
+  ItemObject: {fileID: 2738144176141296239, guid: 1848302e3017d914bb3319f0b851d4ea, type: 3}
+  Description: "\u3010\u87A2\u5149\u71C8\u3011 \u5C6C\u6027\uFF1A\u767C\u5149\u3002\r\n\r\n\u300C\u88DD\u586B\u8457\u767C\u5149\u7269\u8CEA\u7684\u7F50\u5B50\u3002\u767C\u8457\u4EAE\u5149\u7684\u6DB2\u9AD4\u6C92\u6709\u898F\u5F8B\u7684\u6D41\u52D5\u8457\uFF0C\u5F77\u5F7F\u6709\u81EA\u5DF1\u7684\u610F\u8B58\uFF1F\u300D"

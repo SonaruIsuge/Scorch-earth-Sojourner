@@ -19,8 +19,8 @@ public class R_Lamp : CameraRecordableBehaviour
         base.CameraHit();
     }
 
-    public override void ItemUse()
+    public override void ItemUse(M_ProjectMachine machine)
     {
-        base.ItemUse();
+        base.ItemUse(machine);
     }
 }

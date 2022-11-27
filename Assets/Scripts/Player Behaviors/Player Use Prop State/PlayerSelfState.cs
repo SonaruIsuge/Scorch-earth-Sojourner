@@ -63,7 +63,7 @@ public class PlayerSelfState : IPropState
             player.ChangePropState(UsingProp.AlbumBook);
         }
 
-        if (player.InteractHandler.currentSelectObj is M_Projector &&
+        if (player.InteractHandler.currentSelectObj is M_ProjectMachine &&
             player.InteractHandler.currentSelectObj.isInteract)
         {
             player.ChangePropState(UsingProp.Projector);

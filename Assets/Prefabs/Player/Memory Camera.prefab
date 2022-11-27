@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <memoryCameraFilm>k__BackingField: {fileID: 8400000, guid: 2bafff6f1982fa54bb100160b0637793, type: 2}
-  photoWidth: 640
-  photoHeight: 360
+  photoWidth: 480
+  photoHeight: 270
   FileStorageFolder: SaveData
 --- !u!1 &609009399324593742
 GameObject:
