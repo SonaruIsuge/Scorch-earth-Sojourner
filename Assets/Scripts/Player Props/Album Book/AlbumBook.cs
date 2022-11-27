@@ -158,4 +158,11 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
         if (BookData.AllPhotoData.Count <= 0) return 0;
         return BookData.AllPhotoData.Count - 1;
     }
+
+
+    public int GetLastMemoIndex()
+    {
+        if (memoData.AllMemoId.Count <= 0) return 0;
+        return memoData.AllMemoId.Count - 1;
+    }
 }

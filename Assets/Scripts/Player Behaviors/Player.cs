@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
         
         // register events in props
         MemoryCamera.OnRecordableItemPhotoTake += OnRecordableItemPhotoTake;
+        AlbumBook.OnGetNewMemo += CheckNewMemo;
     }
 
     // Update is called once per frame
@@ -117,6 +118,15 @@ public class Player : MonoBehaviour
         AlbumBook.SetCurrentPage(AlbumPage.Photo);
         ChangePropState(UsingProp.AlbumBook);
     }
+
+
+    private void CheckNewMemo(MemoData memo)
+    {
+        AlbumBook.CurrentChooseMemoIndex = AlbumBook.GetLastMemoIndex();
+        AlbumBook.SetCurrentPage(AlbumPage.Memo);
+        ChangePropState(UsingProp.AlbumBook);
+    }
+    
 
     #region Delay function
     

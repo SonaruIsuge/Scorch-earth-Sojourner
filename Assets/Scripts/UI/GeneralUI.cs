@@ -12,7 +12,17 @@ public class GeneralUI : MonoBehaviour
     
     [SerializeField] private Button InteractBtn;
     [SerializeField] private TMP_Text RoomText;
+    [SerializeField] private RectTransform UIBackground;
+    [SerializeField] private List<GameObject> AllGeneralUI;
 
+
+    public void EnableGeneralUI(bool enable)
+    {
+        UIBackground.gameObject.SetActive(!enable);
+        foreach(var ui in AllGeneralUI) ui.SetActive(enable);
+    }
+    
+    
     private void Awake()
     {
         player = FindObjectOfType<Player>();

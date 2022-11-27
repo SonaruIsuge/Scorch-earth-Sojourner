@@ -8,16 +8,20 @@ public class MemoryCameraUI : MonoBehaviour
 {
     private Player player;
     private MemoryCamera memoryCamera;
+
+    private GeneralUI generalUI;
+    
     private Camera WorldCamera => Camera.main;
     
     [SerializeField] private RectTransform PhotoTakeOuterFrame;
     [SerializeField] private RectTransform PhotoFrameRectTrans;
-    [SerializeField] private RectTransform DetectPoint;
+    [SerializeField] private RectTransform DetectHint;
     [SerializeField] private Button TakePhotoBtn;
     
     private void Awake()
     {
         player = FindObjectOfType<Player>();
+        generalUI = GetComponent<GeneralUI>();
     }
 
 
@@ -40,9 +44,10 @@ public class MemoryCameraUI : MonoBehaviour
         memoryCamera = (MemoryCamera) prop;
         
         PhotoFrameRectTrans.sizeDelta = new Vector2(memoryCamera.PhotoWidth, memoryCamera.PhotoHeight);
+        DetectHint.sizeDelta *= (float)memoryCamera.PhotoWidth / 1152;
         PhotoTakeOuterFrame.gameObject.SetActive(false);
         PhotoFrameRectTrans.gameObject.SetActive(false);
-        DetectPoint.transform.gameObject.SetActive(false);
+        DetectHint.transform.gameObject.SetActive(false);
 
         memoryCamera.OnPhotoFrameToggleEnable += CameraUIEnable;
         memoryCamera.OnPhotoFrameMove += CameraUIMove;
@@ -57,6 +62,7 @@ public class MemoryCameraUI : MonoBehaviour
     {
         PhotoFrameRectTrans.gameObject.SetActive(enable);
         PhotoTakeOuterFrame.gameObject.SetActive(enable);
+        generalUI.EnableGeneralUI(!enable);
     }
 
 
@@ -74,7 +80,7 @@ public class MemoryCameraUI : MonoBehaviour
 
     private void CameraUIDetectItem(Collider2D item)
     {
-        DetectPoint.gameObject.SetActive(item);
-        DetectPoint.position = item ? WorldCamera.WorldToScreenPoint(item.transform.position): Vector3.zero;
+        DetectHint.gameObject.SetActive(item);
+        //DetectHint.position = item ? WorldCamera.WorldToScreenPoint(item.transform.position): Vector3.zero;
     }
 }

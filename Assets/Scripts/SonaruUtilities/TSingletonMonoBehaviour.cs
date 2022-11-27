@@ -10,6 +10,8 @@ namespace SonaruUtilities
 
         private static T GetInstance()
         {
+            if (applicationIsQuitting) return null;
+            
             if (instance  == null)
             {
                 var tp = typeof(T);
@@ -33,6 +35,14 @@ namespace SonaruUtilities
             {
                 Destroy(gameObject);
             }
+        }
+        
+        
+        private static bool applicationIsQuitting = false;
+        
+        public void OnDestroy()
+        {
+            applicationIsQuitting = true;
         }
     }
 }

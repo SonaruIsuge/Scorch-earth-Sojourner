@@ -8,6 +8,8 @@ public class AlbumBookUI : MonoBehaviour
 {
     private Player player;
     private AlbumBook albumBook;
+    
+    private GeneralUI generalUI;
 
     [SerializeField] private RectTransform albumUI;
     [SerializeField] private RectTransform photoPage;
@@ -23,6 +25,8 @@ public class AlbumBookUI : MonoBehaviour
     [SerializeField] private Button ChangeToPhotoBtn;
     
     [SerializeField] private string presetDescription;
+
+    private Vector2 photoDisplaySize;
     
 
     // Panel data
@@ -31,8 +35,10 @@ public class AlbumBookUI : MonoBehaviour
 
     private void Awake()
     {
+        generalUI = GetComponent<GeneralUI>();
         player = FindObjectOfType<Player>();
         currentDisplayPhoto = bookPhotoArea.GetComponent<RawImage>();
+        photoDisplaySize = new Vector2(bookPhotoArea.rect.width, bookPhotoArea.rect.height);
     }
     
     
@@ -82,6 +88,8 @@ public class AlbumBookUI : MonoBehaviour
         var imageColor = currentDisplayPhoto.color;
         imageColor.a = firstPhoto != null ? 1 : 0;
         currentDisplayPhoto.color = imageColor;
+        
+        generalUI.EnableGeneralUI(!enable);
     }
 
 
@@ -99,6 +107,8 @@ public class AlbumBookUI : MonoBehaviour
         else
         {
             currentDisplayPhoto.texture = filePhotoData.photo;
+            bookPhotoArea.sizeDelta = photoDisplaySize;
+            
             photoDescription.text = filePhotoData.data == null ? presetDescription : ItemControlHandler.Instance.GetRecordableItemById(filePhotoData.data.TargetItemId).Description;
             imageColor.a = 1;
             currentDisplayPhoto.color = imageColor;

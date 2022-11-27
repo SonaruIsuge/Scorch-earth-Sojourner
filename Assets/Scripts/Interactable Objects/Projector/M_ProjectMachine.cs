@@ -34,9 +34,9 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
     //private Tweener lightIntensityTween, imageColorTween;
     private float resizeCameraOrthographicSize;
 
-    public event Action<Texture> OnStartInteract;
+    public event Action<FilePhotoData> OnStartInteract;
     public event Action OnEndInteract;
-    public event Action<Texture> OnChangeChoosePhoto;
+    public event Action<FilePhotoData> OnChangeChoosePhoto;
     public event Action OnSubmitPhoto;
     public event Action OnExitProjector;
     
@@ -79,7 +79,7 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
 
         choosePhotoIndex = Mathf.Max(Mathf.Min(choosePhotoIndex, allPlayerPhoto.Count - 1), 0);
         var startPhoto = allPlayerPhoto.Count > 0 ? allPlayerPhoto[choosePhotoIndex].photo : null;
-        player.DelayDo(() => OnStartInteract?.Invoke(startPhoto), 1);
+        player.DelayDo(() => OnStartInteract?.Invoke(allPlayerPhoto.Count > 0 ? allPlayerPhoto[choosePhotoIndex] : null), 1);
     }
 
     public void OnDeselect()
@@ -101,7 +101,7 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
     {
         choosePhotoIndex += addIndex;
         choosePhotoIndex = Mathf.Max(Mathf.Min(choosePhotoIndex, allPlayerPhoto.Count - 1), 0);
-        if (allPlayerPhoto.Count > 0) OnChangeChoosePhoto?.Invoke(allPlayerPhoto[choosePhotoIndex].photo);
+        if (allPlayerPhoto.Count > 0) OnChangeChoosePhoto?.Invoke(allPlayerPhoto[choosePhotoIndex]);
     }
 
 
@@ -165,5 +165,11 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
         itemObj.transform.localScale = Vector3.one * itemScale;
         itemObj.transform.position = itemPos;
         return itemObj.GetComponent<CameraRecordableBehaviour>();
+    }
+
+
+    public CameraRecordableBehaviour GetCurrentRecordItem()
+    {
+        return currentProjectItem;
     }
 }

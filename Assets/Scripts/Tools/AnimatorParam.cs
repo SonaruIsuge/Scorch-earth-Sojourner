@@ -10,5 +10,7 @@ namespace Tools
         //Player
         public static readonly int Move = Animator.StringToHash("Move");
         public static readonly int Direction = Animator.StringToHash("Direction");
+        //Items
+        public static readonly int SlimeMove = Animator.StringToHash("SlimeMove");
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,13 @@ public class ProjectorUI : MonoBehaviour
 {
     private Player player;
     private M_ProjectMachine projector;
+    private GeneralUI generalUI;
 
     private Dictionary<string, Texture2D> allDisplayPhotoDict;
 
     [SerializeField] private RectTransform ProjectorUIFrame;
     [SerializeField] private RawImage CurrentPhotoDisplayArea;
+    [SerializeField] private TMP_Text Description;
     [SerializeField] private Button LastPhotoBtn;
     [SerializeField] private Button NextPhotoBtn;
     [SerializeField] private Button SubmitPhotoBtn;
@@ -24,7 +27,7 @@ public class ProjectorUI : MonoBehaviour
     private void Awake()
     {
         player = FindObjectOfType<Player>();
-        
+        generalUI = GetComponent<GeneralUI>();
     }
     
 
@@ -81,30 +84,37 @@ public class ProjectorUI : MonoBehaviour
     }
 
 
-    private void OpenProjectorUI(Texture firstTexture)
+    private void OpenProjectorUI(FilePhotoData firstData)
     {
         ProjectorUIFrame.gameObject.SetActive(true);
-        CurrentPhotoDisplayArea.texture = firstTexture;
+        CurrentPhotoDisplayArea.texture = firstData?.photo;
         
         var textureColor = CurrentPhotoDisplayArea.color;
-        textureColor.a = !firstTexture ? 0 : 1;
+        textureColor.a = firstData == null ? 0 : 1;
         CurrentPhotoDisplayArea.color = textureColor;
+        
+        Description.text = firstData?.data == null ? "沒有描述" : ItemControlHandler.Instance.GetRecordableItemById(firstData.data.TargetItemId).Description;
+        
+        generalUI.EnableGeneralUI(false);
     }
 
 
     private void CloseProjectorUI()
     {
         ProjectorUIFrame.gameObject.SetActive(false);
+        generalUI.EnableGeneralUI(true);
     }
     
 
-    private void ChangeDisplayPhoto(Texture photo)
+    private void ChangeDisplayPhoto(FilePhotoData data)
     {
-        CurrentPhotoDisplayArea.texture = photo;
+        CurrentPhotoDisplayArea.texture = data?.photo;
         
         var textureColor = CurrentPhotoDisplayArea.color;
-        textureColor.a = !photo ? 0 : 1;
+        textureColor.a = data == null ? 0 : 1;
         CurrentPhotoDisplayArea.color = textureColor;
+
+        Description.text = data?.data == null ? "沒有描述" : ItemControlHandler.Instance.GetRecordableItemById(data.data.TargetItemId).Description;
     }
     
     
