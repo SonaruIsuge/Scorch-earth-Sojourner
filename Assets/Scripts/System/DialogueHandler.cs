@@ -5,12 +5,14 @@ using Cysharp.Threading.Tasks;
 using SonaruUtilities;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueHandler : TSingletonMonoBehaviour<DialogueHandler>
 {
     [SerializeField] private RectTransform dialogueDisplayArea;
     private CanvasGroup dialogueCanvasGroup;
     [SerializeField] private TMP_Text dialogueText;
+    //[SerializeField] private RawImage avatar;
 
     private bool hasDialogueProgress;
     
@@ -35,6 +37,7 @@ public class DialogueHandler : TSingletonMonoBehaviour<DialogueHandler>
         hasDialogueProgress = true;
         dialogueText.text = "";
         dialogueCanvasGroup.alpha = 1;
+        //if(avatar) avatar.gameObject.SetActive(true);
         
         // print words
         foreach (var word in sentence.ToCharArray())
@@ -53,7 +56,7 @@ public class DialogueHandler : TSingletonMonoBehaviour<DialogueHandler>
             yield return null;
         }
         dialogueCanvasGroup.alpha = 0;
-
+        //if(avatar) avatar.gameObject.SetActive(false);
         hasDialogueProgress = false;
     }
     

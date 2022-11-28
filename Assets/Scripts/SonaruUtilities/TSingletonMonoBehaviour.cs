@@ -7,10 +7,13 @@ namespace SonaruUtilities
     {
         private static T instance = null;
         public static T Instance => GetInstance();
+        
+        //private static bool applicationIsQuitting = false;
+        
 
         private static T GetInstance()
         {
-            if (applicationIsQuitting) return null;
+            //if (applicationIsQuitting) return null;
             
             if (instance  == null)
             {
@@ -26,6 +29,7 @@ namespace SonaruUtilities
 
         protected virtual void Awake()
         {
+            //applicationIsQuitting = false;
             if (instance == null)
             {
                 instance = this as T;
@@ -37,13 +41,11 @@ namespace SonaruUtilities
             }
         }
         
-        
-        private static bool applicationIsQuitting = false;
-        
-        public void OnDestroy()
-        {
-            applicationIsQuitting = true;
-        }
+
+        // public void OnDestroy()
+        // {
+        //     applicationIsQuitting = true;
+        // }
     }
 }
 

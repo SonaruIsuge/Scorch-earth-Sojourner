@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d5b3b4ea8e42d1a7a78247ffef06d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  investigateSentence: "\u5927\u9580\u88AB\u4E0D\u77E5\u9053\u4EC0\u9EBC\u751F\u7269\u878D\u5316\u4E86\uFF0C\u53EA\u5269\u4E0B\u4E9B\u8A31\u6B98\u9AB8"
+  investigateSentence: "\u9580\u4E0A\u7684\u91D1\u5C6C\u6D88\u5931\u4E86\u5927\u534A\uFF0C\u770B\u4F86\u662F\u53EF\u4EE5\u9032\u53BB\u4E86"
 --- !u!114 &5278975955445309455
 MonoBehaviour:
   m_ObjectHideFlags: 0

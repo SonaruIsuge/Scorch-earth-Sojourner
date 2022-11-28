@@ -7,7 +7,7 @@ public class RoomsController : MonoBehaviour
 {
     [SerializeField] private List<RoomData> AllRoom;
     private Dictionary<Room, RoomData> allRoomDict;
-    private Room currentRoom;
+    [field: SerializeField] public Room CurrentRoom { get; private set; }
 
     public event Action<RoomData> OnRoomChange;
 
@@ -29,7 +29,7 @@ public class RoomsController : MonoBehaviour
     public void ChangeRoom(Room changeRoom)
     {
         if(!allRoomDict.ContainsKey(changeRoom)) return;
-        currentRoom = changeRoom;
-        OnRoomChange?.Invoke(allRoomDict[currentRoom]);
+        CurrentRoom = changeRoom;
+        OnRoomChange?.Invoke(allRoomDict[CurrentRoom]);
     }
 }

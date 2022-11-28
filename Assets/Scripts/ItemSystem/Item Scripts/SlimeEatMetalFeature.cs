@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SonaruUtilities;
+using UnityEngine;
 using UnityEngine.Events;
 
 
@@ -14,12 +15,16 @@ public class SlimeEatMetalFeature : MonoBehaviour
     private R_Metal targetMetal;
     private Player player;
     private bool showHint;
+    private SimpleTimer timer;
 
     private void Awake()
     {
         player = FindObjectOfType<Player>();
         thisSlime = GetComponent<R_Slime>();
         showHint = false;
+        
+        timer = new SimpleTimer(2);
+        timer.Pause();
     }
     
     
@@ -43,10 +48,14 @@ public class SlimeEatMetalFeature : MonoBehaviour
         // Player not in this room
         if (distanceFromPlayer >= slimeNervousRange)
         {
-            transform.position = targetMetal.transform.position + Vector3.right;
-            // let slime escape from player
-            thisSlime.SetDetectRange(5);
-            if(!showHint) HintToPlayer();
+            timer.Resume();
+            if(timer.IsFinish)
+            {
+                transform.position = targetMetal.transform.position + Vector3.right;
+                // let slime escape from player
+                thisSlime.SetDetectRange(5);
+                if(!showHint) HintToPlayer();
+            }
         }
     }
     
