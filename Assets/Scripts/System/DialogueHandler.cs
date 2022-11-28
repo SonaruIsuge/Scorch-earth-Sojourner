@@ -24,7 +24,7 @@ public class DialogueHandler : TSingletonMonoBehaviour<DialogueHandler>
     }
 
 
-    public void StartSentence(string sentence, float wordSpeed = 0.02f, float wordShowTime = 1.0f, float fadeTime = 1.0f)
+    public void StartSentence(string sentence, float wordSpeed = 0.04f, float wordShowTime = 1.0f, float fadeTime = 1.0f)
     {
         if(hasDialogueProgress) StopAllCoroutines();
         
@@ -43,6 +43,7 @@ public class DialogueHandler : TSingletonMonoBehaviour<DialogueHandler>
         foreach (var word in sentence.ToCharArray())
         {
             dialogueText.text += word;
+            AudioHandler.Instance.SpawnAudio(AudioType.CharPrint);
             yield return new WaitForSeconds(wordSpeed);
         }
         

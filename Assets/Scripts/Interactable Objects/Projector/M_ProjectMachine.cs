@@ -80,6 +80,8 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
         choosePhotoIndex = Mathf.Max(Mathf.Min(choosePhotoIndex, allPlayerPhoto.Count - 1), 0);
         var startPhoto = allPlayerPhoto.Count > 0 ? allPlayerPhoto[choosePhotoIndex].photo : null;
         player.DelayDo(() => OnStartInteract?.Invoke(allPlayerPhoto.Count > 0 ? allPlayerPhoto[choosePhotoIndex] : null), 1);
+        
+        AudioHandler.Instance.SpawnAudio(AudioType.ProjectorOpen);
     }
 
     public void OnDeselect()

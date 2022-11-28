@@ -38,6 +38,9 @@ public class R_Slime : CameraRecordableBehaviour
         isMove = true;
         var origin = transform.localPosition;
         var currentMovementTime = 0f;
+        
+        AudioHandler.Instance.SpawnAudio(AudioType.SlimeEscape);
+        
         while (Vector2.Distance(transform.localPosition, escapeDest) > 0.001f) 
         {
             currentMovementTime += Time.deltaTime;
@@ -47,6 +50,8 @@ public class R_Slime : CameraRecordableBehaviour
 
         isMove = false;
         OnSlimeEscape?.Invoke();
+        
+        gameObject.SetActive(false);
     }
 
 

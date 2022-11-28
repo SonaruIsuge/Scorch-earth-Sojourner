@@ -24,7 +24,7 @@ public class DoorWorkReaction : MonoBehaviour, IInteractReact
     {
         DialogueHandler.Instance.StartSentence(investigateSentence);
         doorAni.SetTrigger(TriggerDoorParamName);
-
+        AudioHandler.Instance.SpawnAudio(AudioType.DoorOpen);
         StartCoroutine(EnableEntry());
     }
 

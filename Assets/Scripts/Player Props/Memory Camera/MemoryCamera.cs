@@ -81,6 +81,8 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
     {
         enabled = enable;
         OnPhotoFrameToggleEnable?.Invoke(enable);
+        
+        if(enable) AudioHandler.Instance.SpawnAudio(AudioType.CameraOpen);
     }
 
 
@@ -88,6 +90,8 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
     {
         temporaryPhoto = await photoTakeFeature.TakePhoto();
         OnPhotoTake?.Invoke();
+        
+        AudioHandler.Instance.SpawnAudio(AudioType.TakePhoto);
         
         DOCameraFlash(20, 0.25f);
         var item = itemDetectFeature.DetectItem();

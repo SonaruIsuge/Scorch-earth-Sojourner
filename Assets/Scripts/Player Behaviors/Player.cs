@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
             {UsingProp.MemoryCamera, new UseMemoryCameraState(this)},
             {UsingProp.AlbumBook, new UseAlbumBookState(this)},
             {UsingProp.Projector, new UseProjectorState(this)},
+            {UsingProp.StartTransition, new StartTransitionState(this)}
         };
     }
 
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour
         EquipProp(MemoryCamera);
         EquipProp(AlbumBook);
 
-        ChangePropState(UsingProp.None);
+        ChangePropState(UsingProp.StartTransition);
         
         // register events in props
         MemoryCamera.OnRecordableItemPhotoTake += OnRecordableItemPhotoTake;

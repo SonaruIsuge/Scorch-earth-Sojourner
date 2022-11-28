@@ -102,3 +102,11 @@ public struct RoomData
     public Transform RoomCenter;
     public SpriteRenderer CameraSizeRef;
 }
+
+
+[Serializable]
+public struct AudioData
+{
+    public AudioType AudioType;
+    public AudioClip Clip;
+}

@@ -39,6 +39,8 @@ public class PlayerMove : MonoBehaviour
     {
         isStopMove = !enable;
         if(!enable) ForceStopMove();
+        
+        AudioHandler.Instance.SetInterval(.4f);
     }
 
     private void ForceStopMove()
@@ -55,6 +57,8 @@ public class PlayerMove : MonoBehaviour
         if(rb) rb.velocity = MoveSpeed * movement;
         playerAni.SetBool(AnimatorParam.Move, movement != Vector2.zero);
         playerAni.SetFloat(AnimatorParam.Direction, movement.sqrMagnitude);
+        
+        if(movement != Vector2.zero) AudioHandler.Instance.SpawnAudioWithInterval(AudioType.PlayerMove);
     }
 
     private bool checkFlip() => previousDir < 0;

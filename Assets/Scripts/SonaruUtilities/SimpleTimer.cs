@@ -8,7 +8,7 @@ namespace SonaruUtilities
         private float targetTime;
         private float finishTime;
 
-        private bool IsPause;
+        public bool IsPause { get; private set; }
         
         private float remain;
 

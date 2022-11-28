@@ -13,12 +13,15 @@ public enum UsingProp
     MemoryCamera,
     AlbumBook,
     Projector,
-    None
+    None,
+    StartTransition
 }
 
 
 public enum SceneIndex
 {
+    StartScene,
+    Level,
     Indoor,
     Outdoor
 }
@@ -54,4 +57,27 @@ public enum KeyEvent
     WarehouseKeyGet,
     DoorEatenBySlime,
     EmergencyPowerOpened
+}
+
+
+public enum AudioType
+{
+    //Player move
+    PlayerMove,
+    //Interact
+    DoorOpen,
+    PickPaper,
+    ProjectorOpen,
+    //Camera
+    CameraOpen,
+    TakePhoto,
+    //AlbumBook
+    BookOpen,
+    ChangePage,
+    //Item
+    BedroomSound,
+    SlimeEscape,
+    //UI
+    CharPrint,
+    ButtonClick
 }

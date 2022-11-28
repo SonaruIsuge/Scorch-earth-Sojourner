@@ -57,12 +57,14 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
         CurrentChoosePhotoIndex = 0;
         
         PhotoSaveLoadHandler.Instance.OnFileChanged += updateAlbum;
+        OnAlbumPageTypeChange += ChangePageAudioRegister;
     }
 
 
     public void UnEquip()
     {
         player = null;
+        OnAlbumPageTypeChange -= ChangePageAudioRegister;
         if(PhotoSaveLoadHandler.Instance != null) PhotoSaveLoadHandler.Instance.OnFileChanged -= updateAlbum;
     }
 
@@ -71,6 +73,8 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     {
         enabled = enable;
         OnAlbumBookToggleEnable?.Invoke(enable);
+        
+        if(enable) AudioHandler.Instance.SpawnAudio(AudioType.BookOpen);
     }
 
 
@@ -164,5 +168,11 @@ public class AlbumBook : MonoBehaviour, IPlayerProp
     {
         if (memoData.AllMemoId.Count <= 0) return 0;
         return memoData.AllMemoId.Count - 1;
+    }
+
+
+    private void ChangePageAudioRegister(AlbumPage page)
+    {
+        AudioHandler.Instance.SpawnAudio(AudioType.ChangePage, stopLast: true);
     }
 }

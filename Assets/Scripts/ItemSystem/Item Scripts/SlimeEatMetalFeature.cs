@@ -55,6 +55,8 @@ public class SlimeEatMetalFeature : MonoBehaviour
                 // let slime escape from player
                 thisSlime.SetDetectRange(5);
                 if(!showHint) HintToPlayer();
+                
+                AudioHandler.Instance.SpawnAudio(AudioType.BedroomSound);
             }
         }
     }

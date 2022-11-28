@@ -13,7 +13,8 @@ public class GameFlowHandler : TSingletonMonoBehaviour<GameFlowHandler>
     public SceneData SceneData { get; private set; }
 
     public event Action<KeyEvent> OnEventClear;
-
+    public event Action OnGameOver;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -47,6 +48,12 @@ public class GameFlowHandler : TSingletonMonoBehaviour<GameFlowHandler>
     {
         return LevelProgressEvents.ContainsKey(inquireEvent) && LevelProgressEvents[inquireEvent];
     }
+
+
+    public void CallGameOver()
+    {
+        OnGameOver?.Invoke();
+    }
 }
 
 
@@ -63,4 +70,9 @@ public class OutDoorData : SceneData
         MachinePosition = pos;
         MachineRotation = rot;
     }
+}
+
+public class LevelData : SceneData
+{
+    
 }

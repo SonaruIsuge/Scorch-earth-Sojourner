@@ -30,8 +30,10 @@ public class M_Memo : MonoBehaviour, IInteractable
         if (player.AlbumBook)
         {
             player.AlbumBook.GetNewMemo(memoData);
+            
+            AudioHandler.Instance.SpawnAudio(AudioType.PickPaper, stopLast: true);
         }
-        
+
         gameObject.SetActive(false);
     }
 
