@@ -169,4 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d5b3b4ea8e42d1a7a78247ffef06d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  investigateSentence: "\u5F97\u5230\u4E86 \u9470\u5319\u5361\uFF08\u53F3\u7FFC\u5009\u5EAB\uFF09"
+  investigateSentence: "\u5F97\u5230\u4E86 \u9470\u5319\u5361\uFF08\u5DE6\u7FFC\u5009\u5EAB\uFF09"

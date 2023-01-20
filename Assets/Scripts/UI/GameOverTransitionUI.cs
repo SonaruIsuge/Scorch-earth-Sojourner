@@ -28,12 +28,15 @@ public class GameOverTransitionUI : MonoBehaviour
         var panelColor = gameOverPanel.color;
         panelColor.a = 0;
         gameOverPanel.color = panelColor;
+        
+        gameOverPanel.gameObject.SetActive(false);
     }
     
     
 
     private async void ImageTransitionPerform()
     {
+        gameOverPanel.gameObject.SetActive(true);
         var panelColor = gameOverPanel.color;
         for (var i = 0; i < gameOverSprites.Length; i++)
         {

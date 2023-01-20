@@ -1840,8 +1840,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u300C\u7121\u8072\u7684\u7A7A\u62CD\u6A5F\uFF0C\u93E1\u982D\u4F3C\u4E4E\u7E3D\u662F\u770B\u8457\u6211\u3002\u300D\u300C\u7121\u8072\u7684\u7A7A\u62CD\u6A5F\uFF0C\u93E1\u982D\u4F3C\u4E4E\u7E3D\u662F\u770B\u8457\u6211\u3002\u300D\u300C\u7121\u8072\u7684\u7A7A\u62CD\u6A5F\uFF0C\u93E1\u982D\u4F3C\u4E4E\u7E3D\u662F\u770B\u8457\u6211\u3002\u300D"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 29a0c44dc447bdc4793d6f2617e8d54a, type: 2}
-  m_sharedMaterial: {fileID: 7757883104336114095, guid: 29a0c44dc447bdc4793d6f2617e8d54a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c1687e6c1b5b6d54a9b3d68ceb9c7a83, type: 2}
+  m_sharedMaterial: {fileID: 887919168237456797, guid: c1687e6c1b5b6d54a9b3d68ceb9c7a83, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1865,13 +1865,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 40
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
