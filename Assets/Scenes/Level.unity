@@ -2909,6 +2909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemoryCamera: {fileID: 2031246692}
   AlbumBook: {fileID: 219465295}
+  currentState: 4
 --- !u!50 &282019899
 Rigidbody2D:
   serializedVersion: 4

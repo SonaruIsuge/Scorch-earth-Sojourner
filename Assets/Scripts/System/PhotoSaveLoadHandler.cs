@@ -107,8 +107,15 @@ public sealed class PhotoSaveLoadHandler : TSingletonMonoBehaviour<PhotoSaveLoad
     public List<FilePhotoData> GetAllSaveFiles()
     {
         var resultList = new List<FilePhotoData>();
+        
+        // check if path exist
+        if (!Directory.Exists(storagePath)) Directory.CreateDirectory(storagePath);
+        
         var filePaths = 
             Directory.GetFiles(storagePath, "*.photodata");
+
+        if (filePaths.Length <= 0) return new List<FilePhotoData>();
+
         foreach (var file in filePaths)
         {
             FileDataWithPhoto.Load(file, out var data, out var photo);

@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public AlbumBook AlbumBook;
 
     // Player use prop state machine
-    private UsingProp currentState;
+    [SerializeField]private UsingProp currentState;
     private Dictionary<UsingProp, IPropState> stateDict;
     
     // Player equip prop event
