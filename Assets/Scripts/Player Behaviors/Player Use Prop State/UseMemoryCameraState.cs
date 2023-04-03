@@ -8,8 +8,6 @@ public class UseMemoryCameraState : IPropState
     private MemoryCameraInput input;
     private MemoryCamera memoryCamera;
 
-    private bool enableCameraStateChange;
-
     public UseMemoryCameraState(Player owner)
     {
         player = owner;
@@ -25,8 +23,6 @@ public class UseMemoryCameraState : IPropState
         
         memoryCamera.EnableProp(true);
 
-        enableCameraStateChange = player.CommonInput.togglePhoto;
-        
         // not show some object 
         memoryCamera.WorldCamera.cullingMask &= ~(1 << Constant.NotShowInPhotoTakeModeLayer);
     }
@@ -38,7 +34,7 @@ public class UseMemoryCameraState : IPropState
         memoryCamera.MoveCamera(input.controlFrameArea.x, input.controlFrameArea.y);
         if(input.takePhoto) memoryCamera.TakePhoto();
 
-        if (enableCameraStateChange != player.CommonInput.togglePhoto)
+        if (player.CommonInput.togglePhoto)
         {
             memoryCamera.EnableProp(false);
         }

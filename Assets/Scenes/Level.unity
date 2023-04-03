@@ -505,6 +505,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2725755817828484546, guid: 6fe7d2e4cc9e56243abbd1d6db103b3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2835333450542387478, guid: 6fe7d2e4cc9e56243abbd1d6db103b3b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -618,6 +622,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6790301506481216425, guid: 6fe7d2e4cc9e56243abbd1d6db103b3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969975849910590689, guid: 6fe7d2e4cc9e56243abbd1d6db103b3b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2828,10 +2836,10 @@ GameObject:
   m_Component:
   - component: {fileID: 282019900}
   - component: {fileID: 282019899}
+  - component: {fileID: 282019895}
   - component: {fileID: 282019898}
   - component: {fileID: 282019897}
   - component: {fileID: 282019896}
-  - component: {fileID: 282019895}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -8458,29 +8466,29 @@ MonoBehaviour:
   Volume: 0
   AudioList:
   - AudioType: 0
-    Clip: {fileID: 8300000, guid: 88974eb0acf1c2c46a94430562965e35, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 1
-    Clip: {fileID: 8300000, guid: d4a41b4372f834e40be7a2ec5c56ee5e, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 2
-    Clip: {fileID: 8300000, guid: 8a830635a3af9e440881d0be649763d1, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 3
-    Clip: {fileID: 8300000, guid: b1af891519ce03d4a97420be78248641, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 4
-    Clip: {fileID: 8300000, guid: 1332c6becd446df418d77002908efac3, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 5
-    Clip: {fileID: 8300000, guid: c5cb99e327aa2f941b0e9b60cb39b0ab, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 6
-    Clip: {fileID: 8300000, guid: 8a830635a3af9e440881d0be649763d1, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 7
-    Clip: {fileID: 8300000, guid: 8a830635a3af9e440881d0be649763d1, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 8
-    Clip: {fileID: 8300000, guid: 4a906811e81ba904985b0f9e8c5d319b, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 9
-    Clip: {fileID: 8300000, guid: 306291c749b71754aa0d7f703d553f25, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 10
-    Clip: {fileID: 8300000, guid: ee0cc18143bb13d46aa1e71cf5594bb1, type: 3}
+    Clip: {fileID: 0}
   - AudioType: 11
-    Clip: {fileID: 8300000, guid: c3f2907d7fed4e5499fd0b9e64690605, type: 3}
+    Clip: {fileID: 0}
 --- !u!82 &770833039
 AudioSource:
   m_ObjectHideFlags: 0

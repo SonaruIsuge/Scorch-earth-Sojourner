@@ -5,20 +5,16 @@ using UnityEngine;
 public class CommonInput : IInput
 {
     private InputControl inputControl;
-    
-    public bool togglePhoto { get; private set; }
-    public bool toggleAlbum { get; private set; }
-    public bool toggleSetting { get; private set; }
+
+    public bool togglePhoto => inputControl.CommonInput.ToggleCamera.WasPressedThisFrame();
+    public bool toggleAlbum => inputControl.CommonInput.ToggleAlbum.WasPressedThisFrame();
+    public bool toggleSetting => inputControl.CommonInput.ToggleSetting.WasPressedThisFrame();
     
 
     public CommonInput(InputControl input)
     {
         inputControl = input;
         inputControl.CommonInput.Enable();
-        
-        togglePhoto = false;
-        toggleAlbum = false;
-        toggleSetting = false;
     }
     
     
@@ -40,8 +36,6 @@ public class CommonInput : IInput
 
     public void ReadInput()
     {
-        if (inputControl.CommonInput.ToggleCamera.WasPressedThisFrame()) togglePhoto = !togglePhoto;
-        if (inputControl.CommonInput.ToggleAlbum.WasPressedThisFrame()) toggleAlbum = !toggleAlbum;
-        if (inputControl.CommonInput.ToggleSetting.WasPressedThisFrame()) toggleSetting = !toggleSetting;
+        
     }
 }

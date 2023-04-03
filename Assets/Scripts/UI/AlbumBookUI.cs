@@ -56,9 +56,9 @@ public class AlbumBookUI : MonoBehaviour
 
     private void RegisterAlbumBookUI(IPlayerProp prop)
     {
-        if(!(prop is AlbumBook)) return;
+        if(prop is not AlbumBook book) return;
         
-        albumBook = (AlbumBook) prop;
+        albumBook = book;
         albumUI.gameObject.SetActive(false);
 
         bookPhotoArea.sizeDelta = new Vector2(DisplayPhotoWidth, DisplayPhotoHeight);
