@@ -29,7 +29,6 @@ public class UseMemoryCameraState : IPropState
 
     public void StayState()
     {
-        input.ReadInput();
         
         memoryCamera.MoveCamera(input.controlFrameArea.x, input.controlFrameArea.y);
         if(input.takePhoto) memoryCamera.TakePhoto();

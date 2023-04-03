@@ -33,9 +33,4 @@ public class CommonInput : IInput
     {
         
     }
-
-    public void ReadInput()
-    {
-        
-    }
 }

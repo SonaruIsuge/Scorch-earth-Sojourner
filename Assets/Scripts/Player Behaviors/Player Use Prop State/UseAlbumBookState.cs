@@ -33,7 +33,6 @@ public class UseAlbumBookState : IPropState
 
     public void StayState()
     {
-        input.ReadInput();
 
         if (input.LeftPage || input.RightPage)
         {

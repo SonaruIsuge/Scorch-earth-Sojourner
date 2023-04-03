@@ -14,6 +14,5 @@ public interface IInput
     void EnableInput(bool enable);
     void Register();
     void Unregister();
-    void ReadInput();
     
 }

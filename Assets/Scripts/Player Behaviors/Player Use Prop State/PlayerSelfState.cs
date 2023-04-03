@@ -25,8 +25,7 @@ public class PlayerSelfState : IPropState
 
     public void StayState()
     {
-        input.ReadInput();
-        
+
         player.PlayerMove.UpdateMove(input.horizontal, input.vertical);
         player.InteractHandler.UpdateSelect();
         
