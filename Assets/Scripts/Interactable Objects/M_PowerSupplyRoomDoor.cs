@@ -12,9 +12,11 @@ public class M_PowerSupplyRoomDoor : MonoBehaviour
     [SerializeField] private KeyEvent keyEvent;
     private Collider2D doorCollider;
     private SpriteRenderer doorRenderer;
+    private LevelManager levelManager;
 
     private void Awake()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         doorCollider = GetComponent<Collider2D>();
         doorRenderer = GetComponent<SpriteRenderer>();
     }
@@ -28,13 +30,13 @@ public class M_PowerSupplyRoomDoor : MonoBehaviour
 
     private void OnEnable()
     {
-        GameFlowHandler.Instance.OnEventClear += ChangeDoorStyle;
+        LevelManager.OnKeyEventClear += ChangeDoorStyle;
     }
     
     
     private void OnDisable()
     {
-        if(GameFlowHandler.Instance != null) GameFlowHandler.Instance.OnEventClear -= ChangeDoorStyle;
+        LevelManager.OnKeyEventClear -= ChangeDoorStyle;
     }
 
 

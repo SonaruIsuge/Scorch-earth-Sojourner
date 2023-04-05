@@ -12,8 +12,6 @@ public class GameFlowHandler : TSingletonMonoBehaviour<GameFlowHandler>
     
     public SceneData SceneData { get; private set; }
 
-    public event Action<KeyEvent> OnEventClear;
-    public event Action OnGameOver;
     
     protected override void Awake()
     {
@@ -32,27 +30,6 @@ public class GameFlowHandler : TSingletonMonoBehaviour<GameFlowHandler>
     {
         SceneManager.LoadScene((int)sceneToLoad);
         SceneData = data;
-    }
-
-
-    public void SetKeyEventClear(KeyEvent targetEvent)
-    {
-        if(!LevelProgressEvents.ContainsKey(targetEvent)) return;
-
-        LevelProgressEvents[targetEvent] = true;
-        OnEventClear?.Invoke(targetEvent);
-    }
-
-
-    public bool CheckKeyEvent(KeyEvent inquireEvent)
-    {
-        return LevelProgressEvents.ContainsKey(inquireEvent) && LevelProgressEvents[inquireEvent];
-    }
-
-
-    public void CallGameOver()
-    {
-        OnGameOver?.Invoke();
     }
 }
 

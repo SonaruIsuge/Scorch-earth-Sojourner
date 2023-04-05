@@ -10,9 +10,12 @@ public class PowerRoomDark : MonoBehaviour
     private SpriteRenderer spiteRenderer;
     private Color darknessColor;
     private Tweener changeDarkTween;
+    private LevelManager levelManager;
+    
     
     private void Awake()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         spiteRenderer = GetComponent<SpriteRenderer>();
         darknessColor = spiteRenderer.color;
     }
@@ -20,10 +23,11 @@ public class PowerRoomDark : MonoBehaviour
 
     private void Update()
     {
-        if (GameFlowHandler.Instance.CheckKeyEvent(KeyEvent.EmergencyPowerOpened))
-        {
-            darknessColor.a = 0;
-            spiteRenderer.DOColor(darknessColor, fadeTime);
-        }
+        if (!levelManager) return;
+        if(!levelManager.CheckKeyEventState(KeyEvent.EmergencyPowerOpened)) return;
+        
+        darknessColor.a = 0;
+        spiteRenderer.DOColor(darknessColor, fadeTime);
+        
     }
 }

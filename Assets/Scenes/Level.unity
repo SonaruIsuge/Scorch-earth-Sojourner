@@ -625,10 +625,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6969975849910590689, guid: 6fe7d2e4cc9e56243abbd1d6db103b3b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7518948781868001422, guid: 6fe7d2e4cc9e56243abbd1d6db103b3b, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
@@ -18641,6 +18637,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
+      propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
       propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3857434602751611389}
@@ -18665,6 +18665,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1739263147}
     - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
+      propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
       propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -18686,6 +18690,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
       propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
+      propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[6].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
@@ -18737,6 +18745,10 @@ PrefabInstance:
       value: SlimeEatMetalFeature, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
+      propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[6].m_TargetAssemblyTypeName
+      value: SlimeEatMetalFeature, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
       propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
@@ -18758,6 +18770,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
       propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}
+      propertyPath: OnSlimeEscape.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1025500854419503418, guid: 7d18489c9278e1e4393fea0f573f6908, type: 3}

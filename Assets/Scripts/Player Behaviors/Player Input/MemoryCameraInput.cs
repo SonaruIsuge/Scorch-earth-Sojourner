@@ -47,6 +47,6 @@ public class MemoryCameraInput : IInput
     
     private void OnFrameControlCanceled(InputAction.CallbackContext ctx)
     {
-        controlFrameArea = Vector2.zero;
+        //controlFrameArea = Vector2.zero;
     }
 }

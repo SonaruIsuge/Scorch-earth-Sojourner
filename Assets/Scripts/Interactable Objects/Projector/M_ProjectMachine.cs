@@ -35,6 +35,7 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
     private float resizeCameraOrthographicSize;
 
     public event Action<FilePhotoData> OnStartInteract;
+    public event Action<M_ProjectMachine, CameraRecordableBehaviour> OnItemUse;
     public event Action OnEndInteract;
     public event Action<FilePhotoData> OnChangeChoosePhoto;
     public event Action OnSubmitPhoto;
@@ -145,7 +146,7 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
                 if(currentProjectItem) Destroy(currentProjectItem.gameObject);
                 currentProjectItem = InstantiateItem(photoData);
                 currentProjectItem.ItemUse(this);
-                
+                OnItemUse?.Invoke(this, currentProjectItem);
                 // Fade projector screen
                 correspondProjector.DOProjectorAnimation(0, 0, 1);
             }, 2);
