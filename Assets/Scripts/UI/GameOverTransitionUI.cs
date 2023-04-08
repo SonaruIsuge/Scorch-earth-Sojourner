@@ -13,13 +13,13 @@ public class GameOverTransitionUI : MonoBehaviour
     
     private void OnEnable()
     {
-        GameFlowHandler.Instance.OnGameOver += ImageTransitionPerform;
+        LevelManager.OnGameOver += ImageTransitionPerform;
     }
 
 
     private void OnDisable()
     {
-        if(GameFlowHandler.Instance != null) GameFlowHandler.Instance.OnGameOver -= ImageTransitionPerform;
+        LevelManager.OnGameOver -= ImageTransitionPerform;
     }
 
 

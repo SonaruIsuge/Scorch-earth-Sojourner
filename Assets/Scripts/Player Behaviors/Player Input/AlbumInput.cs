@@ -7,13 +7,13 @@ public class AlbumInput : IInput
 {
     private InputControl inputControl;
 
-    public bool Up { get; private set; }
-    public bool Down { get; private set; }
-    public bool Left { get; private set; }
-    public bool Right { get; private set; }
-    public bool LeftPage { get; private set; }
-    public bool RightPage { get; private set; }
-    public bool Submit { get; private set; }
+    public bool Up => inputControl.AlbumBook.Up.WasPressedThisFrame();
+    public bool Down => inputControl.AlbumBook.Down.WasPressedThisFrame();
+    public bool Left => inputControl.AlbumBook.Left.WasPressedThisFrame();
+    public bool Right => inputControl.AlbumBook.Right.WasPressedThisFrame();
+    public bool LeftPage => inputControl.AlbumBook.LastPage.WasPressedThisFrame();
+    public bool RightPage => inputControl.AlbumBook.NextPage.WasPressedThisFrame();
+    public bool Submit => inputControl.AlbumBook.Submit.WasPressedThisFrame();
 
     private Vector2 choosePhotoValue;
     private float choosePageValue;
@@ -39,30 +39,6 @@ public class AlbumInput : IInput
 
     public void Unregister()
     {
-        //reset data value
-        Up = false;
-        Down = false;
-        Left = false;
-        Right = false;
-        LeftPage = false;
-        RightPage = false;
-        Submit = false;
+        
     }
-
-
-    public void ReadInput()
-    {
-        Up = inputControl.AlbumBook.Up.WasPressedThisFrame();
-        Down = inputControl.AlbumBook.Down.WasPressedThisFrame();
-        Left = inputControl.AlbumBook.Left.WasPressedThisFrame();
-        Right = inputControl.AlbumBook.Right.WasPressedThisFrame();
-
-        LeftPage = inputControl.AlbumBook.LastPage.WasPressedThisFrame();
-        RightPage = inputControl.AlbumBook.NextPage.WasPressedThisFrame();
-
-        Submit = inputControl.AlbumBook.Submit.WasPressedThisFrame();
-    }
-    
-    
-    
 }

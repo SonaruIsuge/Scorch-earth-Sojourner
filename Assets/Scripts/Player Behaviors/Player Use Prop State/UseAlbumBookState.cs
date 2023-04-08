@@ -8,10 +8,8 @@ public class UseAlbumBookState : IPropState
 
     private AlbumInput input;
     private AlbumBook albumBook;
-    
-    private bool enableAlbumStateChange;
 
-    
+
     public FilePhotoData currentSubmitData;
     private string detectSubmitName;
 
@@ -31,13 +29,10 @@ public class UseAlbumBookState : IPropState
         input?.Register();
         
         albumBook.EnableProp(true);
-        
-        enableAlbumStateChange = player.CommonInput.toggleAlbum;
     }
 
     public void StayState()
     {
-        input.ReadInput();
 
         if (input.LeftPage || input.RightPage)
         {
@@ -49,7 +44,7 @@ public class UseAlbumBookState : IPropState
             albumBook.SetCurrentChoosePhoto(input.Left, input.Right);
         }
         
-        if (enableAlbumStateChange != player.CommonInput.toggleAlbum)
+        if (player.CommonInput.toggleAlbum)
         {
             albumBook.EnableProp(false);
         }

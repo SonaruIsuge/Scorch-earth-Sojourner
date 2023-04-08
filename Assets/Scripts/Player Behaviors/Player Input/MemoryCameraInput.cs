@@ -8,8 +8,7 @@ public class MemoryCameraInput : IInput
     private InputControl inputControl;
     
     public Vector2 controlFrameArea { get; private set; }
-    public bool takePhoto { get; private set; }
-
+    public bool takePhoto => inputControl.MemoryCamera.TakePicture.WasPressedThisFrame();
 
     public MemoryCameraInput(InputControl input)
     {
@@ -34,20 +33,13 @@ public class MemoryCameraInput : IInput
     {
         // reset data value
         controlFrameArea = Vector2.zero;
-        takePhoto = false;
-        
+
         // unregister event
         inputControl.MemoryCamera.ControlPictureArea.performed -= OnFrameControlPerformed;
         inputControl.MemoryCamera.ControlPictureArea.canceled -= OnFrameControlCanceled;
     }
 
-    
-    public void ReadInput()
-    {
-        takePhoto = inputControl.MemoryCamera.TakePicture.WasPressedThisFrame();
-    }
-    
-    
+
     private void OnFrameControlPerformed(InputAction.CallbackContext ctx)
     {
         controlFrameArea = ctx.ReadValue<Vector2>();
@@ -55,6 +47,6 @@ public class MemoryCameraInput : IInput
     
     private void OnFrameControlCanceled(InputAction.CallbackContext ctx)
     {
-        controlFrameArea = Vector2.zero;
+        //controlFrameArea = Vector2.zero;
     }
 }

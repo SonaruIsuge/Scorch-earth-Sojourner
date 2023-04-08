@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputSystemInput : IInput
 {
-    [field: SerializeField] public float vertical { get; private set; }
-    [field: SerializeField] public float horizontal { get; private set; }
-    [field: SerializeField] public bool interact { get; private set; }
+    public float vertical { get; private set; }
+    public float horizontal { get; private set; }
+    public bool interact => inputControl.Player.Interact.WasPressedThisFrame();
     
 
     private readonly InputControl inputControl;
@@ -34,18 +34,12 @@ public class PlayerInputSystemInput : IInput
         // reset data value
         horizontal = 0;
         vertical = 0;
-        interact = false;
         
         // unregister event
         inputControl.Player.Move.performed -= OnMovePerformed;
         inputControl.Player.Move.canceled -= OnMoveCanceled;
     }
 
-    public void ReadInput()
-    {
-        interact = inputControl.Player.Interact.WasPressedThisFrame();
-    }
-    
 
     private void OnMovePerformed(InputAction.CallbackContext ctx)
     {

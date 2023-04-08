@@ -60,6 +60,8 @@ public class MemoryCamera : MonoBehaviour, IPlayerProp
         photoTakeFeature = new PhotoTakeFeature(this);
         cameraMoveFeature = new CameraMoveFeature(this);
         itemDetectFeature = new ItemDetectFeature(this);
+        
+        enabled = false;
     }
 
 

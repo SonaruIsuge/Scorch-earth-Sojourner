@@ -32,8 +32,6 @@ public class UseProjectorState : IPropState
     
     public void StayState()
     {
-        input.ReadInput();
-        
         if (input.Left) targetProjector.ChangeCurrentPhoto(-1);
         if (input.Right) targetProjector.ChangeCurrentPhoto(1);
 

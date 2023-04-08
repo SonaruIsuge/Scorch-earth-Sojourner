@@ -28,7 +28,8 @@ public class AudioHandler : TSingletonMonoBehaviour<AudioHandler>
     public void SpawnAudio(AudioType type, bool untilPlayOver = false, bool stopLast = false)
     {
         if(!audioDataDict.ContainsKey(type)) return;
-        
+        if(!audioDataDict[type]) return;
+
         if(untilPlayOver && audioSource.isPlaying) return;
         
         if(stopLast && audioSource.isPlaying) audioSource.Stop();

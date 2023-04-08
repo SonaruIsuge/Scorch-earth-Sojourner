@@ -9,9 +9,9 @@ public class R_FluorescentLight : CameraRecordableBehaviour
     {
         base.ItemUse(machine);
 
-        var keyEventSetter = machine.GetComponent<ProjectorKeyEventSetter>();
+        //var keyEventSetter = machine.GetComponent<ProjectorKeyEventSetter>();
         
-        if(keyEventSetter) keyEventSetter.SetKeyEventClear(keyEvent);
+        //if(keyEventSetter) keyEventSetter.SetKeyEventClear(keyEvent);
     }
     
 }

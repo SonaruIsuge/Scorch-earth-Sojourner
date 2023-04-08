@@ -84,8 +84,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CommonInput.ReadInput();
-        
         stateDict[currentState].StayState();
     }
 
