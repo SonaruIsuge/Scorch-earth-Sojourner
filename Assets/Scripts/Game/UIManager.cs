@@ -54,4 +54,10 @@ public class UIManager : MonoBehaviour
     {
         generalUI.EnableGeneralUI(!otherUIEnable);
     }
+
+
+    public void ChangeRoomText(RoomData data)
+    {
+        generalUI.ChangeCurrentRoomText(data);
+    }
 }

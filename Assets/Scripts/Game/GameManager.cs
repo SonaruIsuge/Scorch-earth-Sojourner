@@ -12,12 +12,14 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         uiManager.BindPlayerWithUI(player);
+        roomsController.OnRoomChange += uiManager.ChangeRoomText;
     }
 
 
     private void OnDisable()
     {
         uiManager.UnbindPlayerWithUI(player);
+        roomsController.OnRoomChange -= uiManager.ChangeRoomText;
     }
 
 
