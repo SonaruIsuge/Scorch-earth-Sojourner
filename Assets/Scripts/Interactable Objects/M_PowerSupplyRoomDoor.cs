@@ -12,11 +12,11 @@ public class M_PowerSupplyRoomDoor : MonoBehaviour
     [SerializeField] private KeyEvent keyEvent;
     private Collider2D doorCollider;
     private SpriteRenderer doorRenderer;
-    private LevelManager levelManager;
+    private KeyEventManager keyEventManager;
 
     private void Awake()
     {
-        levelManager = FindObjectOfType<LevelManager>();
+        keyEventManager = FindObjectOfType<KeyEventManager>();
         doorCollider = GetComponent<Collider2D>();
         doorRenderer = GetComponent<SpriteRenderer>();
     }
@@ -30,13 +30,13 @@ public class M_PowerSupplyRoomDoor : MonoBehaviour
 
     private void OnEnable()
     {
-        LevelManager.OnKeyEventClear += ChangeDoorStyle;
+        KeyEventManager.OnKeyEventClear += ChangeDoorStyle;
     }
     
     
     private void OnDisable()
     {
-        LevelManager.OnKeyEventClear -= ChangeDoorStyle;
+        KeyEventManager.OnKeyEventClear -= ChangeDoorStyle;
     }
 
 

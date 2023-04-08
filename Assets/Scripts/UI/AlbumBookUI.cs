@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,10 +7,7 @@ using UnityEngine.UI;
 
 public class AlbumBookUI : MonoBehaviour
 {
-    private Player player;
     private AlbumBook albumBook;
-    
-    private GeneralUI generalUI;
 
     [SerializeField] private RectTransform albumUI;
     [SerializeField] private RectTransform photoPage;
@@ -27,43 +25,22 @@ public class AlbumBookUI : MonoBehaviour
     [SerializeField] private string presetDescription;
 
     private Vector2 photoDisplaySize;
-    
 
-    // Panel data
-    public float DisplayPhotoWidth;
-    public float DisplayPhotoHeight;
+    public event Action<bool> OnEnableUI; 
 
     private void Awake()
     {
-        generalUI = GetComponent<GeneralUI>();
-        player = FindObjectOfType<Player>();
         currentDisplayPhoto = bookPhotoArea.GetComponent<RawImage>();
         photoDisplaySize = new Vector2(bookPhotoArea.rect.width, bookPhotoArea.rect.height);
     }
     
-    
-    private void OnEnable()
-    {
-        player.OnPropEquipped += RegisterAlbumBookUI;
-    }
 
-
-    private void OnDisable()
-    {
-        player.OnPropEquipped -= RegisterAlbumBookUI;
-    }
-
-
-    private void RegisterAlbumBookUI(IPlayerProp prop)
+    public void RegisterAlbumBookUI(IPlayerProp prop)
     {
         if(prop is not AlbumBook book) return;
         
         albumBook = book;
         albumUI.gameObject.SetActive(false);
-
-        bookPhotoArea.sizeDelta = new Vector2(DisplayPhotoWidth, DisplayPhotoHeight);
-        
-        
 
         albumBook.OnAlbumBookToggleEnable += AlbumBookUIEnable;
         albumBook.OnAlbumChangeCurrentPhoto += ChangeCurrentPhotoData;
@@ -89,7 +66,7 @@ public class AlbumBookUI : MonoBehaviour
         imageColor.a = firstPhoto != null ? 1 : 0;
         currentDisplayPhoto.color = imageColor;
         
-        generalUI.EnableGeneralUI(!enable);
+        OnEnableUI?.Invoke(enable);
     }
 
 

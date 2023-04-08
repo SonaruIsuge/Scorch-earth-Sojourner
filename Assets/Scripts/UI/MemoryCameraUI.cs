@@ -6,42 +6,20 @@ using UnityEngine.UI;
 
 public class MemoryCameraUI : MonoBehaviour
 {
-    private Player player;
     private MemoryCamera memoryCamera;
 
-    private GeneralUI generalUI;
-    
-    private Camera WorldCamera => Camera.main;
-    
     [SerializeField] private RectTransform PhotoTakeOuterFrame;
     [SerializeField] private RectTransform PhotoFrameRectTrans;
     [SerializeField] private RectTransform DetectHint;
-    [SerializeField] private Button TakePhotoBtn;
-    
-    private void Awake()
+
+    public event Action<bool> OnEnableUI;
+
+
+    public void RegisterMemoryCameraUI(IPlayerProp prop)
     {
-        player = FindObjectOfType<Player>();
-        generalUI = GetComponent<GeneralUI>();
-    }
+        if( prop is not MemoryCamera memoryCam ) return;
 
-
-    private void OnEnable()
-    {
-        player.OnPropEquipped += RegisterMemoryCameraUI;
-    }
-
-
-    private void OnDisable()
-    {
-        player.OnPropEquipped -= RegisterMemoryCameraUI;
-    }
-    
-
-    private void RegisterMemoryCameraUI(IPlayerProp prop)
-    {
-        if( !(prop is MemoryCamera) ) return;
-
-        memoryCamera = (MemoryCamera) prop;
+        memoryCamera = memoryCam;
         
         PhotoFrameRectTrans.sizeDelta = new Vector2(memoryCamera.PhotoWidth, memoryCamera.PhotoHeight);
         DetectHint.sizeDelta *= (float)memoryCamera.PhotoWidth / 1152;
@@ -53,16 +31,15 @@ public class MemoryCameraUI : MonoBehaviour
         memoryCamera.OnPhotoFrameMove += CameraUIMove;
         memoryCamera.OnPhotoTake += CameraUIPhotoTake;
         memoryCamera.OnRecordableDetect += CameraUIDetectItem;
-        
-        TakePhotoBtn.onClick.AddListener(() => memoryCamera.EnableProp(true));
     }
 
 
     private void CameraUIEnable(bool enable)
     {
+        gameObject.SetActive(enable);
         PhotoFrameRectTrans.gameObject.SetActive(enable);
         PhotoTakeOuterFrame.gameObject.SetActive(enable);
-        generalUI.EnableGeneralUI(!enable);
+        OnEnableUI?.Invoke(enable);
     }
 
 
@@ -81,6 +58,5 @@ public class MemoryCameraUI : MonoBehaviour
     private void CameraUIDetectItem(Collider2D item)
     {
         DetectHint.gameObject.SetActive(item);
-        //DetectHint.position = item ? WorldCamera.WorldToScreenPoint(item.transform.position): Vector3.zero;
     }
 }

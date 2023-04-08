@@ -13,11 +13,11 @@ public class ConditionInteract : MonoBehaviour, IInteractable
     private IInteractReact defaultReaction;
     private IInteractReact conditionClearReaction;
 
-    private LevelManager levelManager;
+    private KeyEventManager keyEventManager;
 
     private void Awake()
     {
-        levelManager = FindObjectOfType<LevelManager>();
+        keyEventManager = FindObjectOfType<KeyEventManager>();
         materialSwitcher = GetComponent<IMaterialSwitcher>();
         var allReaction = GetComponents<IInteractReact>();
 
@@ -44,7 +44,7 @@ public class ConditionInteract : MonoBehaviour, IInteractable
 
     public void Interact(Player player)
     {
-        if(!levelManager || !levelManager.CheckKeyEventState(condition)) defaultReaction?.React(player);
+        if(!keyEventManager || !keyEventManager.CheckKeyEventState(condition)) defaultReaction?.React(player);
         else conditionClearReaction?.React(player);
     }
 

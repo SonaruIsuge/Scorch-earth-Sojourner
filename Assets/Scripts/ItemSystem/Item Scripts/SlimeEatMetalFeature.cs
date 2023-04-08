@@ -16,7 +16,7 @@ public class SlimeEatMetalFeature : MonoBehaviour
     private Player player;
     private bool showHint;
     private SimpleTimer timer;
-    private LevelManager levelManager;
+    private KeyEventManager keyEventManager;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class SlimeEatMetalFeature : MonoBehaviour
         timer = new SimpleTimer(2);
         timer.Pause();
 
-        levelManager = FindObjectOfType<LevelManager>();
+        keyEventManager = FindObjectOfType<KeyEventManager>();
     }
     
     
@@ -73,6 +73,6 @@ public class SlimeEatMetalFeature : MonoBehaviour
     // register in slime escape event
     public void SlimeEatPowerRoomDoor()
     {
-        if (levelManager) levelManager.SetKeyEventState(KeyEvent.DoorEatenBySlime, true);
+        if (keyEventManager) keyEventManager.SetKeyEventState(KeyEvent.DoorEatenBySlime, true);
     }
 }

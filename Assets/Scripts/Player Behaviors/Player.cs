@@ -45,9 +45,6 @@ public class Player : MonoBehaviour
         InteractHandler = GetComponent<PlayerInteractHandler>();
         PlayerMove = GetComponent<PlayerMove>();
 
-        MemoryCamera = GetComponentInChildren<MemoryCamera>();
-        AlbumBook = GetComponentInChildren<AlbumBook>();
-
         stateDict = new Dictionary<UsingProp, IPropState>()
         {
             {UsingProp.None, new PlayerSelfState(this)},

@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ProjectorUI : MonoBehaviour
 {
-    private Player player;
+    //private Player player;
     private M_ProjectMachine projector;
-    private GeneralUI generalUI;
+    //private GeneralUI generalUI;
 
     private Dictionary<string, Texture2D> allDisplayPhotoDict;
 
-    [SerializeField] private RectTransform ProjectorUIFrame;
+    [SerializeField] private RectTransform projectorUI;
     [SerializeField] private RawImage CurrentPhotoDisplayArea;
     [SerializeField] private TMP_Text Description;
     [SerializeField] private Button LastPhotoBtn;
@@ -22,12 +23,13 @@ public class ProjectorUI : MonoBehaviour
     [SerializeField] private Button ExitProjectorBtn;
 
     private int currentPhotoIndex;
-    
+
+    public event Action<bool> OnEnableUI;
     
     private void Awake()
     {
-        player = FindObjectOfType<Player>();
-        generalUI = GetComponent<GeneralUI>();
+        //player = FindObjectOfType<Player>();
+        //generalUI = GetComponent<GeneralUI>();
     }
     
 
@@ -51,16 +53,15 @@ public class ProjectorUI : MonoBehaviour
 
     private void Start()
     {
-        player.InteractHandler.OnItemInteract += ChangeTargetProjector;
+        //player.InteractHandler.OnItemInteract += ChangeTargetProjector;
     }
     
 
 
-    private void ChangeTargetProjector(IInteractable interactItem)
+    public void ChangeTargetProjector(IInteractable interactItem)
     {
-        if(!(interactItem is M_ProjectMachine)) return;
-        
-        var newProjector = (M_ProjectMachine) interactItem;
+        if(interactItem is not M_ProjectMachine newProjector) return;
+
         if(projector) UnregisterProjector();
         projector = newProjector;
         RegisterProjector();
@@ -86,7 +87,7 @@ public class ProjectorUI : MonoBehaviour
 
     private void OpenProjectorUI(FilePhotoData firstData)
     {
-        ProjectorUIFrame.gameObject.SetActive(true);
+        projectorUI.gameObject.SetActive(true);
         CurrentPhotoDisplayArea.texture = firstData?.photo;
         
         var textureColor = CurrentPhotoDisplayArea.color;
@@ -95,14 +96,16 @@ public class ProjectorUI : MonoBehaviour
         
         Description.text = firstData?.data == null ? "沒有描述" : ItemControlHandler.Instance.GetRecordableItemById(firstData.data.TargetItemId).Description;
         
-        generalUI.EnableGeneralUI(false);
+        //generalUI.EnableGeneralUI(false);
+        OnEnableUI?.Invoke(true);
     }
 
 
     private void CloseProjectorUI()
     {
-        ProjectorUIFrame.gameObject.SetActive(false);
-        generalUI.EnableGeneralUI(true);
+        projectorUI.gameObject.SetActive(false);
+        //generalUI.EnableGeneralUI(true);
+        OnEnableUI?.Invoke(false);
     }
     
 

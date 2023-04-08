@@ -9,11 +9,11 @@ public class GameGoal : MonoBehaviour
     private Animator doorAni;
     private Player player;
     private SpriteRenderer[] doorSprites;
-    private LevelManager levelManager;
+    private KeyEventManager keyEventManager;
 
     private void Awake()
     {
-        levelManager = FindObjectOfType<LevelManager>();
+        keyEventManager = FindObjectOfType<KeyEventManager>();
         doorAni = elevatorDoor.GetComponent<Animator>();
 
         doorSprites = elevatorDoor.GetComponentsInChildren<SpriteRenderer>();
@@ -51,6 +51,6 @@ public class GameGoal : MonoBehaviour
 
     private void EnterGameOver()
     {
-        if(levelManager) levelManager.GameOver();
+        if(keyEventManager) keyEventManager.GameOver();
     }
 }

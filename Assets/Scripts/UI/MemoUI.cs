@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class MemoUI : MonoBehaviour
 {
-    private Player player;
     private AlbumBook albumBook;
     
     [SerializeField] private RectTransform memoPage;
@@ -14,31 +13,13 @@ public class MemoUI : MonoBehaviour
     [SerializeField] private TMP_Text contents;
 
     [SerializeField] private Button ChangeToMemoBtn;
-    
-    
-    private void Awake()
-    {
-        player = FindObjectOfType<Player>();
-    }
-    
-    
-    private void OnEnable()
-    {
-        player.OnPropEquipped += RegisterMemoUI;
-    }
 
 
-    private void OnDisable()
+    public void RegisterMemoUI(IPlayerProp prop)
     {
-        player.OnPropEquipped -= RegisterMemoUI;
-    }
-
-
-    private void RegisterMemoUI(IPlayerProp prop)
-    {
-        if(!(prop is AlbumBook)) return;
+        if(prop is not AlbumBook book) return;
         
-        albumBook = (AlbumBook) prop;
+        albumBook = book;
 
         albumBook.OnAlbumBookToggleEnable += MemoUISet;
         albumBook.OnAlbumPageTypeChange += ChangeAlbumTypePage;

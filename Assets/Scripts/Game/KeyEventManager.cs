@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class KeyEventManager : MonoBehaviour
 {
     [SerializeField] private List<KeyEvent> allKeyEventInLevel;
     private Dictionary<KeyEvent, bool> keyEventDict;

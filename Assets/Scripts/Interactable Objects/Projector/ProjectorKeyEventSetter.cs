@@ -9,12 +9,12 @@ public class ProjectorKeyEventSetter : MonoBehaviour
     [SerializeField] private RecordableItem targetProjectItem;
     [SerializeField] private KeyEvent keyEvent;
     private M_ProjectMachine projector;
-    private LevelManager levelManager;
+    private KeyEventManager keyEventManager;
 
     
     private void Awake()
     {
-        levelManager = FindObjectOfType<LevelManager>();
+        keyEventManager = FindObjectOfType<KeyEventManager>();
         projector = GetComponent<M_ProjectMachine>();
     }
 
@@ -34,7 +34,7 @@ public class ProjectorKeyEventSetter : MonoBehaviour
     public void SetKeyEventClear(M_ProjectMachine proj, CameraRecordableBehaviour item)
     {
         //GameFlowHandler.Instance.SetKeyEventClear(keyEvent);
-        if(!levelManager) return;
-        if(item.ItemData == targetProjectItem) levelManager.SetKeyEventState(keyEvent, true);
+        if(!keyEventManager) return;
+        if(item.ItemData == targetProjectItem) keyEventManager.SetKeyEventState(keyEvent, true);
     }
 }
