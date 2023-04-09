@@ -25,6 +25,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        player.InitPlayer();
         uiManager.LateBindUI(player);
+    }
+
+
+    private void Update()
+    {
+        player.UpdatePlayer();   
     }
 }

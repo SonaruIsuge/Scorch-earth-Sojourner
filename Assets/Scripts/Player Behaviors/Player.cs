@@ -7,21 +7,24 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     // Player input
-    private InputControl InputControl;
+    private InputControl inputControl;
     public CommonInput CommonInput { get; private set; }
     public IInput CurrentInput { get; private set; }
-    private Dictionary<InputType, IInput> AllInput;
+    private Dictionary<InputType, IInput> allInput;
     
     // Player components
-    public PlayerMove PlayerMove { get; private set; }
-    public PlayerInteractHandler InteractHandler { get; private set; }
+    [field: Header("Components")]
+    [field: SerializeField] public PlayerMove PlayerMove { get; private set; }
+    [field: SerializeField] public PlayerInteractHandler InteractHandler { get; private set; }
 
     // Player equipments
+    [Header("Props")]
     public MemoryCamera MemoryCamera;
     public AlbumBook AlbumBook;
 
     // Player use prop state machine
-    [SerializeField]private UsingProp currentState;
+    [Header("State")]
+    [SerializeField] private UsingProp currentState;
     private Dictionary<UsingProp, IPropState> stateDict;
     
     // Player equip prop event
@@ -30,20 +33,20 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        InputControl = new InputControl();
-        CommonInput = new CommonInput(InputControl);
+        inputControl = new InputControl();
+        CommonInput = new CommonInput(inputControl);
         
-        AllInput = new Dictionary<InputType, IInput>()
+        allInput = new Dictionary<InputType, IInput>()
         {
-            {InputType.Player, new PlayerInputSystemInput(InputControl)},
-            {InputType.MemoryCamera, new MemoryCameraInput(InputControl)},
-            {InputType.AlbumBook, new AlbumInput(InputControl)},
+            {InputType.Player, new PlayerInputSystemInput(inputControl)},
+            {InputType.MemoryCamera, new MemoryCameraInput(inputControl)},
+            {InputType.AlbumBook, new AlbumInput(inputControl)},
         };
 
-        CurrentInput = AllInput[InputType.Player];
+        CurrentInput = allInput[InputType.Player];
         
-        InteractHandler = GetComponent<PlayerInteractHandler>();
-        PlayerMove = GetComponent<PlayerMove>();
+        //InteractHandler = GetComponent<PlayerInteractHandler>();
+        //PlayerMove = GetComponent<PlayerMove>();
 
         stateDict = new Dictionary<UsingProp, IPropState>()
         {
@@ -54,11 +57,7 @@ public class Player : MonoBehaviour
             {UsingProp.StartTransition, new StartTransitionState(this)}
         };
     }
-
-    void OnEnable()
-    {
-        CurrentInput?.Register();
-    }
+    
 
     void OnDisable()
     {
@@ -66,8 +65,10 @@ public class Player : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void InitPlayer()
     {
+        CurrentInput?.Register();
+        
         EquipProp(MemoryCamera);
         EquipProp(AlbumBook);
 
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdatePlayer()
     {
         stateDict[currentState].StayState();
     }
@@ -95,8 +96,8 @@ public class Player : MonoBehaviour
 
     public void EnableInputType(InputType newType)
     {
-        foreach (var inputType in AllInput.Values) inputType.EnableInput(false);
-        CurrentInput = AllInput[newType];
+        foreach (var inputType in allInput.Values) inputType.EnableInput(false);
+        CurrentInput = allInput[newType];
         CurrentInput.EnableInput(true);
     }
 
