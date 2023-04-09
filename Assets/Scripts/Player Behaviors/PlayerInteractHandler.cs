@@ -49,21 +49,18 @@ public class PlayerInteractHandler : MonoBehaviour
         OnItemInteract?.Invoke(currentSelectObj);
     }
     
-    
-    // private void OnDrawGizmos()
-    // {
-    //     Gizmos.DrawSphere(interactPoint.position, InteractRange);
-    // }
 
     private IInteractable DetectInteractableObj()
     {
         currentSelectObj = null;
-        var hits = Physics2D.OverlapCircleAll(interactPoint.position, interactRange);
+        var hits = new Collider2D[10];
+        Physics2D.OverlapCircleNonAlloc(interactPoint.position, interactRange, hits);
         var minDistance = Mathf.Infinity;
         foreach (var hit in hits)
         {
-            var interact = hit.GetComponent<IInteractable>();
-            if (interact == null) continue;
+            if (!hit) continue;
+            var hasInteract = hit.TryGetComponent<IInteractable>(out var interact);
+            if (!hasInteract) continue;
             
             //find the closest interactable object
             var diff = transform.position - hit.transform.position;

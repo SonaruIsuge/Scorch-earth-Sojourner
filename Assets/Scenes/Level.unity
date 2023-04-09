@@ -3130,7 +3130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactPoint: {fileID: 1743826047}
   interactHint: {fileID: 1526055160}
-  InteractRange: 0.8
+  interactRange: 0.8
 --- !u!114 &282019897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3143,9 +3143,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a733c706e40141b7af88427df53f9207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 282019899}
+  playerAni: {fileID: 888923775}
+  playerBody: {fileID: 888923774}
   MoveSpeed: 7
   movement: {x: 0, y: 0}
-  playerBody: {fileID: 888923774}
 --- !u!114 &282019898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9556,9 +9558,9 @@ MonoBehaviour:
   - AudioType: 7
     Clip: {fileID: 8300000, guid: d1418c658f845c7418c7392169d9aed9, type: 3}
   - AudioType: 8
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 3fdfbf05ff94de942a91929740d24b69, type: 3}
   - AudioType: 9
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 4c7449698484a484f8c32aa1fc4ab3af, type: 3}
   - AudioType: 10
     Clip: {fileID: 8300000, guid: 9a40a424388ebc44c8a63d25f2ae21db, type: 3}
   - AudioType: 11
@@ -27975,7 +27977,7 @@ GameObject:
   - component: {fileID: 5425722274755213487}
   - component: {fileID: 5425722274755213488}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Main Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29080,6 +29082,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5779646466042797538}
+  - component: {fileID: 5979007566869010536}
+  - component: {fileID: 5979007566869010535}
   m_Layer: 5
   m_Name: Album Bg
   m_TagString: Untagged
@@ -29087,6 +29091,41 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5979007566869010535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979007566869010534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: c2e7cc3f077fcbd4d98f595584788fd0, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &5979007566869010536
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979007566869010534}
+  m_CullTransparentMesh: 1
 --- !u!224 &6123742212455230152
 RectTransform:
   m_ObjectHideFlags: 0
