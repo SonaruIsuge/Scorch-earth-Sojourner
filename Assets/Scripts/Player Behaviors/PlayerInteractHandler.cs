@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 [Serializable]
 public class PlayerInteractHandler : MonoBehaviour
 {
-    [SerializeField]private Transform interactPoint;
-    [SerializeField]private TMP_Text interactHint;
-    public float InteractRange;
+    [SerializeField] private Transform interactPoint;
+    [SerializeField] private TMP_Text interactHint;
+    [SerializeField] private float interactRange;
     
     private Player player;
     public IInteractable currentSelectObj { get; private set; }
@@ -57,7 +58,7 @@ public class PlayerInteractHandler : MonoBehaviour
     private IInteractable DetectInteractableObj()
     {
         currentSelectObj = null;
-        var hits = Physics2D.OverlapCircleAll(interactPoint.position, InteractRange);
+        var hits = Physics2D.OverlapCircleAll(interactPoint.position, interactRange);
         var minDistance = Mathf.Infinity;
         foreach (var hit in hits)
         {

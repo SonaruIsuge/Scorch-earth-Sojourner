@@ -26,6 +26,7 @@ public class DialogueHandler : TSingletonMonoBehaviour<DialogueHandler>
 
     public void StartSentence(string sentence, float wordSpeed = 0.04f, float wordShowTime = 1.0f, float fadeTime = 1.0f)
     {
+        if(sentence.Length == 0) return;
         if(hasDialogueProgress) StopAllCoroutines();
         
         StartCoroutine(PrintSentenceProgress(sentence, wordSpeed, wordShowTime, fadeTime));

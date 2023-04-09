@@ -6,22 +6,22 @@ using UnityEngine;
 [Serializable]
 public class PlayerMove : MonoBehaviour
 {
-    public float MoveSpeed;
-    
-    private Player player;
-    private Rigidbody2D rb;
-    private Animator playerAni;
-
-    [SerializeField]private Vector2 movement = Vector2.zero;
+    //private Player player;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator playerAni;
     [SerializeField] private Transform playerBody;
+    
+    public float MoveSpeed;
+    [SerializeField]private Vector2 movement = Vector2.zero;
+    
     private float previousDir;
     private bool isStopMove;
 
     void Awake()
     {
-        player = GetComponent<Player>();
-        rb = GetComponent<Rigidbody2D>();
-        playerAni = playerBody.GetComponent<Animator>();
+        //player = GetComponent<Player>();
+        //rb = GetComponent<Rigidbody2D>();
+        //playerAni = playerBody.GetComponent<Animator>();
         
         previousDir = 1;
     }
@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
         isStopMove = !enable;
         if(!enable) ForceStopMove();
         
-        AudioHandler.Instance.SetInterval(.4f);
+        //AudioHandler.Instance.SetInterval(.4f);
     }
 
     private void ForceStopMove()
@@ -58,7 +58,7 @@ public class PlayerMove : MonoBehaviour
         playerAni.SetBool(AnimatorParam.Move, movement != Vector2.zero);
         playerAni.SetFloat(AnimatorParam.Direction, movement.sqrMagnitude);
         
-        if(movement != Vector2.zero) AudioHandler.Instance.SpawnAudioWithInterval(AudioType.PlayerMove);
+        if(movement != Vector2.zero) AudioHandler.Instance.SpawnAudio(AudioType.PlayerMove, true);
     }
 
     private bool checkFlip() => previousDir < 0;

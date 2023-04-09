@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorEntry: {fileID: 0}
   TriggerDoorParamName: OpenDoor
-  investigateSentence: ' '
+  investigateSentence: 
 --- !u!1 &6208001166632927247
 GameObject:
   m_ObjectHideFlags: 0

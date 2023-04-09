@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class AudioHandler : TSingletonMonoBehaviour<AudioHandler>
 {
-    private AudioSource audioSource;
+    private AudioManager audioManager;
     
-    public float Volume;
     public List<AudioData> AudioList;
     private Dictionary<AudioType, AudioClip> audioDataDict;
 
@@ -16,10 +15,10 @@ public class AudioHandler : TSingletonMonoBehaviour<AudioHandler>
     protected override void Awake()
     {
         base.Awake();
+
+        audioManager = FindObjectOfType<AudioManager>();
         
-        audioSource = GetComponent<AudioSource>();
         audioDataDict = new Dictionary<AudioType, AudioClip>();
-        
         foreach(var data in AudioList) audioDataDict.Add(data.AudioType, data.Clip);
     }
 
@@ -30,32 +29,38 @@ public class AudioHandler : TSingletonMonoBehaviour<AudioHandler>
         if(!audioDataDict.ContainsKey(type)) return;
         if(!audioDataDict[type]) return;
 
-        if(untilPlayOver && audioSource.isPlaying) return;
-        
-        if(stopLast && audioSource.isPlaying) audioSource.Stop();
-        audioSource.PlayOneShot(audioDataDict[type]);
+        audioManager.SpawnSfx(audioDataDict[type], untilPlayOver, stopLast);
     }
 
 
-    public void SetInterval(float delayTime)
+    public void ChangeBgm(AudioType type, float fadeTime)
     {
-        timer = new SimpleTimer(delayTime);
-        timer.Pause();
+        if(!audioDataDict.ContainsKey(type)) return;
+        if(!audioDataDict[type]) return;
+
+        audioManager.ChangeBGM(audioDataDict[type], fadeTime);
     }
-    
-    
-    /// <summary>
-    /// Need set interval time first.
-    /// </summary>
-    /// <param name="type"></param>
-    public void SpawnAudioWithInterval(AudioType type)
-    {
-        if(timer.IsPause) timer.Resume();
-        
-        if (timer.IsFinish)
-        {
-            SpawnAudio(type);
-            timer.Reset();
-        }
-    }
+
+
+    // public void SetInterval(float delayTime)
+    // {
+    //     timer = new SimpleTimer(delayTime);
+    //     timer.Pause();
+    // }
+    //
+    //
+    // /// <summary>
+    // /// Need set interval time first.
+    // /// </summary>
+    // /// <param name="type"></param>
+    // public void SpawnAudioWithInterval(AudioType type)
+    // {
+    //     if(timer.IsPause) timer.Resume();
+    //     
+    //     if (timer.IsFinish)
+    //     {
+    //         SpawnAudio(type);
+    //         timer.Reset();
+    //     }
+    // }
 }
