@@ -1,4 +1,5 @@
 ﻿
+using System.Threading.Tasks;
 using SonaruUtilities;
 using Tools;
 using UnityEngine;
@@ -6,12 +7,12 @@ using UnityEngine.InputSystem;
 
 public class StartTransitionState : IPropState
 {
-    public Player player { get; private set; }
+    public Player player { get; }
     private Animator playerAni;
     private AnimatorStateInfo animatorStateInfo;
 
-    private SimpleTimer timer;
     private bool isPlayingTransition;
+    
     
     public StartTransitionState(Player owner)
     {
@@ -23,21 +24,17 @@ public class StartTransitionState : IPropState
     public void EnterState()
     {
         isPlayingTransition = false;
-        timer = new SimpleTimer(1);
-        timer.Pause();
     }
+    
 
     public void StayState()
     {
         if (Keyboard.current.anyKey.wasPressedThisFrame && !isPlayingTransition)
         {
-            isPlayingTransition = true;
-            player.DelayDo(PlayTransition, .5f);
+            DelayPlayerTransition();
         }
-        
-        
-        if(timer.IsFinish) player.ChangePropState(UsingProp.None);
     }
+    
 
     public void ExitState()
     {
@@ -45,12 +42,16 @@ public class StartTransitionState : IPropState
     }
 
 
-    private void PlayTransition()
+    private async void DelayPlayerTransition(float delaySec = 0)
     {
+        if(isPlayingTransition) return;
+        isPlayingTransition = true;
+
+        await Task.Delay((int)(delaySec * 1000));
         playerAni.SetTrigger(AnimatorParam.WakeUp);
         animatorStateInfo = playerAni.GetCurrentAnimatorStateInfo(0);
-        
-        timer.Reset(animatorStateInfo.length);
-        timer.Resume();
+
+        await Task.Delay((int)(animatorStateInfo.length * 1000));
+        player.ChangePropState(UsingProp.None);
     }
 }
