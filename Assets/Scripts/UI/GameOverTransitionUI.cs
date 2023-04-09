@@ -11,17 +11,6 @@ public class GameOverTransitionUI : MonoBehaviour
     [SerializeField] private float fadeImageTime;
     [SerializeField] private float imageStayTime;
     
-    private void OnEnable()
-    {
-        KeyEventManager.OnGameOver += ImageTransitionPerform;
-    }
-
-
-    private void OnDisable()
-    {
-        KeyEventManager.OnGameOver -= ImageTransitionPerform;
-    }
-
 
     private void Start()
     {
@@ -34,7 +23,7 @@ public class GameOverTransitionUI : MonoBehaviour
     
     
 
-    private async void ImageTransitionPerform()
+    public async void ImageTransitionPerform()
     {
         gameOverPanel.gameObject.SetActive(true);
         var panelColor = gameOverPanel.color;

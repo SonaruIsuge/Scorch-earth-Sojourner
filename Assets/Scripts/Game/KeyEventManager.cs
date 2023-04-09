@@ -6,8 +6,7 @@ public class KeyEventManager : MonoBehaviour
 {
     [SerializeField] private List<KeyEvent> allKeyEventInLevel;
     private Dictionary<KeyEvent, bool> keyEventDict;
-
-    public static event Action OnGameOver;
+    
     public static event Action<KeyEvent> OnKeyEventClear;
 
 
@@ -31,11 +30,5 @@ public class KeyEventManager : MonoBehaviour
     public bool CheckKeyEventState(KeyEvent key)
     {
         return keyEventDict.ContainsKey(key) && keyEventDict[key];
-    }
-
-
-    public void GameOver()
-    {
-        OnGameOver?.Invoke();
     }
 }

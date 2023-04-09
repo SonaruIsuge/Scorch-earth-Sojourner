@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private MemoUI memoUI;
     [SerializeField] private MemoryCameraUI memoryCameraUI;
     [SerializeField] private ProjectorUI projectorUI;
+    [SerializeField] private GameOverTransitionUI gameOverUI;
 
 
     private void OnEnable()
@@ -59,5 +60,11 @@ public class UIManager : MonoBehaviour
     public void ChangeRoomText(RoomData data)
     {
         generalUI.ChangeCurrentRoomText(data);
+    }
+
+
+    public void GameOverUI()
+    {
+        gameOverUI.ImageTransitionPerform();
     }
 }

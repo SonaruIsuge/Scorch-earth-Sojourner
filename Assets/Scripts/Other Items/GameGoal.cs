@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,34 +8,32 @@ public class GameGoal : MonoBehaviour
     [SerializeField] private GameObject elevatorDoor;
     
     private Animator doorAni;
-    private Player player;
     private SpriteRenderer[] doorSprites;
-    private KeyEventManager keyEventManager;
+
+    private bool underGameOverProgress;
+
+    public event Action OnGameOverProgress;
 
     private void Awake()
     {
-        keyEventManager = FindObjectOfType<KeyEventManager>();
         doorAni = elevatorDoor.GetComponent<Animator>();
-
         doorSprites = elevatorDoor.GetComponentsInChildren<SpriteRenderer>();
+
+        underGameOverProgress = false;
     }
     
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            // Game Over
-            player = other.GetComponent<Player>();
-            player.PlayerMove.EnableMove(false);
-            player.InteractHandler.EnableInteract(false);
-            
-            player.DelayDo(ClearProgress, .5f);
-        }
+        if (!other.CompareTag("Player")) return;
+        if(underGameOverProgress) return;
+
+        underGameOverProgress = true;
+        OnGameOverProgress?.Invoke();
     }
 
 
-    private void ClearProgress()
+    public void GameOverAni()
     {
         foreach (var doorSprite in doorSprites)
         {
@@ -43,14 +42,5 @@ public class GameGoal : MonoBehaviour
         doorAni.Play("ElevatorDoorClose");
 
         var info = doorAni.GetCurrentAnimatorStateInfo(0);
-        
-        player.DelayDo(EnterGameOver, info.length);
-        
-    }
-
-
-    private void EnterGameOver()
-    {
-        if(keyEventManager) keyEventManager.GameOver();
     }
 }

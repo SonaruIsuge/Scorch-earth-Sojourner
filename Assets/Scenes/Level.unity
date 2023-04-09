@@ -668,6 +668,7 @@ MonoBehaviour:
   player: {fileID: 282019898}
   uiManager: {fileID: 1297083421}
   roomsController: {fileID: 1774014822}
+  gameGoal: {fileID: 236079158}
 --- !u!4 &76088613
 Transform:
   m_ObjectHideFlags: 0
@@ -13902,6 +13903,7 @@ MonoBehaviour:
   memoUI: {fileID: 1810367192}
   memoryCameraUI: {fileID: 185619718}
   projectorUI: {fileID: 1268692630}
+  gameOverUI: {fileID: 5425722274755213487}
 --- !u!4 &1297083422
 Transform:
   m_ObjectHideFlags: 0
@@ -24586,6 +24588,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bd7bf8e45f714c41bc6a116f5e522d5, type: 3}
+--- !u!114 &5425722274755213487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2970658079853917845, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
+  m_PrefabInstance: {fileID: 7094836690596089402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef091007e0aa410d92eb6974a8570695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5425722274755213488 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2970658079853917834, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
