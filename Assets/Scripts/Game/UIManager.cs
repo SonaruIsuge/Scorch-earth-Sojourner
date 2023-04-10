@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private MemoryCameraUI memoryCameraUI;
     [SerializeField] private ProjectorUI projectorUI;
     [SerializeField] private GameOverTransitionUI gameOverUI;
+    [SerializeField] private TransitionUI transitionUI;
 
 
     private void OnEnable()
@@ -48,6 +49,12 @@ public class UIManager : MonoBehaviour
         player.OnPropEquipped -= memoUI.RegisterMemoUI;
         player.OnPropEquipped -= memoryCameraUI.RegisterMemoryCameraUI;
         player.InteractHandler.OnItemInteract -= projectorUI.ChangeTargetProjector;
+    }
+
+
+    public async void GameStartUI()
+    {
+        await transitionUI.FadeOut();
     }
 
 

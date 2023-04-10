@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DG.Tweening;
 using SonaruUtilities;
 using UnityEngine;
@@ -66,7 +67,7 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
         materialSwitcher?.ReplaceMaterial();
     }
 
-    public void Interact(Player player)
+    public async void Interact(Player player)
     {
         if(!correspondProjector) return;
         
@@ -77,10 +78,11 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
         resizeCameraOrthographicSize = worldCamera.orthographicSize * 2 * 100 / Screen.height;
 
         correspondProjector.DOProjectorAnimation(2.0f, 0.7f, 1);
-
+        await Task.Delay(1000);
+        
         choosePhotoIndex = Mathf.Max(Mathf.Min(choosePhotoIndex, allPlayerPhoto.Count - 1), 0);
-        var startPhoto = allPlayerPhoto.Count > 0 ? allPlayerPhoto[choosePhotoIndex].photo : null;
-        player.DelayDo(() => OnStartInteract?.Invoke(allPlayerPhoto.Count > 0 ? allPlayerPhoto[choosePhotoIndex] : null), 1);
+        var startPhoto = allPlayerPhoto.Count > 0 ? allPlayerPhoto[choosePhotoIndex] : null;
+        OnStartInteract?.Invoke(startPhoto);
         
         AudioHandler.Instance.SpawnAudio(AudioType.ProjectorOpen);
     }
@@ -110,7 +112,7 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
 
     public void SubmitPhoto()
     {
-        if (allPlayerPhoto.Count <= 0)
+        if (allPlayerPhoto.Count == 0)
         {
             photoData = null;
             DealWithExitProgress();
@@ -152,7 +154,7 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
             }, 2);
         }
         
-        OnEndInteract.Invoke();
+        OnEndInteract?.Invoke();
     }
 
 
@@ -161,8 +163,8 @@ public class M_ProjectMachine : MonoBehaviour, IInteractable
         var generateItem = ItemControlHandler.Instance.GetRecordableItemById(targetPhotoData.TargetItemId);
         var itemObj = Instantiate(generateItem.ItemObject);
 
-        var OrthoTimes = worldCamera.orthographicSize / targetPhotoData.cameraOrthoSize;
-        var itemScale = projectScale.x * 100 / (allPlayerPhoto[choosePhotoIndex].photo.width * resizeCameraOrthographicSize) * OrthoTimes;
+        var orthoTimes = worldCamera.orthographicSize / targetPhotoData.cameraOrthoSize;
+        var itemScale = projectScale.x * 100 / (allPlayerPhoto[choosePhotoIndex].photo.width * resizeCameraOrthographicSize) * orthoTimes;
         var itemPos = targetPhotoData.PositionFromCenter * itemScale + correspondProjector.GetProjectorCanvasPos();
         
         itemObj.transform.localScale = Vector3.one * itemScale;

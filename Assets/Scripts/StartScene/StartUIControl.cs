@@ -11,15 +11,15 @@ public class StartUIControl : MonoBehaviour
 {
     [SerializeField] private Button startGameBtn;
     [SerializeField] private Button exitGameBtn;
-    [SerializeField] private Image transitionImage;
+    [SerializeField] private TransitionUI transitionUI;
     private EventSystem EventSystem => EventSystem.current;
-    private bool isStartProgress;
+    //private bool isStartProgress;
     
 
     private void Awake()
     {
         EventSystem.SetSelectedGameObject(startGameBtn.gameObject);
-        isStartProgress = false;
+        //isStartProgress = false;
     }
 
 
@@ -39,15 +39,7 @@ public class StartUIControl : MonoBehaviour
 
     private async void StartGame()
     {
-        if(isStartProgress) return;
-        isStartProgress = true;
-
-        var color = transitionImage.color;
-        color.a = 1;
-        transitionImage.DOColor(color, 1f);
-
-        await Task.Delay(1000);
-        
+        await transitionUI.FadeIn();
         GameFlowHandler.Instance.LoadScene(SceneIndex.Level, new LevelData());
     }
 

@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     {
         uiManager.BindPlayerWithUI(player);
         roomsController.OnRoomChange += uiManager.ChangeRoomText;
-        gameGoal.OnGameOverProgress += GameOver;
+        gameGoal.OnTriggerGameOver += GameOver;
     }
 
 
@@ -22,12 +22,14 @@ public class GameManager : MonoBehaviour
     {
         uiManager.UnbindPlayerWithUI(player);
         roomsController.OnRoomChange -= uiManager.ChangeRoomText;
-        gameGoal.OnGameOverProgress -= GameOver;
+        gameGoal.OnTriggerGameOver -= GameOver;
     }
 
 
     private void Start()
     {
+        uiManager.GameStartUI();
+        
         player.InitPlayer();
         uiManager.LateBindUI(player);
     }
@@ -47,9 +49,8 @@ public class GameManager : MonoBehaviour
         await Task.Delay(500);
         
         // Play goal animation
-        gameGoal.GameOverAni();
-        await Task.Delay(500);
-        
+        await gameGoal.GameOverAni();
+
         // Show game over UI
         uiManager.GameOverUI();
     }

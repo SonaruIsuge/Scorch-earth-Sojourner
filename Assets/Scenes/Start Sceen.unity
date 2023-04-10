@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 1362706807}
   - component: {fileID: 1362706806}
   - component: {fileID: 1362706805}
+  - component: {fileID: 1362706810}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -396,7 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startGameBtn: {fileID: 1866099727}
   exitGameBtn: {fileID: 447959597}
-  transitionImage: {fileID: 1449681110}
+  transitionUI: {fileID: 1362706810}
 --- !u!114 &1362706806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +483,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1362706810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362706804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6602a69e28d94ded8fb5d1f97666eeec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionImage: {fileID: 1449681110}
+  fadeTime: 1
 --- !u!1 &1449681108
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,29 +923,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioList:
   - AudioType: 0
-    Clip: {fileID: 8300000, guid: d0b85d95da4be954e9007cb2b3f1c9a6, type: 3}
+    Clip: {fileID: 8300000, guid: 6fdc893085d697b42b547cc61731c92b, type: 3}
   - AudioType: 1
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 0b6aa9bd2fb906841b848a077bebeb41, type: 3}
   - AudioType: 2
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: d1418c658f845c7418c7392169d9aed9, type: 3}
   - AudioType: 3
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: bd7385acc9385d347b83bd112f754afe, type: 3}
   - AudioType: 4
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 9f0a6936203eca64a8fd1a11729e05e4, type: 3}
   - AudioType: 5
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 2ada6d8b6e16f284abc33281d3d75878, type: 3}
   - AudioType: 6
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: d1418c658f845c7418c7392169d9aed9, type: 3}
   - AudioType: 7
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: d1418c658f845c7418c7392169d9aed9, type: 3}
   - AudioType: 8
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 3fdfbf05ff94de942a91929740d24b69, type: 3}
   - AudioType: 9
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 4c7449698484a484f8c32aa1fc4ab3af, type: 3}
   - AudioType: 10
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 9a40a424388ebc44c8a63d25f2ae21db, type: 3}
   - AudioType: 11
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: b36de4ecc342a2d49a3f6ed4d7358000, type: 3}
 --- !u!4 &2040477934
 Transform:
   m_ObjectHideFlags: 0

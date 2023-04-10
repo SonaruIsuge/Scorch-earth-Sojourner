@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameGoal : MonoBehaviour
@@ -12,7 +13,8 @@ public class GameGoal : MonoBehaviour
 
     private bool underGameOverProgress;
 
-    public event Action OnGameOverProgress;
+    public event Action OnTriggerGameOver;
+    
 
     private void Awake()
     {
@@ -29,11 +31,11 @@ public class GameGoal : MonoBehaviour
         if(underGameOverProgress) return;
 
         underGameOverProgress = true;
-        OnGameOverProgress?.Invoke();
+        OnTriggerGameOver?.Invoke();
     }
 
 
-    public void GameOverAni()
+    public async Task GameOverAni()
     {
         foreach (var doorSprite in doorSprites)
         {
@@ -42,5 +44,6 @@ public class GameGoal : MonoBehaviour
         doorAni.Play("ElevatorDoorClose");
 
         var info = doorAni.GetCurrentAnimatorStateInfo(0);
+        await Task.Delay((int)info.length);
     }
 }
