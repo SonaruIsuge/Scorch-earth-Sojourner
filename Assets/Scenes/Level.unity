@@ -680,6 +680,7 @@ MonoBehaviour:
   uiManager: {fileID: 1297083421}
   roomsController: {fileID: 1774014822}
   gameGoal: {fileID: 236079158}
+  mapController: {fileID: 5425722274755213494}
 --- !u!4 &76088613
 Transform:
   m_ObjectHideFlags: 0
@@ -24140,6 +24141,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83932c508623515419320cb02f01685d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5425722274755213494 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 622103642411514602, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
+  m_PrefabInstance: {fileID: 7094836690596089402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9429d0403a794073b1a05b5e8f0ad231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5722277042130291504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24393,6 +24405,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4478087396224411550, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865667435974987530, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5865667436798191017, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -24480,6 +24500,18 @@ PrefabInstance:
     - target: {fileID: 5865667436798191021, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
       propertyPath: m_Name
       value: Main Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7094836690599642267, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 7094836690599642267, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 37a1e3373d1572a43ab5307d10aaa79a, type: 3}
+    - target: {fileID: 7684419885824824022, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c66b86a2f5aa854da2b24aec8021303, type: 3}

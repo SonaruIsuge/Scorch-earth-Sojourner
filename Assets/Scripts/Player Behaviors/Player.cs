@@ -27,9 +27,10 @@ public class Player : MonoBehaviour
     [SerializeField] private UsingProp currentState;
     private Dictionary<UsingProp, IPropState> stateDict;
     
-    // Player equip prop event
+    // Event
     public event Action<IPlayerProp> OnPropEquipped;
-
+    public event Action OnPlayerToggleMap;
+    
 
     void Awake()
     {
@@ -99,6 +100,12 @@ public class Player : MonoBehaviour
         foreach (var inputType in allInput.Values) inputType.EnableInput(false);
         CurrentInput = allInput[newType];
         CurrentInput.EnableInput(true);
+    }
+
+
+    public void ToggleMap()
+    {
+        OnPlayerToggleMap?.Invoke();
     }
 
 

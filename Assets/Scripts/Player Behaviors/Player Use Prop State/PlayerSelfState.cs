@@ -28,6 +28,11 @@ public class PlayerSelfState : IPropState
 
         player.PlayerMove.UpdateMove(input.horizontal, input.vertical);
         player.InteractHandler.UpdateSelect();
+
+        if (input.openMap)
+        {
+            player.ToggleMap();
+        }
         
         if (input.interact)
         {

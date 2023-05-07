@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     
     public void SpawnSfx(AudioClip audioClip, bool untilPlayOver = false, bool stopLast = false)
     {
+        if(!sfxAudioSource) return;
         if(untilPlayOver && sfxAudioSource.isPlaying) return;
         
         if(stopLast && sfxAudioSource.isPlaying) sfxAudioSource.Stop();
@@ -22,6 +23,8 @@ public class AudioManager : MonoBehaviour
 
     public async void ChangeBGM(AudioClip newBgm, float fadeTime)
     {
+        if(!bgmAudioSource) return;
+        
         var timer = 0f;
         audioMixer.GetFloat("BgmVolume", out var currentVolume);
         var originVolume = currentVolume;

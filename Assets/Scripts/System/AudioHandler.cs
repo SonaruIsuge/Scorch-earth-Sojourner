@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AudioHandler : TSingletonMonoBehaviour<AudioHandler>
 {
-    private AudioManager audioManager;
+    private AudioManager audioManager => FindObjectOfType<AudioManager>();
     
     public List<AudioData> AudioList;
     private Dictionary<AudioType, AudioClip> audioDataDict;
@@ -15,8 +15,6 @@ public class AudioHandler : TSingletonMonoBehaviour<AudioHandler>
     protected override void Awake()
     {
         base.Awake();
-
-        audioManager = FindObjectOfType<AudioManager>();
         
         audioDataDict = new Dictionary<AudioType, AudioClip>();
         foreach(var data in AudioList) audioDataDict.Add(data.AudioType, data.Clip);

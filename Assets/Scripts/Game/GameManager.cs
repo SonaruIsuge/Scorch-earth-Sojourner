@@ -9,12 +9,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager uiManager;
     [SerializeField] private RoomsController roomsController;
     [SerializeField] private GameGoal gameGoal;
+    [SerializeField] private MapController mapController;
 
     private void OnEnable()
     {
         uiManager.BindPlayerWithUI(player);
         roomsController.OnRoomChange += uiManager.ChangeRoomText;
+        roomsController.OnRoomChange += mapController.ChangeCurrentPos;
         gameGoal.OnTriggerGameOver += GameOver;
+        player.OnPlayerToggleMap += mapController.ToggleMap;
     }
 
 
@@ -22,7 +25,9 @@ public class GameManager : MonoBehaviour
     {
         uiManager.UnbindPlayerWithUI(player);
         roomsController.OnRoomChange -= uiManager.ChangeRoomText;
+        roomsController.OnRoomChange -= mapController.ChangeCurrentPos;
         gameGoal.OnTriggerGameOver -= GameOver;
+        player.OnPlayerToggleMap -= mapController.ToggleMap;
     }
 
 
@@ -32,6 +37,8 @@ public class GameManager : MonoBehaviour
         
         player.InitPlayer();
         uiManager.LateBindUI(player);
+        
+        mapController.GenerateMapData();
     }
 
 

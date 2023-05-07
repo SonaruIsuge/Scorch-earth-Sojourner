@@ -7,6 +7,7 @@ public class PlayerInputSystemInput : IInput
     public float vertical { get; private set; }
     public float horizontal { get; private set; }
     public bool interact => inputControl.Player.Interact.WasPressedThisFrame();
+    public bool openMap => inputControl.Player.OpenMap.WasPressedThisFrame();
     
 
     private readonly InputControl inputControl;
