@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: -900815055
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f59c5d680908ac5438795c319574ad89, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db3f8a52a222f9e47ba21ab9732475de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.44, y: 4.54}
+    oldSize: {x: 1.47, y: 4.67}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef436d59af8e21a4ab8a9e84a9f4bd8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorEntry: {fileID: 0}
   TriggerDoorParamName: OpenDoor
   investigateSentence: "\u6253\u958B\u4E86\uFF01"
 --- !u!1 &8129298716799092875
@@ -328,7 +329,7 @@ SpriteRenderer:
   m_SortingLayerID: -900815055
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f59c5d680908ac5438795c319574ad89, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db3f8a52a222f9e47ba21ab9732475de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -356,7 +357,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.44, y: 4.54}
+    oldSize: {x: 1.47, y: 4.67}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

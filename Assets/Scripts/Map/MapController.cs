@@ -37,6 +37,8 @@ public class MapController : MonoBehaviour
         mapTween = mapPanel.DOAnchorPos(isOpenMap ? showMapPos : hideMapPos, 0.5f);
         mapTween.SetEase(isOpenMap ? Ease.OutBack : Ease.InBack);
         mapTween.Play();
+
+        AudioHandler.Instance.SpawnAudio(AudioType.BookOpen);
     }
 
 

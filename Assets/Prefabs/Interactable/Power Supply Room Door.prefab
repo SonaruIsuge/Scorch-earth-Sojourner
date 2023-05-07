@@ -185,6 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultDoor: {fileID: 21300000, guid: 935a42991ee19b743a9d8a7a74574362, type: 3}
-  meltDoor: {fileID: 21300000, guid: d00816143876e7747aeb0341239b1df6, type: 3}
+  meltDoor: {fileID: 21300000, guid: c1e3386bb6a5433458a1ab223d0f5faa, type: 3}
   doorEntry: {fileID: 0}
   keyEvent: 1

@@ -48,7 +48,9 @@ public enum Room
     Bedroom,
     LeftElevatorCorridor,
     RightElevatorCorridor,
-    ElevatorRoom
+    ElevatorRoom,
+    LeftCorner,
+    RightCorner
 }
 
 
