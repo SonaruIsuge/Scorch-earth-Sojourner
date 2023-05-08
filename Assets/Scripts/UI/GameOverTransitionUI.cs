@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 
 public class GameOverTransitionUI : MonoBehaviour
 {
+    [SerializeField] private Button exitBtn;
     [SerializeField] private Image gameOverPanel;
     [SerializeField] private Sprite[] gameOverSprites;
     [SerializeField] private float fadeImageTime;
@@ -19,6 +21,7 @@ public class GameOverTransitionUI : MonoBehaviour
         gameOverPanel.color = panelColor;
         
         gameOverPanel.gameObject.SetActive(false);
+        exitBtn.gameObject.SetActive(false);
     }
     
     
@@ -48,6 +51,15 @@ public class GameOverTransitionUI : MonoBehaviour
                 gameOverPanel.color = panelColor;
                 await Task.Yield();
             }
+            
+            // Show exit button
+            exitBtn.gameObject.SetActive(true);
         }
+    }
+
+
+    public void BindExitBtn(UnityAction onClick)
+    {
+        exitBtn.onClick.AddListener(onClick);
     }
 }

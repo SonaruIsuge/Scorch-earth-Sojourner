@@ -1536,6 +1536,7 @@ MonoBehaviour:
   photoPage: {fileID: 4081893761448002398}
   bookPhotoArea: {fileID: 4081893761488568234}
   photoDescription: {fileID: 4081893761715915548}
+  currentDisplayPhoto: {fileID: 4081893761488568235}
   albumBtn: {fileID: 0}
   closeAlbumBtn: {fileID: 4081893762262654330}
   LastPageBtn: {fileID: 4081893761733092079}

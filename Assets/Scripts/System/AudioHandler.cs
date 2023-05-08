@@ -5,8 +5,20 @@ using UnityEngine;
 
 public class AudioHandler : TSingletonMonoBehaviour<AudioHandler>
 {
-    private AudioManager audioManager => FindObjectOfType<AudioManager>();
-    
+    private AudioManager audioManager
+    {
+        get
+        {
+            var audioManager = FindObjectOfType<AudioManager>();
+            if (audioManager == null)
+            {
+                Debug.LogError("Not found any Audio Manager!");
+            }
+
+            return audioManager;
+        }
+    }
+
     public List<AudioData> AudioList;
     private Dictionary<AudioType, AudioClip> audioDataDict;
 

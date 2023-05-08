@@ -32,6 +32,7 @@ public class AlbumBookUI : MonoBehaviour
     {
         currentDisplayPhoto = bookPhotoArea.GetComponent<RawImage>();
         photoDisplaySize = new Vector2(bookPhotoArea.rect.width, bookPhotoArea.rect.height);
+        gameObject.SetActive(false);
     }
     
 
@@ -73,7 +74,7 @@ public class AlbumBookUI : MonoBehaviour
     private void ChangeCurrentPhotoData(FilePhotoData filePhotoData)
     {
         var imageColor = currentDisplayPhoto.color;
-        
+
         if (filePhotoData == null)
         {
             currentDisplayPhoto.texture = null;

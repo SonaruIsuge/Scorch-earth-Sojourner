@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class UIManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
         albumBookUI.OnEnableUI += ToggleGeneralUIEnable;
         memoryCameraUI.OnEnableUI += ToggleGeneralUIEnable;
         projectorUI.OnEnableUI += ToggleGeneralUIEnable;
+        
     }
 
 
@@ -74,4 +76,7 @@ public class UIManager : MonoBehaviour
     {
         gameOverUI.ImageTransitionPerform();
     }
+
+
+    public void BindGameOverBtn(UnityAction onClick) => gameOverUI.BindExitBtn(onClick);
 }

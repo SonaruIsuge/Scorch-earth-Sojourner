@@ -109,6 +109,13 @@ public class Player : MonoBehaviour
     }
 
 
+    public void ResetPlayerEquipment()
+    {
+        MemoryCamera.UnEquip();
+        AlbumBook.UnEquip();
+    }
+
+
     private void EquipProp(IPlayerProp prop)
     {
         prop.Equip(this);

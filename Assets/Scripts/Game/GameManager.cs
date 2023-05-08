@@ -55,12 +55,24 @@ public class GameManager : MonoBehaviour
         // Disable player move and interact behavior
         player.PlayerMove.EnableMove(false);
         player.InteractHandler.EnableInteract(false);
+        player.ResetPlayerEquipment();
         await Task.Delay(500);
         
         // Play goal animation
         await gameGoal.GameOverAni();
 
         // Show game over UI
+        uiManager.BindGameOverBtn(ReturnMainMenu);
         uiManager.GameOverUI();
+    }
+
+
+    /// <summary>
+    /// Clear all photo and return to main menu.
+    /// </summary>
+    private void ReturnMainMenu()
+    {
+        PhotoSaveLoadHandler.Instance.ClearAllData();
+        GameFlowHandler.Instance.LoadScene(0, null);
     }
 }
