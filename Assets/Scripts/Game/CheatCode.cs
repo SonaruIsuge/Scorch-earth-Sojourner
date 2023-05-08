@@ -17,14 +17,11 @@ public class CheatCode : MonoBehaviour
     {
         cheatPressTimer = new SimpleTimer(3);
         cheatPressTimer.Pause();
-
-        cheatUsed = false;
     }
     
 
     private void Update()
     {
-        if (cheatUsed) return;
         
         if (Keyboard.current.kKey.isPressed) cheatPressTimer.Resume();
         else cheatPressTimer.Reset();
@@ -34,6 +31,5 @@ public class CheatCode : MonoBehaviour
         OnCheatTrigger?.Invoke();
         Debug.Log("Use Cheat Code!");
         cheatPressTimer.Pause();
-        cheatUsed = true;
     }
 }
