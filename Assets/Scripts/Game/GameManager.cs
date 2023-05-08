@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
         uiManager.LateBindUI(player);
         
         mapController.GenerateMapData();
+        
+        AudioHandler.Instance.ChangeBgm(AudioType.GameBgm, 0.1f);
     }
 
 

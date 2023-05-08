@@ -81,5 +81,8 @@ public enum AudioType
     SlimeEscape,
     //UI
     CharPrint,
-    ButtonClick
+    ButtonClick,
+    ToggleMap,
+    // BGM
+    GameBgm
 }

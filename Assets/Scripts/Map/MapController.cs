@@ -38,7 +38,7 @@ public class MapController : MonoBehaviour
         mapTween.SetEase(isOpenMap ? Ease.OutBack : Ease.InBack);
         mapTween.Play();
 
-        AudioHandler.Instance.SpawnAudio(AudioType.BookOpen);
+        AudioHandler.Instance.SpawnAudio(AudioType.ToggleMap);
     }
 
 
