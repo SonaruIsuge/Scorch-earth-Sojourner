@@ -1,0 +1,12 @@
+如何更新TMP中文字體：
+(1) 開啟 Assets > TextMesh Pro > text_file
+(2) 把新增的中文字貼上去(有重複也沒關係)並存檔
+(3) 點到 Assets > TextMesh Pro > Resources > Fonts & Materials
+(4) 點到 SES msjhbd SDF
+(5) 他的 Inspector 裡頂端有一個 Update Atlas Texture
+(6) 點下去會出現視窗，在Character Set 選項中選擇 Characters From File
+(7) Character File 選擇 text_file.txt
+(8) 按下下面的Generate Font Atlas
+(9) 滑到下方點選 Save 並關閉視窗
+(10) 在 Assets > TextMesh Pro > Resources > Fonts & Materials 找到另一個叫 SES msjh SDF的，重複上面 (5) 到 (9) 步驟。
+完成！
