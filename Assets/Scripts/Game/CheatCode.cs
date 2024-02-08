@@ -22,7 +22,6 @@ public class CheatCode : MonoBehaviour
 
     private void Update()
     {
-        
         if (Keyboard.current.kKey.isPressed) cheatPressTimer.Resume();
         else cheatPressTimer.Reset();
 
